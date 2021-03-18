@@ -1,0 +1,52 @@
+.root{
+    background: rgb(13,73,114);
+    background: linear-gradient(150deg, rgba(13,73,114,1) 0%, rgba(26,1,28,1) 100%);
+}
+
+.center {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    right: 20%;
+    z-index: 2;
+    margin: auto;
+    width: 60%;
+    height: 70%;
+    border-radius: 0.3cm;        
+    box-shadow: 2px 2px ;
+  }
+
+.photo {
+    background-image: url("earth.jpg") ;
+    background-position: center;
+    background-size: cover;
+    width: 50%;
+    height: 100%;
+    border-radius: 0.3cm 0cm 0cm 0.3cm;    
+    float: left;
+}
+
+.text_header {
+    font-family: "Brush Script MT", cursive;
+    position: sticky;
+    /* text-align: center; */
+    font-size: 50px;
+    top: 20%;
+    color: white;
+}
+
+.text {    
+    position: sticky;    
+    top: 70%;    
+    font-size: 15px;
+    color: white;
+}
+
+button {
+    color: white !important;
+    position: sticky;
+    text-align: center;
+    top: 75%;
+    background-color: white;
+    border-color: white !important;
+}
