@@ -5,7 +5,9 @@ import {Link, Redirect, Route, useHistory , Router , withRouter } from 'react-ro
 import axios from 'axios';
 // import serverURL from '../../utils/serverURL';
 
-import styles from '../styles/loginSignup.css' ;
+// import styles from '../styles/loginSignup.css' ;
+import '../styles/loginSignup.css';
+import Login from './login';
 
 class SE_SignUp extends Component {    
 
@@ -44,27 +46,29 @@ class SE_SignUp extends Component {
         //     })}
 
         return (
-            <Container component="main" maxWidth="xs" className = {styles.root} >                                                        
+            <Container component="main" maxWidth="xs" className = "root" >                                                        
                 <div 
-                    className={styles.center}                    
+                    className="center"
                 >
                     <div 
                         class="column"
-                        className = {styles.photo}
+                        className = 'photo'
                     >
-                        <h1 className={styles.text_header}> Sharp </h1>                        
+                        <h1 className='text_header'> Sharp </h1>                        
                             <Button  size="large"                                  
                                 color ="white"   
-                                className = {styles.button}                                                   
+                                className = 'button'                                                  
                                 variant="outlined">
                                     Sign Up
                             </Button>                        
-                        <p className={styles.text}> 
+                        <p className='text'> 
                             if you don't have an account <br/>
                             you can sign up .   
                         </p>
                     </div>
-                    <div class="column" ></div>
+                    <div class="column" >
+                        <Login />
+                    </div>
                 </div>
 
             </Container>
