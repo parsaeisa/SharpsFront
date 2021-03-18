@@ -12,11 +12,10 @@
     margin: auto;
     width: 60%;
     height: 70%;
-    border-radius: 0.3cm;        
-    box-shadow: 2px 2px ;
+    border-radius: 0.3cm;            
   }
 
-.photo {
+.photo_login {
     background-image: url("earth.jpg") ;
     background-position: center;
     background-size: cover;
@@ -24,6 +23,16 @@
     height: 100%;
     border-radius: 0.3cm 0cm 0cm 0.3cm;    
     float: left;
+}
+
+.photo_signup {
+    background-image: url("earth.jpg") ;
+    background-position: center;
+    background-size: cover;
+    width: 50%;
+    height: 100%;
+    border-radius: 0cm 0.3cm 0.3cm 0cm;    
+    float: right;
 }
 
 .text_header {

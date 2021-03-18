@@ -52,7 +52,7 @@ class SE_SignUp extends Component {
                 >
                     <div 
                         class="column"
-                        className = 'photo'
+                        className = 'photo_login'
                     >
                         <h1 className='text_header'> Sharp </h1>                        
                             <Button  size="large"                                  
