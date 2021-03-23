@@ -1,11 +1,10 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText, InputGroup } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 
-
-
-
+import serverURL from '../../../utils/serverURL';
 
 function Login() {
 
@@ -14,6 +13,28 @@ function Login() {
     const [usernameErr, setUsernameErr] = useState("")
     const [passErr, setPassErr] = useState("")
     
+    const Login = e => {
+
+        e.preventDefault();               
+
+        const out = {
+            'username' : username ,
+            'password' : passwords 
+        }
+
+        const outJSON = JSON.stringify(out)
+
+        axios.post(serverURL()+"user/login", outJSON )
+        .then(result => {
+            console.log("logged In");
+            localStorage.setItem('token' , result.data.token);
+            
+            // add returned data to store
+        }).catch(error => {                
+            console.log("not logged In");
+        })
+
+    }
 
     function validateUsername(newValue) {
         setUserName(newValue);
@@ -58,7 +79,7 @@ function Login() {
            </FormGroup>
             {/* <button type="button" class="btn btn-outline-primary  btn-block">Sign in</button> */}
            
-            <Button  block type="submit" variant="primary">Sign in</Button>
+            <Button onClick={Login} block type="submit" variant="primary">Sign in</Button>
              <p className="forgot-password text-right" style={{color:"blue"}}>
             Forgot password?<Link to={{pathname : ""}}></Link>
             </p> 

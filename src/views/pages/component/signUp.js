@@ -1,7 +1,10 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { useState} from "react";
 import {  Button, Form, FormGroup, Label, Input, FormText } from 'react-bootstrap';
 import { Link,  withRouter } from 'react-router-dom';
+
+import serverURL from '../../../utils/serverURL';
 
 function SignUp(e) {
 
@@ -14,6 +17,31 @@ function SignUp(e) {
     const [passErr, setPassErr] = useState("")
     const [confirmPassErr, setConfirmPassErr] = useState("")
   
+    const SignUp = e => {
+
+        e.preventDefault();               
+
+        const out = {
+            // 'firstname' : ,
+            // 'lastname' : ,
+            'username' : username , 
+            'email' : email ,
+            'password' : passwords 
+        }
+
+        const outJSON = JSON.stringify(out)
+
+        axios.post(serverURL()+"user/signup", outJSON )
+        .then(result => {
+            console.log("signed up");
+            localStorage.setItem('token' , result.data.token);
+            
+            // add returned data to store
+        }).catch(error => {                
+            console.log("not signed up");
+        })
+
+    }
 
     function validateUsername(newValue) {
         setUserName(newValue);
@@ -95,7 +123,7 @@ function SignUp(e) {
                 <Form.Control type="password" placeholder="confirm password" isInvalid={Boolean(confirmPassErr)} onKeyPress={(e)=> {e.key === 'Enter' && validateConfirmPassword(e.target.value)}} onBlur={(e) => validateConfirmPassword(e.target.value)} />
                 <Form.Control.Feedback type="invalid">{confirmPassErr}</Form.Control.Feedback>
             </div>
-            <Button  block type="submit" variant="primary">Sign UP</Button>
+            <Button onClick={SignUp}  block type="submit" variant="primary">Sign UP</Button>
         </Form>
         </div>
        

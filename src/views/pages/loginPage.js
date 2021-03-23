@@ -4,15 +4,14 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-// import serverURL from '../../utils/serverURL';
 
-import 'antd/dist/antd.css';
 import '../styles/loginSignup.css';
-import Login from './login';
+import Login from './component/login';
+import SignUP from './component/signUp';
 
 import { Layout, Space } from 'antd';
+import signUp from './component/signUp';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -51,17 +50,7 @@ class SE_SignUp extends Component {
     
     render() {
         const classes = this.props.classes;
-        const [pending, setPending] = this.props.p;        
-        
-        // const handleClick = e => {
-        //     setPending(true);
-        //     e.preventDefault();        
-        // axios.post(serverURL()+"user/signup", this.state)
-        //     .then(result => {
-
-        //     }).catch(error => {                
-
-        //     })}
+        const [pending, setPending] = this.props.p;                
 
         return (           
 
@@ -88,7 +77,8 @@ class SE_SignUp extends Component {
 
                                 <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square >
                                     <div className={classes.paper}>                                    
-                                        <Login />
+                                        {/* <Login /> */}
+                                        <SignUP />
                                     </div>
                                 </Grid>
                                 </Grid>
