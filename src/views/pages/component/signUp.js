@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { useState} from "react";
 import {  Button, Form, FormGroup, Label, Input, FormText } from 'react-bootstrap';
 import { Link,  withRouter } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap';
 
 import serverURL from '../../../utils/serverURL';
 
@@ -10,8 +11,12 @@ function SignUp(e) {
 
     const [errors, setErrors] = useState({});
     const [email, setEmail] = useState("");
+    const [lastname, setLastname] = useState("");
+    const [firstname, setFirstname] = useState("");
     const [username, setUserName] = useState("");
     const [passwords, setPasswords] = useState({ password: "", confirmPassword: "" })
+    const [lastnameErr, setLastnameErr] = useState("")
+    const [firstnameErr, setFirstnameErr] = useState("")
     const [usernameErr, setUsernameErr] = useState("")
     const [emailErr, setEmailErr] = useState("")
     const [passErr, setPassErr] = useState("")
@@ -41,6 +46,24 @@ function SignUp(e) {
             console.log("not signed up");
         })
 
+    }
+
+    function validateLastname(newValue) {
+        setLastname(newValue);
+        let userError = ""
+        if ( newValue.length === 0) {
+            userError = " Last name is required.";
+        }
+        setLastnameErr( userError )
+    }
+  
+    function validateFirstname(newValue) {
+        setFirstname(newValue);
+        let userError = ""
+        if ( newValue.length === 0) {
+            userError = "First name is required.";
+        }
+        setFirstnameErr( userError )
     }
 
     function validateUsername(newValue) {
@@ -86,12 +109,16 @@ function SignUp(e) {
         }
         setConfirmPassErr(userError)
     }
+
     const ErrorsOnSubmit = async () => {
+        validateFirstname(firstname)
+        validateLastname(lastname)
         validateUsername(username)
         validateEmail(email)
         validatePassword(passwords.password)
         validateConfirmPassword(passwords.confirmPassword)
-        if(Boolean(usernameErr) || Boolean(emailErr) || Boolean(passErr) || Boolean(confirmPassErr))
+       
+        if(Boolean(usernameErr) || Boolean(firstnameErr) ||  Boolean(lastnameErr) || Boolean(emailErr) || Boolean(passErr) || Boolean(confirmPassErr))
             return;
     }
 
@@ -100,6 +127,19 @@ function SignUp(e) {
         <div className="row justify-content-center">
         <Form onSubmit={(e) => { e.preventDefault() }} >
             <h3>SignUp</h3>
+          <Row>
+          <Form.Group as={Col} controlId="formGridFirstname">
+         <Form.Label>First name</Form.Label>
+         <Form.Control type="text" placeholder="first name"  onKeyPress={(e)=> {e.key === 'Enter' && validateFirstname(e.target.value)}} onBlur={(e) => validateFirstname(e.target.value)} isInvalid={Boolean(firstnameErr)} /> 
+         <Form.Control.Feedback type="invalid">{firstnameErr }</Form.Control.Feedback>
+        </Form.Group>
+
+       <Form.Group as={Col} controlId="formGridLastname">
+      <Form.Label>Last name</Form.Label>
+      <Form.Control type="text" placeholder="last name"  onKeyPress={(e)=> {e.key === 'Enter' && validateLastname(e.target.value)}} onBlur={(e) => validateLastname(e.target.value)} isInvalid={Boolean(lastnameErr)} />
+        <Form.Control.Feedback type="invalid">{lastnameErr}</Form.Control.Feedback>
+       </Form.Group>
+       </Row>
             <Form.Group controlId="username">
                 <label>UserName</label>
                 <Form.Control type="text" placeholder="username" onKeyPress={(e)=> {e.key === 'Enter' && validateUsername(e.target.value)}} onBlur={(e) => validateUsername(e.target.value)} isInvalid={Boolean(usernameErr)} />
