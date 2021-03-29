@@ -6,8 +6,17 @@
 }
 
 .layout {
-    margin-left :  20% ;     
+    margin-left : 20% ;     
     margin-right: 20% ;    
+}
+
+.signUpForm {
+    width: 80% !important;    
+}
+
+.signupPaper {
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .center {

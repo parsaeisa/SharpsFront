@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     paper: {   
         width : '100%'         ,    
       [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {        
-        marginTop : theme.spacing(15) ,
+        marginTop : theme.spacing(8) ,
         marginBottom: theme.spacing(6),
         padding: theme.spacing(0),
       },
@@ -81,7 +81,7 @@ class SE_SignUp extends Component {
                                         <SignUP />
                                     </div>
                                 </Grid>
-                                </Grid>
+                            </Grid>
                     </Paper>                    
                 </main>
             </React.Fragment>

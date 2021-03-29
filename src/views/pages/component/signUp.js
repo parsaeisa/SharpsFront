@@ -4,6 +4,7 @@ import { useState} from "react";
 import {  Button, Form, FormGroup, Label, Input, FormText } from 'react-bootstrap';
 import { Link,  withRouter } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
+import '../../styles/loginSignup.css';
 
 import serverURL from '../../../utils/serverURL';
 
@@ -124,12 +125,12 @@ function SignUp(e) {
 
     return (
       
-        <div className="row justify-content-center">
-        <Form onSubmit={(e) => { e.preventDefault() }} >
+        <div className="row justify-content-center signupPaper">
+        <Form className='signUpForm' onSubmit={(e) => { e.preventDefault() }} >
             <h3>SignUp</h3>
           <Row>
           <Form.Group as={Col} controlId="formGridFirstname">
-         <Form.Label>First name</Form.Label>
+         <Form.Label>First name</Form.Label>    
          <Form.Control type="text" placeholder="first name"  onKeyPress={(e)=> {e.key === 'Enter' && validateFirstname(e.target.value)}} onBlur={(e) => validateFirstname(e.target.value)} isInvalid={Boolean(firstnameErr)} /> 
          <Form.Control.Feedback type="invalid">{firstnameErr }</Form.Control.Feedback>
         </Form.Group>
