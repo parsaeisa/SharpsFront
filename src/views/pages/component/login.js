@@ -27,6 +27,7 @@ function Login() {
         axios.post(serverURL()+"user/login", outJSON )
         .then(result => {
             console.log("logged In");
+            console.log(result);
             localStorage.setItem('token' , result.data.token);
             
             // add returned data to store

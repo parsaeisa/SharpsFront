@@ -28,8 +28,8 @@ function SignUp(e) {
         e.preventDefault();               
 
         const out = {
-            // 'firstname' : ,
-            // 'lastname' : ,
+            'firstname' : firstname,
+            'lastname' : lastname ,
             'username' : username , 
             'email' : email ,
             'password' : passwords 
@@ -40,6 +40,7 @@ function SignUp(e) {
         axios.post(serverURL()+"user/signup", outJSON )
         .then(result => {
             console.log("signed up");
+            console.log(result);
             localStorage.setItem('token' , result.data.token);
             
             // add returned data to store
