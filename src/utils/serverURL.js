@@ -1,3 +1,3 @@
 export default function(){    
-    return "https://sharpbacken.herokuapp.com/api-docs/" ;
+    return "https://sharpsback.herokuapp.com/" ;
 }
