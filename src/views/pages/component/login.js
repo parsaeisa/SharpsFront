@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { useState, useEffect } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, InputGroup } from 'react-bootstrap';
+import { Form, FormGroup, Label, Input, FormText, InputGroup } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
-
+import '../../styles/loginSignup.css';
 import serverURL from '../../../utils/serverURL';
 
 function Login() {
@@ -62,26 +62,25 @@ function Login() {
    
     return (
 
-        
         <div className="row justify-content-center">
           
         <Form onSubmit={(e) => { e.preventDefault(); }}>
-            <h3>Login</h3>
+            {/* <h3>Login</h3> */}
             <Form.Group controlId="username">
-                <label>Username</label>
-                <Form.Control  type="text" placeholder=" username" onKeyPress={(e)=> {e.key === 'Enter' && setUserName(e.target.value)}} onBlur={(e) => validateUsername(e.target.value)}  isInvalid={Boolean(usernameErr)}  />
+                {/* <label>Username</label> */}
+                <Form.Control className="loginforms" type="text" placeholder=" Username" onKeyPress={(e)=> {e.key === 'Enter' && setUserName(e.target.value)}} onBlur={(e) => validateUsername(e.target.value)}  isInvalid={Boolean(usernameErr)}  />
                 <Form.Control.Feedback type="invalid">{usernameErr }</Form.Control.Feedback>
                 </Form.Group>
 
             <FormGroup>
-            <label>Password</label>
-            <Form.Control type="password" placeholder=" password" isInvalid={Boolean(passErr)} onKeyPress={(e)=> {e.key === 'Enter' && setPasswords({ ...passwords, password: e.target.value })}} onBlur= {(e) => validatePassword(e.target.value)} />
+            {/* <label>Password</label> */}
+            <Form.Control className="loginforms" type="password" placeholder=" Password" isInvalid={Boolean(passErr)} onKeyPress={(e)=> {e.key === 'Enter' && setPasswords({ ...passwords, password: e.target.value })}} onBlur= {(e) => validatePassword(e.target.value)} />
             <Form.Control.Feedback  type="invalid" >{passErr}</Form.Control.Feedback>
            </FormGroup>
             {/* <button type="button" class="btn btn-outline-primary  btn-block">Sign in</button> */}
            
-            <Button onClick={Login} block type="submit" variant="primary">Sign in</Button>
-             <p className="forgot-password text-right" style={{color:"blue"}}>
+            <button onClick={Login} className="loginB">Login</button>
+             <p className="forgotpassword" >
             Forgot password?<Link to={{pathname : ""}}></Link>
             </p> 
         </Form>

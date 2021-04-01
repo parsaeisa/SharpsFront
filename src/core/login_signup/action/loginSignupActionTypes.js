@@ -1,5 +1,6 @@
-// export const ActionTypes = {
-//     SET_FORM_STATE: "SET_FORM_STATE",
+export const ActionTypes = {
+    SET_CHANGE: "SET_CHANGE",
    
-// };
+};
+
   

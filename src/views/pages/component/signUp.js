@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { useState} from "react";
-import {  Button, Form, FormGroup, Label, Input, FormText } from 'react-bootstrap';
+import {  Form, FormGroup, Label, Input, FormText } from 'react-bootstrap';
+import {Button} from "@material-ui/core";
 import { Link,  withRouter } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import '../../styles/loginSignup.css';
@@ -128,44 +129,44 @@ function SignUp(e) {
       
         <div className="row justify-content-center signupPaper">
         <Form className='signUpForm' onSubmit={(e) => { e.preventDefault() }} >
-            <h3>SignUp</h3>
+            {/* <h3>SignUp</h3> */}
           <Row>
           <Form.Group as={Col} controlId="formGridFirstname">
-         <Form.Label>First name</Form.Label>    
-         <Form.Control type="text" placeholder="first name"  onKeyPress={(e)=> {e.key === 'Enter' && validateFirstname(e.target.value)}} onBlur={(e) => validateFirstname(e.target.value)} isInvalid={Boolean(firstnameErr)} /> 
+         {/* <Form.Label>First name</Form.Label>     */}
+         <Form.Control className="signupforms"  type="text" placeholder="First Name"  onKeyPress={(e)=> {e.key === 'Enter' && validateFirstname(e.target.value)}} onBlur={(e) => validateFirstname(e.target.value)} isInvalid={Boolean(firstnameErr)} /> 
          <Form.Control.Feedback type="invalid">{firstnameErr }</Form.Control.Feedback>
         </Form.Group>
 
        <Form.Group as={Col} controlId="formGridLastname">
-      <Form.Label>Last name</Form.Label>
-      <Form.Control type="text" placeholder="last name"  onKeyPress={(e)=> {e.key === 'Enter' && validateLastname(e.target.value)}} onBlur={(e) => validateLastname(e.target.value)} isInvalid={Boolean(lastnameErr)} />
+      {/* <Form.Label>Last name</Form.Label> */}
+      <Form.Control className="signupforms"  type="text" placeholder="Last Name"  onKeyPress={(e)=> {e.key === 'Enter' && validateLastname(e.target.value)}} onBlur={(e) => validateLastname(e.target.value)} isInvalid={Boolean(lastnameErr)} />
         <Form.Control.Feedback type="invalid">{lastnameErr}</Form.Control.Feedback>
        </Form.Group>
        </Row>
             <Form.Group controlId="username">
-                <label>UserName</label>
-                <Form.Control type="text" placeholder="username" onKeyPress={(e)=> {e.key === 'Enter' && validateUsername(e.target.value)}} onBlur={(e) => validateUsername(e.target.value)} isInvalid={Boolean(usernameErr)} />
+                {/* <label>UserName</label> */}
+                <Form.Control className="signupforms"  type="text" placeholder="Username" onKeyPress={(e)=> {e.key === 'Enter' && validateUsername(e.target.value)}} onBlur={(e) => validateUsername(e.target.value)} isInvalid={Boolean(usernameErr)} />
                 <Form.Control.Feedback type="invalid">{usernameErr }</Form.Control.Feedback>
             </Form.Group>
 
             <div className="form-group">
-                <label>Email Address</label>
-                <Form.Control type="email" placeholder="email" onKeyPress={(e)=> {e.key === 'Enter' && validateEmail(e.target.value)}} onBlur={(e) => validateEmail(e.target.value)} isInvalid={Boolean(emailErr)} />
+                {/* <label>Email Address</label> */}
+                <Form.Control  className="signupforms" type="email" placeholder="Email" onKeyPress={(e)=> {e.key === 'Enter' && validateEmail(e.target.value)}} onBlur={(e) => validateEmail(e.target.value)} isInvalid={Boolean(emailErr)} />
                 <Form.Control.Feedback type="invalid">{emailErr}</Form.Control.Feedback>
                 
             </div>
 
             <div className="form-group">
-                <label>Password</label>
-                <Form.Control type="password" placeholder="password" isInvalid={Boolean(passErr)} onKeyPress={(e)=> {e.key === 'Enter' && validatePassword(e.target.value)}} onBlur= {(e) => validatePassword(e.target.value)}/>
+                {/* <label>Password</label> */}
+                <Form.Control  className="signupforms" type="password" placeholder="Password" isInvalid={Boolean(passErr)} onKeyPress={(e)=> {e.key === 'Enter' && validatePassword(e.target.value)}} onBlur= {(e) => validatePassword(e.target.value)}/>
                 <Form.Control.Feedback type="invalid">{passErr}</Form.Control.Feedback>
             </div>
             <div className="form-group">
-                <label>Confirm Password</label>
-                <Form.Control type="password" placeholder="confirm password" isInvalid={Boolean(confirmPassErr)} onKeyPress={(e)=> {e.key === 'Enter' && validateConfirmPassword(e.target.value)}} onBlur={(e) => validateConfirmPassword(e.target.value)} />
+                {/* <label>Confirm Password</label> */}
+                <Form.Control className="signupforms" type="password" placeholder="Confirm Password" isInvalid={Boolean(confirmPassErr)} onKeyPress={(e)=> {e.key === 'Enter' && validateConfirmPassword(e.target.value)}} onBlur={(e) => validateConfirmPassword(e.target.value)} />
                 <Form.Control.Feedback type="invalid">{confirmPassErr}</Form.Control.Feedback>
             </div>
-            <Button onClick={SignUp}  block type="submit" variant="primary">Sign UP</Button>
+            <button className="signupB" onClick={SignUp}>Sign Up</button>
         </Form>
         </div>
        
