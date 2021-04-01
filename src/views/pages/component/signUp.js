@@ -7,6 +7,7 @@ import { Row, Col } from 'react-bootstrap';
 import '../../styles/loginSignup.css';
 
 import serverURL from '../../../utils/serverURL';
+import tokenConfig from '../../../utils/tokenConfig';
 
 function SignUp(e) {
 
@@ -28,23 +29,27 @@ function SignUp(e) {
         e.preventDefault();               
 
         const out = {
-            'firstname' : firstname,
-            'lastname' : lastname ,
-            'username' : username , 
-            'email' : email ,
-            'password' : passwords 
+            "firstname" : firstname,
+            "lastname" : lastname ,
+            "username" : username , 
+            "email" : email ,
+            "password" : passwords.password ,
+            "avatar" : null
         }
 
         const outJSON = JSON.stringify(out)
 
-        axios.post(serverURL()+"user/signup", outJSON )
+        console.log(outJSON);
+
+        axios.post(serverURL()+"user/signup", outJSON , tokenConfig())
         .then(result => {
             console.log("signed up");
             console.log(result);
             localStorage.setItem('token' , result.data.token);
             
             // add returned data to store
-        }).catch(error => {                
+        }).catch(error => {       
+            console.log(error.response);         
             console.log("not signed up");
         })
 

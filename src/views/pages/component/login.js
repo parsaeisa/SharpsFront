@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, InputGroup } from 'rea
 import { Link, withRouter } from 'react-router-dom';
 
 import serverURL from '../../../utils/serverURL';
+import tokenConfig from '../../../utils/tokenConfig';
 
 function Login() {
 
@@ -19,19 +20,20 @@ function Login() {
 
         const out = {
             'username' : username ,
-            'password' : passwords 
+            'password' : passwords.password 
         }
 
         const outJSON = JSON.stringify(out)
 
-        axios.post(serverURL()+"user/login", outJSON )
+        axios.post(serverURL()+"user/login", outJSON , tokenConfig() )
         .then(result => {
             console.log("logged In");
-            console.log(result);
+            console.log(result);            
             localStorage.setItem('token' , result.data.token);
             
             // add returned data to store
-        }).catch(error => {                
+        }).catch(error => {     
+            console.log(error.response);           
             console.log("not logged In");
         })
 
