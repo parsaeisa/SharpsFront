@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import {useHistory} from 'react-router';
 import { useState} from "react";
 import {  Button, Form, FormGroup, Label, Input, FormText } from 'react-bootstrap';
 import { Link,  withRouter } from 'react-router-dom';
@@ -23,6 +24,8 @@ function SignUp(e) {
     const [emailErr, setEmailErr] = useState("")
     const [passErr, setPassErr] = useState("")
     const [confirmPassErr, setConfirmPassErr] = useState("")
+
+    const history = useHistory() ;
   
     const SignUp = e => {
 
@@ -47,6 +50,8 @@ function SignUp(e) {
             console.log(result);
             localStorage.setItem('token' , result.data.token);
             
+            history.push("/edit_profile");
+
             // add returned data to store
         }).catch(error => {       
             console.log(error.response);         
@@ -132,7 +137,7 @@ function SignUp(e) {
     return (
       
         <div className="row justify-content-center signupPaper">
-        <Form className='signUpForm' onSubmit={(e) => { e.preventDefault() }} >
+        <Form className='Form' onSubmit={(e) => { e.preventDefault() }} >
             <h3>SignUp</h3>
           <Row>
           <Form.Group as={Col} controlId="formGridFirstname">

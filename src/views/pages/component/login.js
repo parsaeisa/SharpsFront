@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText, InputGroup } from 'react-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
+import {useHistory} from 'react-router';
 
 import serverURL from '../../../utils/serverURL';
 import tokenConfig from '../../../utils/tokenConfig';
@@ -14,6 +15,8 @@ function Login() {
     const [usernameErr, setUsernameErr] = useState("")
     const [passErr, setPassErr] = useState("")
     
+    const history = useHistory() ;
+  
     const Login = e => {
 
         e.preventDefault();               
@@ -32,6 +35,7 @@ function Login() {
             localStorage.setItem('token' , result.data.token);
             
             // add returned data to store
+            history.push("/edit_profile");
         }).catch(error => {     
             console.log(error.response);           
             console.log("not logged In");
@@ -65,9 +69,9 @@ function Login() {
     return (
 
         
-        <div className="row justify-content-center">
+        <div className="row justify-content-center" style={{marginTop : '35%' , marginBottom : '35%'}}>
           
-        <Form onSubmit={(e) => { e.preventDefault(); }}>
+        <Form className = 'Form'  onSubmit={(e) => { e.preventDefault(); }}>
             <h3>Login</h3>
             <Form.Group controlId="username">
                 <label>Username</label>
