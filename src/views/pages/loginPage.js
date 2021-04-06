@@ -26,78 +26,75 @@ const useStyles = makeStyles((theme) => ({
     },    
   }));
 
-class SE_SignUp extends Component {    
-
-    constructor() {
-        super();
-        this.state = {
-            username: '',
-            firstname: '',
-            lastname: '',
-            password: '',
-            email: '',
-            repassword: '',
-            showPassword: false,
-            isLoading: false,                        
-        }
-    }
-    
-    
-    componentDidMount() {
-        // custom rule will have name 'isPasswordMatch'
+function SE_SignUp (props) {        
         
-    }
     
-    render() {
-        const classes = this.props.classes;
-        const [pending, setPending] = this.props.p;                
+    const classes = useStyles();    
+    const [isLogin , setIsLogin] = React.useState(true);
 
-        return (           
+    return (           
 
-            <React.Fragment>
-                <CssBaseline />                
-                <main className='layout'>
-                    <Paper className={classes.paper}>                                               
+        <React.Fragment>
+            <CssBaseline />                
+            <main className='layout'>
+                <Paper className={classes.paper}>                                               
 
-                            <Grid container component="main">
-                                <CssBaseline />
-                                <Grid item xs={false} sm={4} md={6} className='photo_login'>                                
-                                        <h1 className='text_header'> Sharp </h1>                        
-                                            <Button  size="large"                                  
-                                                color ="white"   
-                                                className = 'button'                                                  
-                                                variant="outlined">
-                                                    Sign Up
-                                            </Button>                        
-                                        <p className='text'> 
-                                            if you don't have an account <br/>
-                                            you can sign up .   
-                                        </p>                                    
-                                </Grid>
-
-                                <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square >
-                                    <div className={classes.paper}>                                    
-                                        {/* <Login /> */}
-                                        <SignUP />
-                                    </div>
-                                </Grid>
+                        <Grid container component="main">
+                            <CssBaseline />
+                            <Grid item xs={false} sm={4} md={6} className='photo_login'>                                
+                                    <h1 className='text_header'> Sharp </h1>                        
+                                        <Button  size="large"                                  
+                                            color ="white"   
+                                            className = 'button'                                                  
+                                            variant="outlined"
+                                            onClick = {() => {
+                                                setIsLogin(!isLogin) ;
+                                            }}
+                                            >
+                                                { isLogin ? 
+                                                    <div>Sign up </div>
+                                                :
+                                                    <div>Sign in </div>
+                                                }
+                                        </Button>                        
+                                    {isLogin ? 
+                                    <p className='text'> 
+                                        if you don't have an account <br/>
+                                        you can sign up .   
+                                    </p>                                    
+                                    :
+                                    <p className='text'> 
+                                        if you already have an account <br/>
+                                        you can sign in .   
+                                    </p>       
+                                    }
                             </Grid>
-                    </Paper>                    
-                </main>
-            </React.Fragment>
-        )
-    };
+
+                            <Grid item xs={12} sm={8} md={6} component={Paper} elevation={6} square >
+                                <div className={classes.paper}>                                    
+                                    { isLogin ?
+                                        <Login />
+                                    :
+                                        <SignUP />
+                                    }
+                                </div>
+                            </Grid>
+                        </Grid>
+                </Paper>                    
+            </main>
+        </React.Fragment>
+    )    
 }
 
 
-function SignUpoutput() {
-    const classes = useStyles();
-    const p = React.useState(false);
-    return (          
-        <SE_SignUp  p={p}
-        classes = {classes}
-        />             
-    )
-}
+// function SignUpoutput() {
+//     const classes = useStyles();
+//     const p = React.useState(false);
+//     return (          
+//         <SE_SignUp  p={p}
+//         classes = {classes}
+//         />             
+//     )
+// }
 
-export default  withRouter(SignUpoutput);
+export default  withRouter(SE_SignUp);
