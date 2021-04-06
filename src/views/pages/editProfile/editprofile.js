@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import React, { useState , Component} from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Layout, Space } from 'antd';
+import 'antd/dist/antd.css';
+import { Layout , Modal, Button , Collapse } from 'antd';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -21,24 +22,51 @@ const useStyles = makeStyles((theme) => ({
     },    
   }));
 
+function callback(key) {
+  console.log(key);
+}  
+const {Panel} = Collapse ;
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+
 function Edit_profile (props) {        
         
     
-    const classes = useStyles();    
-    const [isLogin , setIsLogin] = React.useState(true);
-
+    const classes = useStyles();        
+    const [visible, setVisible] = useState(false);
     return (           
-
-        <React.Fragment>
-            <CssBaseline />                
-            <main className='layout'>
-                <Paper className={classes.paper}>                                               
-
-                        Hello !!
-
-                </Paper>                    
-            </main>
-        </React.Fragment>
+      <>    
+          <Button type="primary" onClick={() => setVisible(true)}>
+            Open Modal of 1000px width
+          </Button>
+          <Modal
+            title="Modal 1000px width"
+            centered
+            visible={visible}
+            onOk={() => setVisible(false)}
+            onCancel={() => setVisible(false)}
+            width={1000}
+          >
+            <Collapse onChange={callback}>
+              <Panel header="This is panel header 1" key="1">
+                <Collapse defaultActiveKey="1">
+                  <Panel header="This is panel nest panel" key="1">
+                    <p>{text}</p>
+                  </Panel>
+                </Collapse>
+              </Panel>
+              <Panel header="This is panel header 2" key="2">
+                <p>{text}</p>
+              </Panel>
+              <Panel header="This is panel header 3" key="3">
+                <p>{text}</p>
+              </Panel>
+            </Collapse>
+          </Modal>
+      </>
     )    
 }
 
