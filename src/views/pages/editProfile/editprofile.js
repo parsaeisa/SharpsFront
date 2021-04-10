@@ -3,31 +3,20 @@ import { Image } from 'antd';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
-import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
-import FilledInput from '@material-ui/core/FilledInput';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
+import Backdrop from '@material-ui/core/Backdrop';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import SaveIcon from '@material-ui/icons/Save';
-import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
 import CloseIcon from '@material-ui/icons/Close';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserTimes , faSave } from '@fortawesome/free-solid-svg-icons'
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
 // import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -36,7 +25,6 @@ import { Layout , Modal , Collapse } from 'antd';
 
 import Dialog from '@material-ui/core/Dialog';
 import '../../styles/edit_profile.css' ;
-const { Header, Footer, Sider, Content } = Layout;
 
 const useStyles = makeStyles((theme) => ({        
     paper: {   
@@ -66,10 +54,17 @@ const text = `
 `;
 
 function Edit_profile (props) {        
-        
+                
   
     const classes = useStyles();        
     const [visible, setVisible] = useState(false);
+    const [Backdrop , setBackDrop] = useState(false);
+
+    window.addEventListener('click', (e) => {
+      if (Backdrop) {
+        setBackDrop(false);
+      }
+    });
     
     const [values, setValues] = React.useState({
       amount: '',
@@ -106,7 +101,8 @@ function Edit_profile (props) {
           <Button type="primary" onClick={() => setVisible(true)}>
             Edit Profile
           </Button>
-          <Dialog          
+          <Dialog    
+            className={Backdrop && "DialogTared"}      
             // title="Edit Profile"            
             transitionDuration = {900}
             // visible={visible}
@@ -128,8 +124,10 @@ function Edit_profile (props) {
                      
             </MuiDialogTitle>
             <MuiDialogContent>
-              <div className="imageHolder">
-                <Image                
+              <div className="imageHolder">              
+                <Image
+                  onClick = {() => {setBackDrop(true)}}                  
+                  // onClose = {() => {setBackDrop(false)}}
                   width={150}
                   height={150}            
                   src="https://source.unsplash.com/random"
@@ -218,7 +216,6 @@ function Edit_profile (props) {
                   {/* </Tooltip> */}
                 </Panel>
               </Collapse>
-              <Divider />
             </MuiDialogContent>            
             <MuiDialogActions>
                 <Button size="Large" className="Button" variant="contained" color="primary">

@@ -67,3 +67,27 @@
     text-align: center;
     margin: 10px;   
 }
+
+/* .ant-image-preview-root {
+    z-index: 1400;
+} */
+
+.ant-image-preview-wrap{
+    z-index: 1800;
+}
+
+.DialogTared{
+    opacity: 0.4;
+}
+
+.ant-image-preview-root {
+    z-index: 1400;
+}
+
+.ant-image-preview-body {
+    z-index: 1400;
+}
+
+.ant-image-preview-mask{
+    z-index: 1400;
+}
