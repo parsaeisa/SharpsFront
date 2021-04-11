@@ -1,48 +1,55 @@
-.root{
-    /* background-color : yellow; */
-    /* background: rgb(13,73,114); */
-    background: linear-gradient(150deg, rgba(13,73,114,1) 0%, rgba(26,1,28,1) 100%);    
-
+.root {
+  /* background-color : yellow; */
+  /* background: rgb(13,73,114); */
+  background: linear-gradient(
+    150deg,
+    rgba(13, 73, 114, 1) 0%,
+    rgba(26, 1, 28, 1) 100%
+  );
 }
 @keyframes signupform {
-    0% {
-        opacity: 0;
-       width: 25%;
-    }
-    100% {
-        opacity: 1;
-        width:50%;
-    
-    }
+  0% {
+    opacity: 0;
+    width: 25%;
+  }
+  100% {
+    opacity: 1;
+    width: 50%;
+  }
 }
 @keyframes slide {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(100%);
-        
-    }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
 }
 @keyframes slideback {
-    0% {
-        opacity: 0;
-        transform: translateX(100%);
-    }
-    100% {
-        opacity: 1;
-      
-        
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-
+.mainDiv {
+  position: absolute;
+  right: 10%;
+  width: 70%;
+  margin: 5%;
+  border-radius: 7%;
+  box-shadow: 100%;
+  box-shadow: black;
+}
 .layout {
-    margin-bottom: 20%;
-    margin-top: 20%;
-    margin-left : 20% ;     
-    margin-right: 20% ;    
+  margin-bottom: 20%;
+  margin-top: 20%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 /* 
 .signUpForm {
@@ -50,8 +57,8 @@
 } */
 
 .signupPaper {
-    padding-left: 5%;
-    padding-right: 5%;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 /* 
 .center {
@@ -64,16 +71,16 @@
     margin: auto;    
     height: 70%;
 } */
-.maingrid{
-    height: 70%;
+.maingrid {
+  height: 70%;
 }
 .photo_login {
-    background-image: url("earth3.png") ;
-    background-position: center;
-    background-size: cover;
-    width: 100%;    
-    float: left;
-    height: 200px;
+  background-image: url("earth3.png");
+  background-position: center;
+  background-size: cover;
+  width: 50%;
+  float: left;
+  height: 530px;
 }
 /* 
 .photo_signup {
@@ -83,25 +90,29 @@
     width: 50%;
     height: 100%;
     /* border-radius: 0cm 0.3cm 0.3cm 0cm;     */
-    /* float: right; */
-/* } */ 
+/* float: right; */
+/* } */
 @keyframes glow {
-    from {
-      text-shadow: 0 0 10px #fff, 0 0 20px rgb(134, 125, 212), 0 0 30px #85a4c7, 0 0 40px #738ab9, 0 0 50px #6659a1, 0 0 60px #2f3479, 0 0 70px #090513;
-    }
-    
-    to {
-      text-shadow: 0 0 20px #fff, 0 0 30px #10066b, 0 0 40px #5841be, 0 0 50px #4f1c92, 0 0 60px #824dff, 0 0 70px #684dff, 0 0 80px #070707;
-    }
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px rgb(134, 125, 212), 0 0 30px #85a4c7,
+      0 0 40px #738ab9, 0 0 50px #6659a1, 0 0 60px #2f3479, 0 0 70px #090513;
   }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #10066b, 0 0 40px #5841be,
+      0 0 50px #4f1c92, 0 0 60px #824dff, 0 0 70px #684dff, 0 0 80px #070707;
+  }
+}
 .text_header {
-    font-family: 'Times New Roman', serif;
-    font-style: italic;
-    font-variant: normal;
-    position: relative;
-    font-size: 40px;
-    color: #a0a0a0;
-    animation: glow 1s ease-in-out infinite alternate;
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  font-variant: normal;
+  position: relative;
+  left: 38.6%;
+  top: 7%;
+  font-size: 40px;
+  color: #a0a0a0;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 /* 
 .text {    
@@ -112,82 +123,98 @@
 } */
 
 .buttonMain {
-    color: #C0C0C0 !important;
-    position: relative;
-    left: 50%;
-    text-align: center;
-    border-color: #C0C0C0 !important;
-    border-radius: 0 !important;
-    font-size: 13px !important;
+  color: #c0c0c0 !important;
+  position: absolute;
+  left: 38.6%;
+  top: 70%;
+  text-align: center;
+  border-color: #c0c0c0 !important;
+  border-radius: 0 !important;
+  font-size: 13px !important;
 }
-.loginform{
-    background-color: black;
+.loginform {
+  background-color: black;
+  width: 50%;
+  float: right;
+  height: 530px;
 }
-.loginform.loginhide{
-    visibility:hidden;
+.loginform.loginhide {
+  visibility: hidden;
 }
 
-.signupform{
-    background-color:  #a0a0a0 !important;
-    position: absolute;
-    visibility: hidden !important;
+.signupform {
+  background-color: #a0a0a0 !important;
+  width: 50%;
+  float: left;
+  height: 530px;
+  position: absolute;
+  visibility: hidden !important;
 }
-.signupform.signupshow{
+.signupform.signupshow {
   visibility: visible !important;
-  animation: signupform .8s forwards;
+  animation: signupform 0.8s forwards;
 }
 
-.photo_login.change{
-    
-    animation: slide .8s forwards;
-
-
+.photo_login.change {
+  animation: slide 0.8s forwards;
 }
-.photo_login.unchange{
-    animation: slideback .8s forwards;
+.photo_login.unchange {
+  animation: slideback 0.8s forwards;
 }
 
-.signupforms{
-    background-color:#C0C0C0 ;
-    font-size: 13px;
-    border-color:rgb(4, 4, 95);
-    border-width: 2px;
-} 
-.loginforms{
-    background-color:black;
-    font-size: 13px;
-    border-color:rgb(2, 2, 78);
-    border-width: 2px;
+.signupforms {
+  width: 70% !important;
+  margin-top: 3%;
+  background-color: #c0c0c0;
+  font-size: 17px;
+  border-color: rgb(4, 4, 95);
+  border-width: 2px;
 }
-.form-control.is-invalid, .was-validated .form-control:invalid {
-    border-color: navy;
-   border-radius: 0%;
-   border-style: dotted;
-   border-width: 4px;
-   background-image: url("C:\GitHub\sharps pro\SharpsFront\src\views\styles\OIP.png");
+.signupforms-lastname {
+  width: 70% !important;
+  margin-top: 3%;
+  background-color: #c0c0c0;
+  font-size: 17px;
+  border-color: rgb(4, 4, 95);
+  border-width: 2px;
 }
-.invalid-feedback{
-    color:rgb(119, 119, 177);
+.loginforms {
+  margin-top: 10%;
+  background-color: black;
+  font-size: 17px;
+  border-color: rgb(2, 2, 78);
+  border-width: 2px;
+}
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  border-color: navy;
+  border-radius: 0%;
+  border-style: dotted;
+  border-width: 4px;
+  background-image: url("C:\GitHub\sharps pro\SharpsFront\src\views\styles\OIP.png");
+}
+.invalid-feedback {
+  color: rgb(119, 119, 177);
 }
 
-.loginB{
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color:black;
-    font-size: 13px;
-    border-color:navy;
-    color: grey;
+.loginB {
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: black;
+  font-size: 13px;
+  border-color: navy;
+  color: grey;
 }
-.signupB{
-    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color:#C0C0C0 ;
-    font-size: 13px;
-    border-color:navy;
+.signupB {
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #c0c0c0;
+  font-size: 13px;
+  border-color: navy;
 }
-.forgotpassword{
-    color: grey ;
-    cursor: pointer;
+.forgotpassword {
+  color: grey;
+  cursor: pointer;
 }
-.forgotpassword:hover{
-    transition: all 0.6s ease-in-out;
-    color: navy;
+.forgotpassword:hover {
+  transition: all 0.5s ease-in-out;
+  color: navy;
 }
