@@ -1,0 +1,12 @@
+
+  .explore{
+    align-items: center;
+    padding-left: 15%;
+    display: flex !important;
+    position: relative;
+     justify-content: center;
+     flex-direction: column;
+     text-align: left;
+  }
+
+ 

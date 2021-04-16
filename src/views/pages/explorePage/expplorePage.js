@@ -23,8 +23,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import { useState, useEffect } from "react";
-import { Button, Form, FormGroup, Label, Input,FormControl,Navbar,Nav, FormText, InputGroup } from 'react-bootstrap';
-
+import '../../styles/explore.css';
 
 import { Link, withRouter } from 'react-router-dom';
 const drawerWidth = 240;
@@ -128,6 +127,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+    
+
 function ExplorePage() {
   const classes = useStyles();
   const theme = useTheme();
@@ -142,9 +144,13 @@ function ExplorePage() {
   };
   
   return (
+
+
     <div>
+   
     <div className={classes.root}>
-      <CssBaseline />  
+      <CssBaseline />
+     
       <AppBar style={{ background: '#0f0b3e' }}
         position="fixed"
         className={clsx(classes.appBar, {
@@ -164,9 +170,11 @@ function ExplorePage() {
           <Typography variant="h6" noWrap>
           𝕤𝕙𝕒𝕣𝕡 
           </Typography>
+          <div className="ex">
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
+            </div>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -195,6 +203,29 @@ function ExplorePage() {
           </IconButton>
         </div>
         <Divider />
+        <List>
+           <ListItem  button key="Homme">
+           <ListItemIcon>
+            <HomeIcon></HomeIcon>
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem  button key="Profile">
+           <ListItemIcon>
+              <AccountCircleIcon></AccountCircleIcon>
+              </ListItemIcon>
+              <ListItemText primary="Profile" />
+                 
+          </ListItem>
+          <ListItem  button key="Saved">
+           <ListItemIcon>
+             <TurnedInIcon></TurnedInIcon>
+              </ListItemIcon>
+              <ListItemText primary="Saved" />
+                 
+          </ListItem>
+        </List>
+       
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -203,6 +234,7 @@ function ExplorePage() {
       >
         <div className={classes.drawerHeader} />
       </main>
+ 
      </div>
   );
 
