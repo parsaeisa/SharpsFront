@@ -11,17 +11,18 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Backdrop from '@material-ui/core/Backdrop';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogActions from '@material-ui/core/DialogActions';
+import { connect } from 'react-redux' ;
+import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 // import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import callapi_editprofile from './callapi_editprofile.js/callapi_editprofile' ;
 
 import 'antd/dist/antd.css';
-import { Layout , Modal , Collapse } from 'antd';
+import { Collapse } from 'antd';
 
 import Dialog from '@material-ui/core/Dialog';
 import '../../styles/edit_profile.css' ;
@@ -95,14 +96,16 @@ function Edit_profile (props) {
     const handleClose = () => {
       setVisible(false);
     };  
+
+    const EditProfileButtonText = 'Edit Profile' ;
     
     return (           
       <>    
           <Button type="primary" onClick={() => setVisible(true)}>
-            Edit Profile
+            {EditProfileButtonText}
           </Button>
           <Dialog    
-            className={Backdrop && "DialogTared"}      
+            // className={Backdrop && "DialogTared"}      
             // title="Edit Profile"            
             transitionDuration = {900}
             // visible={visible}
@@ -118,7 +121,7 @@ function Edit_profile (props) {
                 <Button variant="contained" color='primary'
                     className={classes.closeButton} onClick={handleClose}
                 > 
-                  <CloseIcon color='black' />
+                  <CloseIcon className="closeIcon" color='black' />
                 </Button>                              
                                 
                      
@@ -143,16 +146,16 @@ function Edit_profile (props) {
                   Add photo
                 </Button>
               </div>
-              <Collapse onChange={callback}>
-                <Panel header="Name :" key="1">
-                  <TextField className ="TextField" id="outlined-basic" label="FirstName" variant="outlined" />
-                  <TextField className ="TextField" id="outlined-basic" label="LastName" variant="outlined" />
+              <Collapse data-testid="Collapse" onChange={callback}>
+                <Panel header={"Name : " + props.firstname} key="1">
+                  <TextField className ="TextField" onChange={(e) => {props.SET_FIRSTNAME(e.target.value)}} value={props.firstname} id="outlined-basic" label="FirstName" variant="outlined" />
+                  <TextField className ="TextField" onChange={(e) => {props.SET_LASTNAME(e.target.value)}} value={props.lastname} id="outlined-basic" label="LastName" variant="outlined" />
                 </Panel>
                 <Panel header="Username :" key="2">
-                  <TextField className ="TextField" id="outlined-basic" label="Username" variant="outlined" />
+                  <TextField className ="TextField" id="outlined-basic" value={props.username} onChange={(e) => {props.SET_USERNAME(e.target.value)}} label="Username" variant="outlined" />
                 </Panel>
                 <Panel header="Email : " key="3">
-                  <TextField className ="TextField" id="outlined-basic" label="Email" variant="outlined" />
+                  <TextField className ="TextField" value={props.email} onChange={(e) => {props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" />
                   <ul style={{width : '50%'}}><li>
                   <Typography variant="subtitle1" style={{marginTop : '5px'}}>                  
                     Your email would be used to communicate with you . 
@@ -218,7 +221,11 @@ function Edit_profile (props) {
               </Collapse>
             </MuiDialogContent>            
             <MuiDialogActions>
-                <Button size="Large" className="Button" variant="contained" color="primary">
+                <Button size="large" className="Button" variant="contained" color="primary"
+                  onClick = {() => {
+                        callapi_editprofile();
+                  }}
+                >
                   Save 
                 </Button>   
             </MuiDialogActions>
@@ -227,4 +234,27 @@ function Edit_profile (props) {
     )    
 }
 
-export default  withRouter(Edit_profile);
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    firstname : state.UserReducer.firstname ,
+    lastname : state.UserReducer.lastname ,
+    username : state.UserReducer.username ,
+    email : state.UserReducer.email ,
+    password : state.UserReducer.password ,
+    avatar : state.UserReducer.avatar ,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    SET_FIRSTNAME : (t) => dispatch (UserAction.setFirstname(t)), 
+    SET_LASTNAME : (t) => dispatch (UserAction.setLastname(t)), 
+    SET_USERNAME : (t) => dispatch (UserAction.setUsername(t)), 
+    SET_EMAIL : (t) => dispatch (UserAction.setEmail(t)), 
+    SET_PASSWORD : (t) => dispatch (UserAction.setPassword(t)) , 
+    SET_AVATAR : (t) => dispatch (UserAction.setFirstname(t)) , 
+  }
+}
+
+export default connect (mapStateToProps , mapDispatchToProps) (Edit_profile); 
