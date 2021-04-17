@@ -23,7 +23,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import { useState, useEffect } from "react";
-import '../../styles/explore.css';
+import '../../styles/explorePage.css';
 
 import { Link, withRouter } from 'react-router-dom';
 const drawerWidth = 240;
@@ -233,6 +233,79 @@ function ExplorePage() {
         })}
       >
         <div className={classes.drawerHeader} />
+        
+  <div className="explore">
+    <div class="card mb-3" >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+     
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"   rounded  class="card-img" alt="..."></img>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">It's a broader card with text below as a natural lead-in to extra content. This content is a little longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card mb-3" >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+     
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"   rounded  class="card-img" alt="..."></img>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">It's a broader card with text below as a natural lead-in to extra content. This content is a little longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card mb-3" >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+      
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"   class="card-img" alt="..."></img>
+    
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">It's a broader card with text below as a natural lead-in to extra content. This content is a little longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card mb-3" >
+    <div class="row no-gutters">
+      <div class="col-md-4">
+      
+        <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"   class="card-img" alt="..."></img>
+    
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">It's a broader card with text below as a natural lead-in to extra content. This content is a little longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  </div> 
       </main>
  
      </div>
