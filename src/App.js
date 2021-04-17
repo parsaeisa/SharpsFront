@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import loginPage from "./views/pages/loginPage";
 import editProfile from "./views/pages/editProfile/editprofile";
 import React from "react";
-import { Switch, Route, Router } from "react-router-dom";
 import history from "./core/modules/history";
 import LoginSignUp from "./views/pages/loginPage";
 
