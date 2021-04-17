@@ -71,6 +71,7 @@ function Login() {
   return (
     <div className="row justify-content-center">
       <Form
+      className="centered"
         onSubmit={(e) => {
           e.preventDefault();
         }}

@@ -66,7 +66,7 @@ function SignUp(e) {
     setFirstname(newValue);
     let userError = "";
     if (newValue.length === 0) {
-      userError = "First name is required.";
+      userError = " First name is required.";
     }
     setFirstnameErr(userError);
   }
@@ -75,7 +75,7 @@ function SignUp(e) {
     setUserName(newValue);
     let userError = "";
     if (newValue.length === 0) {
-      userError = " Enter a unique username.";
+      userError = " This username is already taken!";
     }
     setUsernameErr(userError);
   }
@@ -87,7 +87,7 @@ function SignUp(e) {
     let userError = "";
 
     if (!validemail.test(String(email).toLowerCase())) {
-      userError = "Invalid email address.";
+      userError = "Invalid email address!";
     }
     setEmailErr(userError);
   }
@@ -99,7 +99,7 @@ function SignUp(e) {
     if (pass.length < 8) {
       userError = "Password must be 8 characters long.";
     } else if (!validpass.test(String(pass).toLowerCase())) {
-      userError = "Invalid password.";
+      userError = "Invalid password!";
     }
 
     setPassErr(userError);
@@ -136,7 +136,7 @@ function SignUp(e) {
   return (
     <div className="row justify-content-center signupPaper">
       <Form
-        className="signUpForm"
+        className="signUpForm centered"
         onSubmit={(e) => {
           e.preventDefault();
         }}

@@ -1,16 +1,20 @@
 .root {
-  /* background-color : yellow; */
-  /* background: rgb(13,73,114); */
   background: linear-gradient(
     150deg,
     rgba(13, 73, 114, 1) 0%,
     rgba(26, 1, 28, 1) 100%
   );
 }
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 @keyframes signupform {
   0% {
-    opacity: 0;
-    width: 25%;
+    opacity: 1;
+    width: 50%;
   }
   100% {
     opacity: 1;
@@ -19,7 +23,7 @@
 }
 @keyframes slide {
   0% {
-    opacity: 0;
+    opacity: 1;
   }
   100% {
     opacity: 1;
@@ -28,9 +32,10 @@
 }
 @keyframes slideback {
   0% {
-    opacity: 0;
+    opacity: 1;
     transform: translateX(100%);
   }
+
   100% {
     opacity: 1;
   }
@@ -51,26 +56,10 @@
   margin-left: 20%;
   margin-right: 20%;
 }
-/* 
-.signUpForm {
-    width: 80% !important;    
-} */
-
 .signupPaper {
   padding-left: 5%;
   padding-right: 5%;
 }
-/* 
-.center {
-    position: relative;    
-    top: 15%;
-    left: 20%; 
-    right: 20%;
-    z-index: 2;
-    display: block;
-    margin: auto;    
-    height: 70%;
-} */
 .maingrid {
   height: 70%;
 }
@@ -82,20 +71,9 @@
   float: left;
   height: 530px;
 }
-/* 
-.photo_signup {
-    background-image: url("earth3.png") ;
-    background-position: center;
-    background-size: cover;
-    width: 50%;
-    height: 100%;
-    /* border-radius: 0cm 0.3cm 0.3cm 0cm;     */
-/* float: right; */
-/* } */
+
 @keyframes glow {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px rgb(134, 125, 212), 0 0 30px #85a4c7,
-      0 0 40px #738ab9, 0 0 50px #6659a1, 0 0 60px #2f3479, 0 0 70px #090513;
   }
 
   to {
@@ -114,13 +92,6 @@
   color: #a0a0a0;
   animation: glow 1s ease-in-out infinite alternate;
 }
-/* 
-.text {    
-    position: absolute;    
-    top: 50%;    
-    font-size: 13px;
-    color: #C0C0C0;
-} */
 
 .buttonMain {
   color: #c0c0c0 !important;
@@ -136,6 +107,8 @@
   background-color: black;
   width: 50%;
   float: right;
+  position: absolute;
+  left:50%;
   height: 530px;
 }
 .loginform.loginhide {
@@ -143,7 +116,7 @@
 }
 
 .signupform {
-  background-color: #a0a0a0 !important;
+  background-color: black !important;
   width: 50%;
   float: left;
   height: 530px;
@@ -162,28 +135,21 @@
   animation: slideback 0.8s forwards;
 }
 
-.signupforms {
-  width: 70% !important;
-  margin-top: 3%;
-  background-color: #c0c0c0;
+.signupforms{
+  width: 103% !important;
+  background-color: black;
   font-size: 17px;
   border-color: rgb(4, 4, 95);
   border-width: 2px;
+  border-radius: 0;
 }
-.signupforms-lastname {
-  width: 70% !important;
-  margin-top: 3%;
-  background-color: #c0c0c0;
-  font-size: 17px;
-  border-color: rgb(4, 4, 95);
-  border-width: 2px;
-}
+
 .loginforms {
-  margin-top: 10%;
   background-color: black;
   font-size: 17px;
   border-color: rgb(2, 2, 78);
   border-width: 2px;
+  border-radius: 0;
 }
 .form-control.is-invalid,
 .was-validated .form-control:invalid {
@@ -198,23 +164,35 @@
 }
 
 .loginB {
+  width: 100%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   background-color: black;
-  font-size: 13px;
+  font-size: 17px;
   border-color: navy;
   color: grey;
 }
 .signupB {
+  width: 102%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: #c0c0c0;
-  font-size: 13px;
+  background-color: black;
+  font-size: 17px;
   border-color: navy;
-}
-.forgotpassword {
   color: grey;
+}
+
+.forgotpassword {
+  
+  margin-top: 15px;
+  color: rgb(104, 104, 104);
   cursor: pointer;
+  text-underline-position: below;
+  text-decoration-thickness: 2px;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: rgb(104, 104, 104) !important;
 }
 .forgotpassword:hover {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in;
   color: navy;
+  text-decoration-color: navy !important;
 }

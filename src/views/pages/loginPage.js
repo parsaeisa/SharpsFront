@@ -51,6 +51,17 @@ const LoginSignup = ({ change, setChange }) => {
 
   return (
     <div className="mainDiv">
+      
+      <div className="loginform" id="loginform">
+        <div className="loginpage">
+          <Login></Login>
+        </div>
+      </div>
+      <div className="signupform" id="signupform">
+        <div className="signuppage">
+          <SignUp></SignUp>
+        </div>
+      </div>
       <div className="photo_login" id="signupphoto">
         <h1 className="text_header"> Sharp </h1>
         <Button
@@ -63,17 +74,8 @@ const LoginSignup = ({ change, setChange }) => {
           Start
         </Button>
       </div>
-      <div className="signupform" id="signupform">
-        <div className="signuppage">
-          <SignUp></SignUp>
-        </div>
-      </div>
+    
 
-      <div className="loginform" id="loginform">
-        <div className="loginpage">
-          <Login></Login>
-        </div>
-      </div>
     </div>
   );
 };
@@ -85,7 +87,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    setChange: (av) => dispatch(loginsignup_actions.setChange(av)),
+    setChange: (f) => dispatch(loginsignup_actions.setChange(f)),
   };
 };
 

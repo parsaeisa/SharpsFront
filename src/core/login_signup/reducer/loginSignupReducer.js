@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialstate = { 
   change: false,
+
 }
 export default (state = initialstate, { type, payload }) => {
     switch (type) {
