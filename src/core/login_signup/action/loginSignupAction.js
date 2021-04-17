@@ -1,8 +1,8 @@
-import {loginSignupActionTypes} from "./loginSignupActionTypes"
+import {ActionTypes} from "./loginSignupActionTypes"
 
-// export function setFormState(state){
-//     return {
-//         type : ActionTypes.SET_FORM_STATE,
-//         payload: { state },
-//     };
-// }
+export function setChange(state){
+    return {
+        type : ActionTypes.SET_CHANGE,
+        payload: { change: state },
+    };
+}
