@@ -102,6 +102,9 @@
   border-radius: 0 !important;
   font-size: 13px !important;
 }
+.buttonMain:hover{
+  background-color: #c0c0c06b !important;
+}
 .loginform {
   background-color: black;
   width: 50%;
@@ -194,3 +197,6 @@
   color: navy;
   text-decoration-color: navy !important;
 }
+/* .forgotPasswordM{
+  background-color: rgb(7, 7, 83);
+} */

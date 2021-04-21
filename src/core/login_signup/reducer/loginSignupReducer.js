@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const initialstate = { 
   change: false,
+  forgotPassM: false,
 
 }
 export default (state = initialstate, { type, payload }) => {
@@ -12,6 +13,11 @@ export default (state = initialstate, { type, payload }) => {
         return{
           ...state, 
           change : payload.change,
+      }; 
+      case ActionTypes.SET_FORGOTPASSM:
+        return{
+          ...state, 
+          forgotPassM : payload.forgotPassM,
       };    
             
     default : return state;

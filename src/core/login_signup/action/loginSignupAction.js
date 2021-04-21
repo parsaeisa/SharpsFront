@@ -6,3 +6,10 @@ export function setChange(state){
         payload: { change: state },
     };
 }
+
+export function setforgotPassM(state){
+    return {
+        type : ActionTypes.SET_FORGOTPASSM,
+        payload: { forgotPassM: state },
+    };
+}

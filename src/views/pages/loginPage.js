@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 import "../styles/loginSignup.css";
-import Login from "./component/login";
+import LoginC from "./component/login";
 import SignUp from "./component/signUp";
 
 import { connect } from "react-redux";
@@ -38,7 +38,7 @@ const LoginSignup = ({ change, setChange }) => {
       
       <div className="loginform" id="loginform">
         <div className="loginpage">
-          <Login></Login>
+          <LoginC></LoginC>
         </div>
       </div>
       <div className="signupform" id="signupform">
