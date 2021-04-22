@@ -22,6 +22,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
@@ -34,27 +35,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  appBar: {
 
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
+
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -62,30 +48,14 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+  drawerContainer: {
+    overflow: 'auto',
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
   },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
+
 
   search: {
     position: 'relative',
@@ -176,8 +146,6 @@ function ExplorePage() {
         console.log("data")
       });
   }
-
-
   return (
     <div>
       <div className={classes.root}>
@@ -185,22 +153,11 @@ function ExplorePage() {
 
         <AppBar style={{ background: '#0f0b3e' }}
           position="fixed"
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
+          className={classes.appBar}
         >
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
             <Typography variant="h6" noWrap>
-              𝕤𝕙𝕒𝕣𝕡
+              𝓼𝓱𝓪𝓻𝓹
           </Typography>
             <div className="ex">
               <div className={classes.search}>
@@ -219,77 +176,80 @@ function ExplorePage() {
             </div>
           </Toolbar>
         </AppBar>
-      </div>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <ListItem button key="Homme">
-            <ListItemIcon>
-              <HomeIcon></HomeIcon>
-            </ListItemIcon>
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button key="Profile">
-            <ListItemIcon>
-              <AccountCircleIcon></AccountCircleIcon>
-            </ListItemIcon>
-            <ListItemText primary="Profile" />
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerContainer}>
+            <List>
+              <ListItem button key="Homme" style={{ paddingTop: "30%" }}>
+                <ListItemIcon>
+                  <HomeIcon> </HomeIcon>
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItem >
+              <li>
+                <ListItem button key="Profile">
+                  <ListItemIcon>
+                    <AccountCircleIcon></AccountCircleIcon>
+                  </ListItemIcon>
+                  <a href={"/edit_profile"} >
+                    <ListItemText primary="Profile" style={{ color: "black" }} />
+                  </a>
 
-          </ListItem>
-          <ListItem button key="Saved">
-            <ListItemIcon>
-              <TurnedInIcon></TurnedInIcon>
-            </ListItemIcon>
-            <ListItemText primary="Saved" />
+                </ListItem>
+              </li>
+              <ListItem button key="Saved">
+                <ListItemIcon>
+                  <TurnedInIcon></TurnedInIcon>
+                </ListItemIcon>
+                <ListItemText primary="Saved" />
 
-          </ListItem>
-        </List>
-
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <div className="explore">
-          {content.length === 0 ? <div></div> :
-            content.items.map((item) => {
-              if (item) return (
-                <div >
-                  <div class="card mb-3" >
-                    <div class="row no-gutters">
-                      <div class="col-md-4"  >
-                        <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">{item.title}</h5>
-                          <p class="card-text"> {item.des} </p>
-                          <a href={"//" + item.url} class="stretched-link" />
+              </ListItem>
+              <ListItem button key="Logout">
+                <ListItemIcon>
+                  <ExitToAppIcon></ExitToAppIcon>
+                </ListItemIcon>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            </List>
+          </div>
+        </Drawer>
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          <div className="explore">
+            {content.length === 0 ? <div></div> :
+              content.items.map((item) => {
+                if (item) return (
+                  <div style={{ spacing: "50%" }}>
+                    <div class="card mb-3 " >
+                      <div class="row no-gutters">
+                        <div class="col-md-4" >
+                          <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title">{item.title}</h5>
+                            <p class="card-text"> {item.des} </p>
+                            <a href={"//" + item.url} class="stretched-link" />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
 
-        </div>
-      </main>
+          </div>
+        </main>
+      </div>
 
     </div>
   );
