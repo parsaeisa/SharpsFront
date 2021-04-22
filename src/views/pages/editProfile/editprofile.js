@@ -13,6 +13,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogActions from '@material-ui/core/DialogActions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // import LoadingButton from '@material-ui/lab/LoadingButton';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
@@ -43,6 +44,7 @@ class Edit_profile extends React.Component {
         SuccesAlertText : "Profile has been changed succes fully " ,
         showFailureAlert : false ,
         FailAlertText : "" ,
+        loading : false ,
         last_state : null ,
         values : {
           amount: '',
@@ -144,26 +146,9 @@ class Edit_profile extends React.Component {
                 show={this.state.showFailureAlert}
                 text = {this.state.FailAlertText}
                 />
-              <div className="imageHolder">              
-                {/* <Image
-                  // onClick = {() => {setBackDrop(true)}}                  
-                  // onClose = {() => {setBackDrop(false)}}
-                  width={150}
-                  height={150}            
-                  src="https://source.unsplash.com/random"
-                />
-              </div>
-              <div className="camera_button">
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.button}
-                  startIcon={<AddAPhotoIcon />}
-                >
-                  Add photo
-                </Button> */}
-                <Avatar />
-              </div>
+              
+                 
+                <Avatar />              
               <Collapse data-testid="Collapse" onChange={callback}>              
                 <Panel header= {this.state.last_state ? this.state.last_state.firstname : "Name :" }
                  key="1">
@@ -236,11 +221,15 @@ class Edit_profile extends React.Component {
               </Collapse>
             </MuiDialogContent>            
             <MuiDialogActions>
-                <Button  size="large" className="Button" variant="contained" color="primary"
+                      <div className="wrapper">
+                <Button disabled={this.state.loading}  size="large" className="Button" variant="contained" color="primary"
                   onClick = {() => {
                     if(this.state.values.password == this.state.values.confirmPassword)
                     {
-                      this.setState({showFailureAlert : false });
+                      this.setState({
+                          showFailureAlert : false ,
+                          loading : true 
+                           });
                       this.props.SET_PASSWORD(this.state.values.password) ;                      
                     }
                     else
@@ -249,7 +238,10 @@ class Edit_profile extends React.Component {
                     }
                     if(this.state.showFailureAlert == false)
                       callapi_editprofile_update(store.getState().UserReducer , () => {
-                        this.setState({showSuccessAlert : true })
+                        this.setState({
+                          showSuccessAlert : true ,
+                          loading : false 
+                        })
                       }, (text) => {
                         this.setState({
                           FailAlertText : text ,
@@ -259,7 +251,9 @@ class Edit_profile extends React.Component {
                   }}
                 >
                   Save 
-                </Button >   
+                  {this.state.loading && <CircularProgress style={{color : 'green'}} size={24} className="buttonProgress" />}
+                </Button > 
+                </div>  
             </MuiDialogActions>
           </Dialog>
       </>
