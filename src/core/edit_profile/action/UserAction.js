@@ -7,6 +7,19 @@ export function setFirstname (n){
     }
 }
 
+export function setState (state){
+    return {
+        type : UserActionTypes.SET_STATE ,
+        payload : {
+            firstname: state.firstname ,
+            lastname: state.lastname ,
+            avatar: state.avatar ,
+            username: state.username ,
+            email: state.email 
+          }
+    }
+}
+
 export function setLastname (n){
     return {
         type : UserActionTypes.SET_LASTNAME ,

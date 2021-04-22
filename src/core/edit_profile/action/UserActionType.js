@@ -1,5 +1,6 @@
 export const UserActionTypes = {
 
+    SET_STATE : "SET_STATE" ,
     SET_FIRSTNAME : "SET_FIRSTNAME" ,
     SET_LASTNAME : "SET_LASTNAME" ,
     SET_USERNAME : "SET_USERNAME" ,

@@ -16,7 +16,17 @@ export default (state = initialstate, { type, payload }) => {
         return{
           ...state, 
           firstname : payload.firstname,
-        };    
+        };  
+        
+      case UserActionTypes.SET_STATE :
+        return {
+          ...state ,          
+          firstname: payload.firstname ,
+          lastname: payload.lastname ,
+          avatar: payload.avatar ,
+          username: payload.username ,
+          email: payload.email           
+        };
 
       case UserActionTypes.SET_LASTNAME:
         return{
