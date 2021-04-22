@@ -1,10 +1,8 @@
-import React, { useState , useEffect } from 'react';
-import { Image } from 'antd';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
@@ -15,6 +13,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CloseIcon from '@material-ui/icons/Close';
 import MuiDialogActions from '@material-ui/core/DialogActions';
+// import LoadingButton from '@material-ui/lab/LoadingButton';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 // import Button from '@material-ui/core/Button';
@@ -28,6 +27,9 @@ import { Collapse } from 'antd';
 
 import Dialog from '@material-ui/core/Dialog';
 import '../../styles/edit_profile.css' ;
+import Avatar from './components/Avatar';
+import SuccessAlert from './components/Success_alert';
+import FailAlert from './components/fail_alert';
 
 class Edit_profile extends React.Component {        
                 
@@ -37,6 +39,10 @@ class Edit_profile extends React.Component {
 
       this.state = {
         visible : false ,
+        showSuccessAlert : false ,
+        SuccesAlertText : "Profile has been changed succes fully " ,
+        showFailureAlert : false ,
+        FailAlertText : "" ,
         last_state : null ,
         values : {
           amount: '',
@@ -79,15 +85,15 @@ class Edit_profile extends React.Component {
     const {Panel} = Collapse ;
 
     const handleChange = (prop) => (event) => {
-      this.setState({ ...this.state.values, [prop]: event.target.value });
+      this.setState({values : { ...this.state.values, [prop]: event.target.value }});
     };
     
     const handleClickShowPassword = () => {
-      this.setState({ ...this.state.values, showPassword: !this.state.values.showPassword });
+      this.setState({values : { ...this.state.values, showPassword: !this.state.values.showPassword }});
     };
 
     const handleClickShowConfirmPassword = () => {
-      this.setState({ ...this.state.values, showConfirmPassword: !this.state.values.showConfirmPassword });
+      this.setState({values :{ ...this.state.values, showConfirmPassword: !this.state.values.showConfirmPassword }});
     };
     
     const handleMouseDownPassword = (event) => {
@@ -103,7 +109,7 @@ class Edit_profile extends React.Component {
 
     
     return (           
-      <>    
+      <>              
           <Button type="primary" onClick={() => this.setState({visible : true })}>
             {EditProfileButtonText}
           </Button>
@@ -130,8 +136,16 @@ class Edit_profile extends React.Component {
                      
             </MuiDialogTitle>
             <MuiDialogContent>
+              <SuccessAlert 
+                show={this.state.showSuccessAlert}
+                text= {this.state.SuccesAlertText}
+                />
+              <FailAlert 
+                show={this.state.showFailureAlert}
+                text = {this.state.FailAlertText}
+                />
               <div className="imageHolder">              
-                <Image
+                {/* <Image
                   // onClick = {() => {setBackDrop(true)}}                  
                   // onClose = {() => {setBackDrop(false)}}
                   width={150}
@@ -147,10 +161,11 @@ class Edit_profile extends React.Component {
                   startIcon={<AddAPhotoIcon />}
                 >
                   Add photo
-                </Button>
+                </Button> */}
+                <Avatar />
               </div>
               <Collapse data-testid="Collapse" onChange={callback}>              
-                <Panel header= {this.state.last_state ? this.state.last_state.firstname : "firstname" }
+                <Panel header= {this.state.last_state ? this.state.last_state.firstname : "Name :" }
                  key="1">
                   <TextField className ="TextField" onChange={(e) => {this.props.SET_FIRSTNAME(e.target.value)}} value={this.props.firstname} id="outlined-basic" label="FirstName" variant="outlined" />
                   <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" />
@@ -221,13 +236,30 @@ class Edit_profile extends React.Component {
               </Collapse>
             </MuiDialogContent>            
             <MuiDialogActions>
-                <Button size="large" className="Button" variant="contained" color="primary"
+                <Button  size="large" className="Button" variant="contained" color="primary"
                   onClick = {() => {
-                    callapi_editprofile_update(store.getState().UserReducer);
+                    if(this.state.values.password == this.state.values.confirmPassword)
+                    {
+                      this.setState({showFailureAlert : false });
+                      this.props.SET_PASSWORD(this.state.values.password) ;                      
+                    }
+                    else
+                    {
+                      this.setState({showFailureAlert : true , FailAlertText : "Passwords dont match " });
+                    }
+                    if(this.state.showFailureAlert == false)
+                      callapi_editprofile_update(store.getState().UserReducer , () => {
+                        this.setState({showSuccessAlert : true })
+                      }, (text) => {
+                        this.setState({
+                          FailAlertText : text ,
+                          showFailureAlert : true 
+                        })
+                      });
                   }}
                 >
                   Save 
-                </Button>   
+                </Button >   
             </MuiDialogActions>
           </Dialog>
       </>
