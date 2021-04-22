@@ -1,4 +1,4 @@
-import React, { useState , Component} from 'react';
+import React, { useState , useEffect } from 'react';
 import { Image } from 'antd';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -18,8 +18,10 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 // import Button from '@material-ui/core/Button';
+import store from "../../../core/store/index"
 import { makeStyles } from '@material-ui/core/styles';
-import callapi_editprofile from './callapi_editprofile.js/callapi_editprofile' ;
+import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
+import callapi_editprofile_get from './callapi_editprofile.js/callapi_editprofile_get' ;
 
 import 'antd/dist/antd.css';
 import { Collapse } from 'antd';
@@ -27,66 +29,65 @@ import { Collapse } from 'antd';
 import Dialog from '@material-ui/core/Dialog';
 import '../../styles/edit_profile.css' ;
 
-const useStyles = makeStyles((theme) => ({        
-    paper: {   
-        width : '100%'         ,    
-      [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {        
-        marginTop : theme.spacing(8) ,
-        marginBottom: theme.spacing(6),
-        padding: theme.spacing(0),
-      },
-    },  
-    closeButton: {
-      position: 'absolute',
-      right: theme.spacing(1),
-      top: theme.spacing(1),
-      color: theme.palette.grey[500],
-    },  
-  }));
-
-function callback(key) {
-  console.log(key);
-}  
-const {Panel} = Collapse ;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
-function Edit_profile (props) {        
+class Edit_profile extends React.Component {        
                 
   
-    const classes = useStyles();        
-    const [visible, setVisible] = useState(false);
-    const [Backdrop , setBackDrop] = useState(false);
+    constructor(props){
+      super(props);
 
-    window.addEventListener('click', (e) => {
-      if (Backdrop) {
-        setBackDrop(false);
+      this.state = {
+        visible : false ,
+        last_state : null ,
+        values : {
+          amount: '',
+          password: '',
+          confirmPassword : '' ,
+          weight: '',
+          weightRange: '',
+          showPassword: false,      
+          showConfirmPassword: false,      
+        }
       }
-    });
+    }
+
+    componentDidMount(){
+      callapi_editprofile_get()    
+    }
+
+    render()
+    {
+      const classes = makeStyles((theme) => ({        
+        paper: {   
+            width : '100%'         ,    
+          [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {        
+            marginTop : theme.spacing(8) ,
+            marginBottom: theme.spacing(6),
+            padding: theme.spacing(0),
+          },
+        },  
+        closeButton: {
+          position: 'absolute',
+          right: theme.spacing(1),
+          top: theme.spacing(1),
+          color: theme.palette.grey[500],
+        },  
+      }));
     
-    const [values, setValues] = React.useState({
-      amount: '',
-      password: '',
-      confirmPassword : '' ,
-      weight: '',
-      weightRange: '',
-      showPassword: false,      
-      showConfirmPassword: false,      
-    });
+    function callback(key) {
+      console.log(key);
+    }  
+    const {Panel} = Collapse ;
 
     const handleChange = (prop) => (event) => {
-      setValues({ ...values, [prop]: event.target.value });
+      this.setState({ ...this.state.values, [prop]: event.target.value });
     };
     
     const handleClickShowPassword = () => {
-      setValues({ ...values, showPassword: !values.showPassword });
+      this.setState({ ...this.state.values, showPassword: !this.state.values.showPassword });
     };
 
     const handleClickShowConfirmPassword = () => {
-      setValues({ ...values, showConfirmPassword: !values.showConfirmPassword });
+      this.setState({ ...this.state.values, showConfirmPassword: !this.state.values.showConfirmPassword });
     };
     
     const handleMouseDownPassword = (event) => {
@@ -94,14 +95,16 @@ function Edit_profile (props) {
     };
 
     const handleClose = () => {
-      setVisible(false);
+      // setVisible(false);
+      this.setState({visible : false });
     };  
 
     const EditProfileButtonText = 'Edit Profile' ;
+
     
     return (           
       <>    
-          <Button type="primary" onClick={() => setVisible(true)}>
+          <Button type="primary" onClick={() => this.setState({visible : true })}>
             {EditProfileButtonText}
           </Button>
           <Dialog    
@@ -109,13 +112,13 @@ function Edit_profile (props) {
             // title="Edit Profile"            
             transitionDuration = {900}
             // visible={visible}
-            open={visible}
-            onOk={() => setVisible(false)}
-            onCancel={() => setVisible(false)}
+            open={this.state.visible}
+            onOk={() => this.setState({visible : true })}
+            onCancel={() => this.setState({visible : true })}
             width={1000}
             onClose={handleClose}            
           >
-            <MuiDialogTitle disableTypography className={classes.root} >                           
+            <MuiDialogTitle disableTypography >                           
                 
                 <Typography variant="h6">Edit Profile</Typography><Typography></Typography>
                 <Button variant="contained" color='primary'
@@ -129,7 +132,7 @@ function Edit_profile (props) {
             <MuiDialogContent>
               <div className="imageHolder">              
                 <Image
-                  onClick = {() => {setBackDrop(true)}}                  
+                  // onClick = {() => {setBackDrop(true)}}                  
                   // onClose = {() => {setBackDrop(false)}}
                   width={150}
                   height={150}            
@@ -146,16 +149,17 @@ function Edit_profile (props) {
                   Add photo
                 </Button>
               </div>
-              <Collapse data-testid="Collapse" onChange={callback}>
-                <Panel header={"Name : " + props.firstname} key="1">
-                  <TextField className ="TextField" onChange={(e) => {props.SET_FIRSTNAME(e.target.value)}} value={props.firstname} id="outlined-basic" label="FirstName" variant="outlined" />
-                  <TextField className ="TextField" onChange={(e) => {props.SET_LASTNAME(e.target.value)}} value={props.lastname} id="outlined-basic" label="LastName" variant="outlined" />
+              <Collapse data-testid="Collapse" onChange={callback}>              
+                <Panel header= {this.state.last_state ? this.state.last_state.firstname : "firstname" }
+                 key="1">
+                  <TextField className ="TextField" onChange={(e) => {this.props.SET_FIRSTNAME(e.target.value)}} value={this.props.firstname} id="outlined-basic" label="FirstName" variant="outlined" />
+                  <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" />
                 </Panel>
                 <Panel header="Username :" key="2">
-                  <TextField className ="TextField" id="outlined-basic" value={props.username} onChange={(e) => {props.SET_USERNAME(e.target.value)}} label="Username" variant="outlined" />
+                  <TextField className ="TextField" id="outlined-basic" value={this.props.username} onChange={(e) => {this.props.SET_USERNAME(e.target.value)}} label="Username" variant="outlined" />
                 </Panel>
                 <Panel header="Email : " key="3">
-                  <TextField className ="TextField" value={props.email} onChange={(e) => {props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" />
+                  <TextField className ="TextField" value={this.props.email} onChange={(e) => {this.props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" />
                   <ul style={{width : '50%'}}><li>
                   <Typography variant="subtitle1" style={{marginTop : '5px'}}>                  
                     Your email would be used to communicate with you . 
@@ -168,8 +172,8 @@ function Edit_profile (props) {
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                       id="outlined-adornment-password"
-                      type={values.showPassword ? 'text' : 'password'}
-                      value={values.password}
+                      type={this.state.values.showPassword ? 'text' : 'password'}
+                      value={this.state.values.password}
                       onChange={handleChange('password')}
                       endAdornment={                      
                           <IconButton
@@ -178,7 +182,7 @@ function Edit_profile (props) {
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >
-                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                            {this.state.values.showPassword ? <Visibility /> : <VisibilityOff />}
                           </IconButton>                       
                       }
                       labelWidth={70}
@@ -190,8 +194,8 @@ function Edit_profile (props) {
                     <OutlinedInput 
                       className = "TextField"
                       id="outlined-adornment-password"
-                      type={values.showConfirmPassword ? 'text' : 'password'}
-                      value={values.confirmPassword}
+                      type={this.state.values.showConfirmPassword ? 'text' : 'password'}
+                      value={this.state.values.confirmPassword}
                       onChange={handleChange('confirmPassword')}
                       endAdornment={                                              
                           <IconButton
@@ -201,7 +205,7 @@ function Edit_profile (props) {
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >                        
-                          {values.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                          {this.state.values.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                           </IconButton>                                               
                       }
                       labelWidth={70}
@@ -209,21 +213,17 @@ function Edit_profile (props) {
                   </FormControl>
 
                 </Panel>
-                <Panel header="deactivate" key="5">
-                    {/* <Tooltip title="Delete Account" placement="top" TransitionComponent={Zoom} arrow> */}
-                    <Button size="Medium" className="Button" variant="contained" color="secondary">
-                      {/* <SaveIcon /> */}
-                      Delete Account
-                      {/* <FontAwesomeIcon icon={faUserTimes} size="2x" /> */}
-                    </Button>
-                  {/* </Tooltip> */}
+                <Panel header="deactivate" key="5">                    
+                    <Button size="Medium" className="Button" variant="contained" color="secondary">                      
+                      Delete Account                      
+                    </Button>                  
                 </Panel>
               </Collapse>
             </MuiDialogContent>            
             <MuiDialogActions>
                 <Button size="large" className="Button" variant="contained" color="primary"
                   onClick = {() => {
-                        callapi_editprofile();
+                    callapi_editprofile_update(store.getState().UserReducer);
                   }}
                 >
                   Save 
@@ -231,7 +231,7 @@ function Edit_profile (props) {
             </MuiDialogActions>
           </Dialog>
       </>
-    )    
+    )  }  
 }
 
 const mapStateToProps = (state) => {
@@ -248,6 +248,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    SET_STATE : (t) => dispatch (UserAction.setState(t)),       
     SET_FIRSTNAME : (t) => dispatch (UserAction.setFirstname(t)), 
     SET_LASTNAME : (t) => dispatch (UserAction.setLastname(t)), 
     SET_USERNAME : (t) => dispatch (UserAction.setUsername(t)), 
