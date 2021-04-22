@@ -31,7 +31,7 @@ export default (state = initialstate, { type, payload }) => {
       case UserActionTypes.SET_LASTNAME:
         return{
           ...state, 
-          lasstname : payload.lastname,
+          lastname : payload.lastname,
         };    
             
       case UserActionTypes.SET_USERNAME:
