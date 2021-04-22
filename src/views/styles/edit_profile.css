@@ -84,14 +84,29 @@
     z-index: 1400;
 }
 
-.ant-modal-mask {
+.ant-image-preview-body {
     z-index: 1400;
 }
 
-.ant-modal-wrap{
+.ant-image-preview-mask{
     z-index: 1400;
 }
 
 .closeIcon {
     fill: blue  !important;
+}
+
+.buttonProgress{
+    color : green ;
+    position: 'absolute' ;
+    top: '50%' ;
+    /* left: '50%' ; */
+    margin-top: -12 ;
+    /* margin-left: -12 ; */
+}
+
+.wrapper {
+    position: relative;
+    display: 'flex' ;
+    align-items: 'center' ;
 }
