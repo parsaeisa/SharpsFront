@@ -84,10 +84,14 @@
     z-index: 1400;
 }
 
-.ant-image-preview-body {
+.ant-modal-mask {
     z-index: 1400;
 }
 
-.ant-image-preview-mask{
+.ant-modal-wrap{
     z-index: 1400;
+}
+
+.closeIcon {
+    fill: blue  !important;
 }
