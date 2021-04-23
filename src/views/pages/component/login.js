@@ -115,7 +115,7 @@ const LoginC = ({ setAlertS, setAlertM, alertM, alertS }) => {
         localStorage.setItem("token", result.data.token);
 
         // add returned data to store
-        history.push("/edit_profile");
+        history.push("/explore");
       })
       .catch((error) => {
         console.log(error.response);

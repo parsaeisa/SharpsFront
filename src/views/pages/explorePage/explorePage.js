@@ -29,6 +29,7 @@ import serverURL from '../../../utils/serverURL';
 import tokenConfig from '../../../utils/tokenConfig';
 
 import { Link, withRouter } from 'react-router-dom';
+import Edit_profile from '../editProfile/editprofile';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -195,11 +196,9 @@ function ExplorePage() {
                 <ListItem button key="Profile">
                   <ListItemIcon>
                     <AccountCircleIcon></AccountCircleIcon>
-                  </ListItemIcon>
-                  <a href={"/edit_profile"} >
-                    <ListItemText primary="Profile" style={{ color: "black" }} />
-                  </a>
-
+                  </ListItemIcon>                  
+                  {/* <ListItemText primary="Profile" style={{ color: "black" }} />                   */}
+                  <Edit_profile />
                 </ListItem>
               </li>
               <ListItem button key="Saved">

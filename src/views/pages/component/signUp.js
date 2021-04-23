@@ -79,7 +79,7 @@ function SignUp({ setAlertS, setAlertM, alertM, alertS }) {
         console.log(result);
         localStorage.setItem("token", result.data.token);
 
-        history.push("/edit_profile");
+        history.push("/explore");
 
         // add returned data to store
       })

@@ -112,7 +112,7 @@ class Edit_profile extends React.Component {
     
     return (           
       <>              
-          <Button type="primary" onClick={() => this.setState({visible : true })}>
+          <Button style={{paddingLeft : '0px'}} type="primary" onClick={() => this.setState({visible : true })}>
             {EditProfileButtonText}
           </Button>
           <Dialog    
