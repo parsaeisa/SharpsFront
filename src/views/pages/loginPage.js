@@ -14,17 +14,19 @@ import { connect } from "react-redux";
 import * as loginsignup_actions from "../../core/login_signup/action/loginSignupAction";
 import { Layout, Space } from "antd";
 
-const LoginSignup = ({ change, setChange }) => {
+const LoginSignup = ({ change, setChange, setAlertS }) => {
   const setMov = (e) => {
     var thePhoto = document.getElementById("signupphoto");
     if (change) {
       thePhoto.classList.add("unchange");
       thePhoto.classList.remove("change");
       setChange(false);
+      setAlertS(false);
     } else {
       thePhoto.classList.add("change");
       thePhoto.classList.remove("unchange");
       setChange(true);
+      setAlertS(false);
     }
     var theSignupform = document.getElementById("signupform");
     theSignupform.classList.toggle("signupshow");
@@ -35,7 +37,6 @@ const LoginSignup = ({ change, setChange }) => {
 
   return (
     <div className="mainDiv">
-      
       <div className="loginform" id="loginform">
         <div className="loginpage">
           <LoginC></LoginC>
@@ -58,8 +59,6 @@ const LoginSignup = ({ change, setChange }) => {
           Start
         </Button>
       </div>
-    
-
     </div>
   );
 };
@@ -67,11 +66,15 @@ const LoginSignup = ({ change, setChange }) => {
 const mapStateToProps = (state) => {
   return {
     change: state.login_signup.change,
+
+    alertS: state.login_signup.alertS,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     setChange: (f) => dispatch(loginsignup_actions.setChange(f)),
+
+    setAlertS: (f) => dispatch(loginsignup_actions.setAlertS(f)),
   };
 };
 

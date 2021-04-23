@@ -3,7 +3,9 @@ import axios from 'axios';
 
 const initialstate = { 
   change: false,
-  forgotPassM: false,
+  alertM: "undefined",
+  alertS:false,
+  logged_in:false,
 
 }
 export default (state = initialstate, { type, payload }) => {
@@ -14,11 +16,21 @@ export default (state = initialstate, { type, payload }) => {
           ...state, 
           change : payload.change,
       }; 
-      case ActionTypes.SET_FORGOTPASSM:
+      case ActionTypes.SET_ALERTM:
         return{
           ...state, 
-          forgotPassM : payload.forgotPassM,
-      };    
+          alertM : payload.alertM,
+      };   
+      case ActionTypes.SET_ALERTS:
+        return{
+          ...state, 
+          alertS : payload.alertS,
+      };   
+      case ActionTypes.SET_LOGIN_STATE:
+        return{
+          ...state, 
+          logged_in : payload.success,
+      }; 
             
     default : return state;
 

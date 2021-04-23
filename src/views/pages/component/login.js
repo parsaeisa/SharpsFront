@@ -1,31 +1,23 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
 import { useHistory } from "react-router";
-import ForgotPassModal from "./ForgotPassModal";
 import serverURL from "../../../utils/serverURL";
 import tokenConfig from "../../../utils/tokenConfig";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { connect } from "react-redux";
 
-import * as loginsignup_actions from "../../../core/login_signup/action/loginSignupAction";
+import Alert from "@material-ui/lab/Alert";
 
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import IconButton from "@material-ui/core/IconButton";
+import Collapse from "@material-ui/core/Collapse";
+import CloseIcon from "@material-ui/icons/Close";
+
+import { Form, FormGroup } from "react-bootstrap";
 import "../../styles/loginSignup.css";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -35,6 +27,10 @@ import Fab from "@material-ui/core/Fab";
 import ForwardToInbox from "@material-ui/icons/Send";
 import MarkEmailRead from "@material-ui/icons/Check";
 
+import { connect } from "react-redux";
+
+import * as loginsignup_actions from "../../../core/login_signup/action/loginSignupAction";
+import { TramRounded } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -53,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
   fabProgress: {
     color: green[500],
     position: "absolute",
-    top: -1.5,
-    left: -1.5,
+    top: -2,
+    left: -2,
     zIndex: 1,
   },
   buttonProgress: {
@@ -65,8 +61,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -12,
     marginLeft: -12,
   },
+  alert: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
 }));
-const LoginC = ({ forgotPassM, setforgotPassM }) => {
+const LoginC = ({ setAlertS, setAlertM, alertM, alertS }) => {
   const [username, setUserName] = useState("");
   const [passwords, setPasswords] = useState({
     password: "",
@@ -79,7 +81,13 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
-
+  const setAlert = (e) => {
+    setAlertM(e);
+    setAlertS(true);
+  };
+  const alertClose = (e) => {
+    setAlertS(false);
+  };
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
   });
@@ -112,6 +120,11 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
       .catch((error) => {
         console.log(error.response);
         console.log("not logged In");
+        console.log(error.response.status);
+        console.log(error.response.data.error);
+        if (error.response.status < 500 && error.response.status > 399) {
+          setAlert(error.response.data.error);
+        }
       });
   };
 
@@ -144,48 +157,53 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
 
   const handleClose = () => {
     setOpen(false);
+    history.push("/login_signup");
+
+    // window.location.reload();
   };
 
   const [email, setEmail] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const handleSubmit = () => {
-    if(email==""){
+    if (email == "") {
       validateEmail(email);
-    }else{
-    if (!emailErr) {
-      if (!loading) {
-        setSuccess(false);
-        setLoading(true);
-        timer.current = window.setTimeout(() => {
-          setSuccess(true);
-          setLoading(false);
-          setOpen(false);
-        }, 2000);
-        
-      }
-                   
-  
-      const out = { 
-          "email" : email 
-      }
-  
-      const outJSON = JSON.stringify(out);
-    axios.post(serverURL()+"user/resetpassword", outJSON , tokenConfig())
-    .then(result => {
-        console.log("email sent");
-        console.log(result);
-        localStorage.setItem('token' , result.data.token);
-        
-        history.push("/login_signup");
-        
-      window.location.reload();
+    } else {
+      if (!emailErr) {
+        if (!loading) {
+          setSuccess(false);
+          setLoading(true);
+          timer.current = window.setTimeout(() => {
+            setSuccess(true);
+            setLoading(false);
+            setOpen(false);
+          }, 2000);
+        }
 
-    }).catch(error => {       
-        console.log(error.response);         
-        console.log("email not sent");
-    })
-    }}
-   
+        const out = {
+          email: email,
+        };
+
+        const outJSON = JSON.stringify(out);
+        axios
+          .post(serverURL() + "user/resetpassword", outJSON, tokenConfig())
+          .then((result) => {
+            console.log("email sent");
+            console.log(result);
+
+            history.push("/login_signup");
+
+            localStorage.setItem("token", result.data.token);
+            // window.location.reload();
+          })
+          .catch((error) => {
+            console.log(error.response);
+            console.log("email not sent");
+            if (error.response.status < 500 && error.response.status > 399) {
+              setAlert(error.response.data.error);
+            }
+          });
+      }
+    }
   };
   const validemail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -199,7 +217,6 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
     setEmailErr(userError);
   }
 
-  
   return (
     <div className="row justify-content-center">
       <Form
@@ -251,7 +268,6 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
         </p>
         <Dialog
           open={open}
-          onClose={handleClose}
           aria-labelledby="form-dialog-title"
           className="forgotPasswordM"
         >
@@ -260,8 +276,9 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              To set a new password, please enter your email address here. We
-              will send you a link.
+              To set a new password, please enter your email address here. If
+              the email you specified exists in our system and is verified, we
+              will send a password reset link to it.
             </DialogContentText>
             {/* <TextField
               autoFocus
@@ -271,16 +288,17 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
               type="email"
             /> */}
             <Form.Control
-          type="email"
-          placeholder="Email"
-          onChange={(e) => { validateEmail(e.target.value);
-          }}
-          onBlur={(e) => validateEmail(e.target.value)}
-          isInvalid={Boolean(emailErr)}
-        />
-        <Form.Control.Feedback type="invalid">
-          {emailErr}
-        </Form.Control.Feedback>
+              type="email"
+              placeholder="Email"
+              onChange={(e) => {
+                validateEmail(e.target.value);
+              }}
+              onBlur={(e) => validateEmail(e.target.value)}
+              isInvalid={Boolean(emailErr)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {emailErr}
+            </Form.Control.Feedback>
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
@@ -306,27 +324,28 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
                   )}
                 </Fab>
               </div>
-              {/* 
-              <div className={classes.wrapper}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={buttonClassname}
-                  disabled={loading}
-                  onClick={handleSubmit}
-                >
-                  Email me
-                </Button>
-                {loading && (
-                  <CircularProgress
-                    size={24}
-                    className={classes.buttonProgress}
-                  />
-                )}
-              </div> */}
             </div>
           </DialogActions>
         </Dialog>
+        <div className={classes.alert}>
+          <Collapse in={alertS}>
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={alertClose}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              {alertM}
+            </Alert>
+          </Collapse>
+        </div>
       </Form>
     </div>
   );
@@ -334,12 +353,14 @@ const LoginC = ({ forgotPassM, setforgotPassM }) => {
 
 const mapStateToProps = (state) => {
   return {
-    forgotPassM: state.login_signup.forgotPassM,
+    alertS: state.login_signup.alertS,
+    alertM: state.login_signup.alertM,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    setforgotPassM: (av) => dispatch(loginsignup_actions.setforgotPassM(av)),
+    setAlertS: (f) => dispatch(loginsignup_actions.setAlertS(f)),
+    setAlertM: (f) => dispatch(loginsignup_actions.setAlertM(f)),
   };
 };
 
