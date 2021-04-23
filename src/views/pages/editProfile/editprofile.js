@@ -116,6 +116,7 @@ class Edit_profile extends React.Component {
             {EditProfileButtonText}
           </Button>
           <Dialog    
+          
             // className={Backdrop && "DialogTared"}      
             // title="Edit Profile"            
             transitionDuration = {900}
@@ -132,7 +133,9 @@ class Edit_profile extends React.Component {
                 <Button variant="contained" color='primary'
                     className={classes.closeButton} onClick={handleClose}
                 > 
-                  <CloseIcon className="closeIcon" color='black' />
+                  <CloseIcon className="closeIcon" 
+                  // color='black' 
+                  />
                 </Button>                              
                                 
                      
@@ -148,18 +151,18 @@ class Edit_profile extends React.Component {
                 />
               
                  
-                <Avatar />              
+                {/* <Avatar />                                */}
               <Collapse data-testid="Collapse" onChange={callback}>              
-                <Panel header= {this.state.last_state ? this.state.last_state.firstname : "Name :" }
+                <Panel  header= {this.state.last_state ? this.state.last_state.firstname : "Name :" }
                  key="1">
-                  <TextField className ="TextField" onChange={(e) => {this.props.SET_FIRSTNAME(e.target.value)}} value={this.props.firstname} id="outlined-basic" label="FirstName" variant="outlined" />
-                  <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" />
+                  <TextField className ="TextField" onChange={(e) => {this.props.SET_FIRSTNAME(e.target.value)}} value={this.props.firstname} label="FirstName" variant="outlined" role="FirstnameTextField" />
+                  <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" role="LastnameTextField" />
                 </Panel>
                 <Panel header="Username :" key="2">
-                  <TextField className ="TextField" id="outlined-basic" value={this.props.username} onChange={(e) => {this.props.SET_USERNAME(e.target.value)}} label="Username" variant="outlined" />
+                  <TextField className ="TextField" id="outlined-basic" value={this.props.username} onChange={(e) => {this.props.SET_USERNAME(e.target.value)}} label="Username" variant="outlined" role="UsernameTextField"/>
                 </Panel>
                 <Panel header="Email : " key="3">
-                  <TextField className ="TextField" value={this.props.email} onChange={(e) => {this.props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" />
+                  <TextField className ="TextField" value={this.props.email} onChange={(e) => {this.props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" role="EmailTextField" />
                   <ul style={{width : '50%'}}><li>
                   <Typography variant="subtitle1" style={{marginTop : '5px'}}>                  
                     Your email would be used to communicate with you . 
