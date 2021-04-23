@@ -80,27 +80,31 @@ class Avatar extends React.Component {
     //     //     Add photo
     //     // </Button>
     // );
+
+    const avatar = "avatar" ;
+
     return (
         <>
             <div className="imageHolder">              
-                <Image
-                        // onClick = {() => {setBackDrop(true)}}                  
-                        // onClose = {() => {setBackDrop(false)}}
+                <Image                        
                         width={150}
-                        height={150}            
-                        // src="https://source.unsplash.com/random"
-                        src={atob(this.props.avatar)}
+                        height={150}                                    
+                        src={this.props.avatar != null ? atob(this.props.avatar) : "https://i.stack.imgur.com/l60Hf.png"}
                     />
             </div>
             <div className="camera_button">
                 <input accept="image/*" style={{display : "none" }}
-                    id="avatar"
-                    name="avatar"
+                    id={avatar}
+                    name= {avatar}
                     type="file"                     
                     onChange={(e) => {
-                        this.uploadImage(e);
+                        try {
+                            this.uploadImage(e);
+                        } catch(error){
+                            console.log(error);
+                        }
                     }}/>
-                <label htmlFor="avatar">
+                <label htmlFor={avatar}>
                     <Button
                         variant="contained"
                         color="secondary"
