@@ -6,6 +6,7 @@ import editProfile from "./views/pages/editProfile/editprofile";
 import React from "react";
 import history from "./core/modules/history";
 import LoginSignUp from "./views/pages/loginPage";
+import ExplorePage from "./views/pages/explorePage/explorePage" ;
 
 import { connect } from "react-redux";
 const App = () => {
@@ -18,8 +19,9 @@ const App = () => {
           <Route path="/" exact component={loginPage} />
           <Route path="/login" exact component={loginPage} />
           <Route path="/edit_profile" exact component={editProfile} />
+          <Route path="/explore" exact component={ExplorePage}/> 
         </Switch>
-      </Router>
+      </Router>           
     </div>
   );
 };
