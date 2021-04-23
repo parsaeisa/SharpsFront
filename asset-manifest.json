@@ -6,18 +6,18 @@
     "runtime-main.js": "/static/js/runtime-main.db759bdf.js",
     "runtime-main.js.map": "/static/js/runtime-main.db759bdf.js.map",
     "static/css/2.96ab32f7.chunk.css": "/static/css/2.96ab32f7.chunk.css",
-    "static/js/2.9f06feff.chunk.js": "/static/js/2.9f06feff.chunk.js",
-    "static/js/2.9f06feff.chunk.js.map": "/static/js/2.9f06feff.chunk.js.map",
+    "static/js/2.c8d80a3c.chunk.js": "/static/js/2.c8d80a3c.chunk.js",
+    "static/js/2.c8d80a3c.chunk.js.map": "/static/js/2.c8d80a3c.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.96ab32f7.chunk.css.map": "/static/css/2.96ab32f7.chunk.css.map",
     "static/css/main.b29751a1.chunk.css.map": "/static/css/main.b29751a1.chunk.css.map",
-    "static/js/2.9f06feff.chunk.js.LICENSE.txt": "/static/js/2.9f06feff.chunk.js.LICENSE.txt",
+    "static/js/2.c8d80a3c.chunk.js.LICENSE.txt": "/static/js/2.c8d80a3c.chunk.js.LICENSE.txt",
     "static/media/loginSignup.css": "/static/media/earth4.5087735e.png"
   },
   "entrypoints": [
     "static/js/runtime-main.db759bdf.js",
     "static/css/2.96ab32f7.chunk.css",
-    "static/js/2.9f06feff.chunk.js",
+    "static/js/2.c8d80a3c.chunk.js",
     "static/css/main.b29751a1.chunk.css",
     "static/js/main.a1dcf665.chunk.js"
   ]
