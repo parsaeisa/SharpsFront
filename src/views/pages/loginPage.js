@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 
 import "../styles/loginSignup.css";
 import LoginC from "./component/login";
@@ -12,7 +8,6 @@ import SignUp from "./component/signUp";
 import { connect } from "react-redux";
 
 import * as loginsignup_actions from "../../core/login_signup/action/loginSignupAction";
-import { Layout, Space } from "antd";
 
 const LoginSignup = ({ change, setChange, setAlertS }) => {
   const setMov = (e) => {

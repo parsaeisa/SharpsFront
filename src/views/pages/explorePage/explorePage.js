@@ -9,16 +9,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
@@ -26,9 +19,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
-import tokenConfig from '../../../utils/tokenConfig';
 
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 const drawerWidth = 240;
 
