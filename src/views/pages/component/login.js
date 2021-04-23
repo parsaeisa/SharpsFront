@@ -269,7 +269,6 @@ const LoginC = ({ setAlertS, setAlertM, alertM, alertS }) => {
         <Dialog
           open={open}
           aria-labelledby="form-dialog-title"
-          className="forgotPasswordM"
         >
           <DialogTitle id="form-dialog-title">
             Forgot your password?

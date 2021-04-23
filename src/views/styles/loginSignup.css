@@ -219,6 +219,12 @@
   color: rgb(139, 139, 136);
   text-decoration-color: rgb(139, 139, 136) !important;
 }
-/* .forgotPasswordM{
-  background-color: rgb(7, 7, 83);
-} */
+body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div{
+
+  width: 50%;
+  
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-53%, -60%) !important;
+}
