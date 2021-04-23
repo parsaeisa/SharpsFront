@@ -1,4 +1,4 @@
-import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import loginPage from "./views/pages/loginPage";
@@ -7,9 +7,12 @@ import React from "react";
 import history from "./core/modules/history";
 import LoginSignUp from "./views/pages/loginPage";
 import ExplorePage from "./views/pages/explorePage/explorePage" ;
+import resetPass from "./views/pages/component/ResetPass";
+import verifyEmail from "./views/pages/component/VerifyEmail";
 
+import ProtectedRoute from "./core/ProtectedRoute";
 import { connect } from "react-redux";
-const App = () => {
+const App = ({ logged_in }) => {
   return (
     <div className="App">
       <Router history={history}>
@@ -20,10 +23,21 @@ const App = () => {
           <Route path="/login" exact component={loginPage} />
           <Route path="/edit_profile" exact component={editProfile} />
           <Route path="/explore" exact component={ExplorePage}/> 
+
+          <Route path="/reset/*" exact component={resetPass} />
+          {/* <ProtectedRoute exact path='/' auth={logged_in} unauthLocation="/login_signup" component={} /> */}
+
+          <Route path="/verify_email" exact component={verifyEmail} />
         </Switch>
       </Router>           
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    logged_in: state.login_signup.logged_in,
+  };
+};
+
+export default connect(mapStateToProps)(App);

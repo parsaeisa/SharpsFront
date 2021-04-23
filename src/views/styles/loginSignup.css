@@ -65,12 +65,16 @@
 }
 .photo_login {
   position: absolute;
-  background-image: url("earth3.png");
+  background-image: url("earth4.png");
   background-position: center;
   background-size: cover;
   width: 50%;
   float: left;
   height: 530px;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
 }
 
 @keyframes glow {
@@ -78,8 +82,9 @@
   }
 
   to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #10066b, 0 0 40px #5841be,
-      0 0 50px #4f1c92, 0 0 60px #824dff, 0 0 70px #684dff, 0 0 80px #070707;
+    text-shadow: 0 0 20px #fff, 0 0 30px rgba(186, 187, 179, 0.534),
+      0 0 40px rgba(186, 187, 179, 0.6), 0 0 50px rgba(186, 187, 179, 0.75),
+      0 0 60px rgba(186, 187, 179, 0.8);
   }
 }
 .text_header {
@@ -102,25 +107,36 @@
   border-radius: 0 !important;
   font-size: 13px !important;
 }
+.buttonMain:hover {
+  background-color: rgba(186, 187, 179, 0.534) !important;
+}
 .loginform {
-  background-color: black;
+  background-color: whitesmoke;
   width: 50%;
   float: right;
   position: absolute;
   left: 50%;
   height: 530px;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
 }
 .loginform.loginhide {
   visibility: hidden;
 }
 
 .signupform {
-  background-color: black !important;
+  background-color: whitesmoke !important;
   width: 50%;
   float: left;
   height: 530px;
   position: absolute;
   visibility: hidden !important;
+
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
 }
 .signupform.signupshow {
   visibility: visible !important;
@@ -136,61 +152,79 @@
 
 .signupforms {
   width: 103% !important;
-  background-color: black;
+  background-color: whitesmoke;
   font-size: 17px;
-  border-color: rgb(4, 4, 95);
-  border-width: 2px;
+  border-color: black;
+  border-width: 1px;
   border-radius: 0;
 }
 
 .loginforms {
-  background-color: black;
+  background-color: whitesmoke;
   font-size: 17px;
-  border-color: rgb(2, 2, 78);
-  border-width: 2px;
+  border-color: black;
+  border-width: 1px;
   border-radius: 0;
 }
 .form-control.is-invalid,
 .was-validated .form-control:invalid {
-  border-color: navy;
+  border-color: rgba(186, 187, 179, 0.95);
   border-radius: 0%;
   border-style: dotted;
-  border-width: 4px;
-  background-image: url("C:\GitHub\sharps pro\SharpsFront\src\views\styles\OIP.png");
+  border-width: 2px;
+  background-image: url("error2.png");
+
+  
 }
 .invalid-feedback {
-  color: rgb(119, 119, 177);
+  color: rgb(139, 139, 136);
 }
 
 .loginB {
   width: 100%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: black;
+  background-color: whitesmoke;
   font-size: 17px;
-  border-color: navy;
-  color: grey;
+  border-color: black;
+  border-width: 1px;
+  color: black;
+}
+.loginB:hover {
+  background-color: rgba(186, 187, 179, 0.534);
 }
 .signupB {
   width: 102%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: black;
+  background-color: whitesmoke;
   font-size: 17px;
-  border-color: navy;
-  color: grey;
+  border-color: black;
+  border-width: 1px;
+  color: black;
 }
-
+.signupB:hover {
+  background-color: rgba(186, 187, 179, 0.534);
+}
 .forgotpassword {
   margin-top: 15px;
-  color: rgb(104, 104, 104);
+  color: black;
   cursor: pointer;
   text-underline-position: below;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-color: rgb(104, 104, 104) !important;
+  text-decoration-color: black !important;
 }
 .forgotpassword:hover {
   transition: all 0.25s ease-in;
-  color: navy;
-  text-decoration-color: navy !important;
+  color: rgb(139, 139, 136);
+  text-decoration-color: rgb(139, 139, 136) !important;
+}
+body > div.MuiDialog-root > div.MuiDialog-container.MuiDialog-scrollPaper > div{
+
+  width: 50%;
+  
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-53%, -60%) !important;
 }

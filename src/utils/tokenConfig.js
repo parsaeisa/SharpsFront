@@ -1,5 +1,5 @@
 export default function(){
-    const token = localStorage.getItem('token');
+    const token = 'Bearer ' + localStorage.getItem('token');
     return {
         mode: 'cors',
         headers: {      
