@@ -159,7 +159,7 @@ class Edit_profile extends React.Component {
                 />
               
                  
-                {/* <Avatar />                                */}
+                <Avatar />                               
               <Collapse data-testid="Collapse" onChange={callback}>              
                 <Panel  header= {this.state.last_state ? this.state.last_state.firstname : "Name :" }
                  key="1">
@@ -256,7 +256,8 @@ class Edit_profile extends React.Component {
                       }, (text) => {
                         this.setState({
                           FailAlertText : text ,
-                          showFailureAlert : true 
+                          showFailureAlert : true ,
+                          loading : false
                         })
                       });
                   }}

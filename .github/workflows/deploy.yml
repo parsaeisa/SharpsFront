@@ -26,7 +26,7 @@ jobs:
     - name: Build page
       run: CI= yarn build
     - name : test
-      run : yarn test
+      run : yarn test --watchAll=false
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:

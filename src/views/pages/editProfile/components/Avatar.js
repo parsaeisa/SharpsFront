@@ -24,11 +24,20 @@ class Avatar extends React.Component {
             loading : false
         }
     }      
+
+    static getDerivedStateFromError(error) {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true };
+    }
+
+    componentDidCatch(error , errInfo){
+        // logErrorToMyService(error, errInfo);
+    }
     
     uploadImage = async (e) => {        
         const file = e.target.files[0];          
         const base64 = await this.convertBase64(file); 
-        console.log(btoa(encodeURIComponent(base64)));                        
+        console.log(btoa(base64));                        
         this.props.SET_AVATAR(btoa(base64))        
     }
 
