@@ -27,7 +27,8 @@ class Avatar extends React.Component {
     
     uploadImage = async (e) => {        
         const file = e.target.files[0];          
-        const base64 = await this.convertBase64(file);                         
+        const base64 = await this.convertBase64(file); 
+        console.log(btoa(encodeURIComponent(base64)));                        
         this.props.SET_AVATAR(btoa(base64))        
     }
 
@@ -93,21 +94,21 @@ class Avatar extends React.Component {
                     />
             </div>
             <div className="camera_button">
-                <input accept="image/*" style={{display : "none" }}
+                <input accept="image/*"
+                style={{display : "none" }}
                     id={avatar}
                     name= {avatar}
-                    type="file"                     
-                    onChange={(e) => {
-                        try {
+                    type="file"
+                    onChange={(e) => {                        
+                        this.uploadImage(e);                        
                             this.uploadImage(e);
-                        } catch(error){
-                            console.log(error);
-                        }
+                        this.uploadImage(e);                        
                     }}/>
                 <label htmlFor={avatar}>
                     <Button
+                        component="span"
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         // className={classes.button}
                         startIcon={<AddAPhotoIcon />}
                     >
