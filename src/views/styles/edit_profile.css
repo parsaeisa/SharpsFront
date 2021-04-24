@@ -93,7 +93,7 @@
 }
 
 .closeIcon {
-    fill: blue  !important;
+    fill: #0f0b3e  !important;
 }
 
 .buttonProgress{
@@ -109,4 +109,8 @@
     position: relative;
     display: 'flex' ;
     align-items: 'center' ;
+}
+
+.MuiButton-containedPrimary {
+    background-color: #0f0b3e !important;
 }

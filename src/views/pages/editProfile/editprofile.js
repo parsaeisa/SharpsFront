@@ -18,6 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 // import Button from '@material-ui/core/Button';
+import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import store from "../../../core/store/index"
 import { makeStyles } from '@material-ui/core/styles';
 import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
@@ -78,6 +79,7 @@ class Edit_profile extends React.Component {
           right: theme.spacing(1),
           top: theme.spacing(1),
           color: theme.palette.grey[500],
+          
         },  
       }));
     
@@ -129,14 +131,20 @@ class Edit_profile extends React.Component {
           >
             <MuiDialogTitle disableTypography >                           
                 
-                <Typography variant="h6">Edit Profile</Typography><Typography></Typography>
-                <Button variant="contained" color='primary'
-                    className={classes.closeButton} onClick={handleClose}
-                > 
-                  <CloseIcon className="closeIcon" 
-                  // color='black' 
-                  />
-                </Button>                              
+                <Grid container>
+                  <Grid item xs={11}>
+                  <Typography variant="h6">Edit Profile</Typography>       
+                  </Grid>
+                  <Grid item xs={1}>
+                    <Button variant="outlined" //color='primary'
+                        className={classes.closeButton} onClick={handleClose}
+                    > 
+                      <CloseIcon className="closeIcon" 
+                      // color='black' 
+                      />
+                    </Button>                              
+                  </Grid>
+                </Grid>
                                 
                      
             </MuiDialogTitle>
