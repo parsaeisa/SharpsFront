@@ -15,21 +15,9 @@ import 'hammerjs';
 
 const series = [
     {
-        name: "google",
-        data: [3.988, 3.733, 3.994]
-    },
-    {
-        name: "facebook",
-        data: [2.21, 2.375, 2.161]
-    },
-    {
-        name: "twitter",
-        data: [1.743, 1.295, 1.175 , 1]
-    },
-    {
-        name: "apple",
-        data: [0.907, 0.943, 0.848 , 1]
-    }
+        name: "time checks",
+        data: [3.988, 3.733, 3.994 , 1]
+    },    
 ]
 
 const categories = ['google', 'facebook', 'twitter', 'apple'];
@@ -47,7 +35,7 @@ class BarChart extends React.Component {
                     </ChartCategoryAxis>
                 <ChartSeries>
                 {series.map((item, idx) => (
-                <ChartSeriesItem
+                <ChartSeriesItem stack={true}
                   key={idx}
                   type="bar"
                   tooltip={{ visible: true }}
@@ -56,7 +44,7 @@ class BarChart extends React.Component {
                                 />
                             ))}
                 </ChartSeries>
-            </Chart>
+                </Chart>
         );
     }
 }
