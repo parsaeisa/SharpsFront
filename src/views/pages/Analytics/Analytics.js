@@ -10,6 +10,7 @@ import LineChart from './components/Line_chart';
 import BarChart from './components/Bar_chart';
 import "../../styles/analytics.css";
 import BlockedTable from './components/blocked_links_table';
+import callapi_analytics_get from './callapi_analytics/callapi_analytics' ;
 
 const drawerWidth = 240;
 
@@ -22,36 +23,79 @@ export default class Analytics extends React.Component {
     }
   }
 
+  async componentDidMount()
+  {
+      // let response = await 
+      // const a  = await callapi_analytics_get() ;
+
+      // this.setState({
+      //   a: await callapi_analytics_get()
+      // })
+  }
+
   render() {
+
+    const data = {
+      "userHistory": [
+        {
+          "domain": "example.com",
+          "tag": "animal",
+          "eventType": "CLICK",
+          "createdAt": "2021-05-01T20:04:23.291Z"
+        },
+        {
+          "domain": "example.com",
+          "tag": "animal",
+          "eventType": "CLICK",
+          "createdAt": "2021-05-01T20:04:23.291Z"
+        },
+        {
+          "domain": "example.com",
+          "tag": "animal",
+          "eventType": "CLICK",
+          "createdAt": "2021-05-01T20:04:23.291Z"
+        },
+        {
+          "domain": "google .com",
+          "tag": "politics",
+          "eventType": "CLICK",
+          "createdAt": "2021-05-01T20:04:23.291Z"
+        },
+        {
+          "domain": "google.com",
+          "tag": "politics",
+          "eventType": "CLICK",
+          "createdAt": "2021-05-01T20:04:23.291Z"
+        },
+        {
+          "domain": "google.com",
+          "tag": "string",
+          "eventType": "CLICK",
+          "createdAt": "2021-05-01T20:04:23.291Z"
+        },
+      ]
+    }    
+
+    const mapToProp = (data, prop) => {
+      return data
+        .reduce((res, item) => Object
+          .assign(res, {
+            [item[prop]]: 1 + (res[item[prop]] || 0)
+          }), Object.create(null))
+      ;      
+
+    }        
+
     const classes = makeStyles((theme) => ({
       root: {
         display: 'flex',
-      },
-      title: {
-        flexGrow: 1,
-      },
-      appBarSpacer:
-      {
-        height: '30px'
-      },
-      content: {
-        flexGrow: 1,
-        height: '100vh',
-        overflow: 'auto',
-      },
-      container: {
-        paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
-      },
+      },      
       paper: {
         padding: theme.spacing(2),
         display: 'flex',
         overflow: 'auto',
         flexDirection: 'column',
-      },
-      fixedHeight: {
-        height: 300,
-      },
+      },      
     }));
 
     const fixedHeightPaper = clsx( classes.paper, "fixedHeight");
@@ -73,15 +117,19 @@ export default class Analytics extends React.Component {
               </Grid>
               <Grid item xs={12} md={4} lg={4}>
                 <Paper elevation={4} className={fixedHeightPaper}>
-                  <DonatChart />
+                  <DonatChart
+                    data = {mapToProp(data.userHistory , "tag")}
+                  />
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={4} lg={4}>
-                <Paper elevation={4} >
-                  <BarChart />
+              <Grid item xs={12} md={4} lg={5}>
+                <Paper style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
+                  <BarChart
+                    data = {mapToProp(data.userHistory , "domain")}
+                  />
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={8} lg={8}>
+              <Grid item xs={12} md={8} lg={7}>
                 <Paper elevation={4} className="paper">
                   <BlockedTable />
                 </Paper>
