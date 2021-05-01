@@ -48,7 +48,7 @@ class LineChart extends React.Component {
     render(){
 
         return (
-            <Chart>
+            <Chart style={{height : "300px" }}>
                 <ChartTitle text="Acitivty" />
                 <ChartLegend position="top" orientation="horizontal" />
                 <ChartCategoryAxis>

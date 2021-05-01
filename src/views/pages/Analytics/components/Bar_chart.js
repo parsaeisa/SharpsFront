@@ -23,10 +23,16 @@ const series = [
 const categories = ['google', 'facebook', 'twitter', 'apple'];
 class BarChart extends React.Component {
 
+    constructor(props)
+    {
+        super(props);
+    }
+
     render () 
     {
+        
         return (
-            <Chart>
+            <Chart style ={{height : (series[0].data.length * 60) + 'px'}}>
                 <ChartTitle text="favorite Links" />
                     <ChartCategoryAxis>
                         <ChartCategoryAxisItem categories={categories}>
@@ -37,6 +43,8 @@ class BarChart extends React.Component {
                 {series.map((item, idx) => (
                 <ChartSeriesItem stack={true}
                   key={idx}
+                  gap ={2}                  
+                  spacing = {.25}
                   type="bar"
                   tooltip={{ visible: true }}
                   data={item.data}

@@ -1,0 +1,37 @@
+
+.Donat_chart_title {
+    margin-bottom: 20px !important;
+}
+
+.root {
+    display: 'flex',
+  }
+.title {
+    flex-grow: 1;
+  }
+.appBarSpacer
+  {
+    height: '30px'
+  }
+.content {
+    flex-grow: 1;
+    height: 100vh;
+    overflow: auto;
+  }
+.container {
+    padding-top : 32px;
+    padding-bottom : 32px;
+  }
+.paper {
+    padding: 16px ;
+    display : 'flex';
+    overflow: 'auto';
+    flex-direction: 'column';
+  }
+.fixedHeight {
+    height: 300px !important;
+}
+
+.fixedHeightPaper{
+    height: 300;
+}
