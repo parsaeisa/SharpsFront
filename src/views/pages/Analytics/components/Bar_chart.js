@@ -30,6 +30,18 @@ class BarChart extends React.Component {
 
     render () 
     {
+
+        const categories = Object.keys(this.props.data);
+
+        const series = [
+            {
+                name : "time checks" ,
+                data : Object.values(this.props.data)
+            },
+        ]
+
+        // const obj = JSON.parse(this.props.data);
+        // console.log(Object.keys(obj));
         
         return (
             <Chart style ={{height : (series[0].data.length * 60) + 'px'}}>
@@ -48,7 +60,7 @@ class BarChart extends React.Component {
                   type="bar"
                   tooltip={{ visible: true }}
                   data={item.data}
-                  name={item.name}
+                //   name={item.name}
                                 />
                             ))}
                 </ChartSeries>
