@@ -19,46 +19,33 @@ class DonatChart extends React.Component {
 
     render(){
         
-        const labelContent = (e) => (`${ e.category }`);
+        const labelContent = (e) => (`${ e.category }`);        
 
-        const internetGrowthData = [{
-            "name": "2011",
-            "data": [{
-              "category": "Asia",
-              "value": 20.8,
-              "color": "#9de219"
-            }, {
-              "category": "Europe",
-              "value": 11.1,
-              "color": "#90cc38"
-            }, {
-              "category": "Latin America",
-              "value": 16.3,
-              "color": "#068c35"
-            }, {
-              "category": "Africa",
-              "value": 17.6,
-              "color": "#006634"
-            }, {
-              "category": "Middle East",
-              "value": 19.2,
-              "color": "#004d38"
-            }, {
-              "category": "North America",
-              "value": 14.6,
-              "color": "#033939"
-            }]
+        let data = [] ;
+        const all = Object.values(this.props.data).reduce((a,b) => a+b , 0) ;        
+        
+        Object.keys(this.props.data).forEach(element => {
+          const entry = {
+            "tag" : element ,
+            "count" : Math.round((this.props.data[element] / all) * 100)
+          };
+          data.push(entry);
+        });
+
+        let checksPerTags = [{            
+          "data": data
         }]
+        
 
         const mapSeries = (series, index, array) => (
             <ChartSeriesItem
               type="donut"
               startAngle={150}
-              name={series.name}
+              // name={series.name}
               data={series.data}
               tooltip={{ visible: true }}
-              field="value"
-              categoryField="category"
+              field="count"
+              categoryField="tag"
               colorField="color"
             >
               {
@@ -76,7 +63,7 @@ class DonatChart extends React.Component {
                 <Chart style={{height : '260px'}} >
                     <ChartTitle text="favorite topics" className = "Donat_chart_title"  />
                     <ChartSeries  >                        
-                        {internetGrowthData.map(mapSeries)}
+                        {checksPerTags.map(mapSeries)}
                     </ChartSeries>
                     <ChartLegend visible={false} />
                 </Chart>
