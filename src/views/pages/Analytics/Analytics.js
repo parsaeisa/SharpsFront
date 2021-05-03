@@ -11,6 +11,7 @@ import BarChart from './components/Bar_chart';
 import "../../styles/analytics.css";
 import BlockedTable from './components/blocked_links_table';
 import callapi_analytics_get from './callapi_analytics/callapi_analytics' ;
+import callapi_analytics_get_blockedDomains from './callapi_analytics/callapi_analytics_blockdomains';
 
 const drawerWidth = 240;
 
@@ -19,18 +20,18 @@ export default class Analytics extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    }
+    this.state = {}
   }
 
   async componentDidMount()
-  {
-      // let response = await 
-      // const a  = await callapi_analytics_get() ;
+  {      
+      let userHistory = await callapi_analytics_get() ;
+      let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
 
-      // this.setState({
-      //   a: await callapi_analytics_get()
-      // })
+      this.setState({
+        user_history : userHistory ,
+        blocked_domains : blocked_domains
+      })
   }
 
   render() {
@@ -131,7 +132,9 @@ export default class Analytics extends React.Component {
               </Grid>
               <Grid item xs={12} md={8} lg={7}>
                 <Paper elevation={4} className="paper">
-                  <BlockedTable />
+                  <BlockedTable
+                    data ={this.state.blocked_domains}
+                  />
                 </Paper>
               </Grid>
             </Grid>
