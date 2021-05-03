@@ -27,7 +27,7 @@ import {
     Link
   } from "react-router-dom";
 import Analytics from '../Analytics/Analytics';
-
+import "../../styles/Dashboard.css" ;
 const drawerWidth = 240;
 
 
@@ -65,8 +65,7 @@ class Dashboard extends React.Component
             },
             appBar: {
                 zIndex: theme.zIndex.drawer + 1,
-            },
-            appBarSpacer: theme.mixins.toolbar,
+            },            
             container: {
                 paddingTop: theme.spacing(4),
                 paddingBottom: theme.spacing(4),
@@ -167,7 +166,7 @@ class Dashboard extends React.Component
                         [classes.contentShift]: this.state.open,
                     })}
                     >
-                        <div className={classes.appBarSpacer} />
+                        <div className="appBarSpacer" />
                         <Container maxWidth="lg" className={classes.container}>
                             <Switch>
 
