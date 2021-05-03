@@ -11,12 +11,14 @@
   }
 .appBarSpacer
   {
-    height: '30px'
+    height: 60px
   }
 .content {
     flex-grow: 1;
     height: 100vh;
     overflow: auto;
+    margin-left: 120px !important;
+    margin-right: 20px !important;
   }
 .container {
     padding-top : 32px;
@@ -34,4 +36,14 @@
 
 .fixedHeightPaper{
     height: 300;
+}
+
+.MuiContainer-root{
+  margin-right: 0px !important ;
+  margin-left: 0px !important;
+}
+
+.BlockedDomainsPaper {
+  padding-bottom : 10px ;
+  padding-top : 10px ;
 }
