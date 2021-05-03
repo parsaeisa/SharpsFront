@@ -24,11 +24,7 @@ export default class BlockedTable extends React.Component {
     
     async componentWillMount()
     {
-        // request to back to get blocked links and topics 
-        let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
-        this.setState({            
-            blocked_domains : blocked_domains
-          })
+        // request to back to get blocked links and topics         
     }
     
     render ()
