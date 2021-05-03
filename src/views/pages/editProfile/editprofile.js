@@ -19,7 +19,7 @@ import store from "../../../core/store/index"
 import { makeStyles } from '@material-ui/core/styles';
 import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
 import callapi_editprofile_get from './callapi_editprofile.js/callapi_editprofile_get' ;
-
+import DeleteAccountModal from './components/Deactivate' ;
 import 'antd/dist/antd.css';
 import { Collapse } from 'antd';
 
@@ -42,6 +42,7 @@ class Edit_profile extends React.Component {
         SuccesAlertText : "Profile has been changed succes fully " ,
         showFailureAlert : false ,
         FailAlertText : "" ,
+        deleteAccountModalOpen : false ,
         loading : false ,
         last_state : null ,
         values : {
@@ -188,9 +189,20 @@ class Edit_profile extends React.Component {
 
                 </Panel>
                 <Panel style={{textAlign: "left"}} header="deactivate" key="5">                    
-                    <Button size="Medium" className="Button" variant="contained" color="secondary">                      
+                    <Button onClick= {() => {
+                      this.setState({
+                        deleteAccountModalOpen : true
+                      })
+                    }} size="Medium" className="Button" variant="contained" color="secondary">                      
                       Delete Account                      
                     </Button>                  
+                    <DeleteAccountModal 
+                    open = {this.state.deleteAccountModalOpen}
+                    handleClose = {() => {
+                      this.setState({
+                        deleteAccountModalOpen : false
+                      })
+                    }} />
                 </Panel>
               </Collapse>                      
                         
