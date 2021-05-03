@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -122,13 +123,28 @@ class Dashboard extends React.Component
                             <ListItemText primary="Home" />
                         </ListItem >
                         <li>
-                            <ListItem button key="Profile">
-                            <ListItemIcon>
-                                <AccountCircleIcon></AccountCircleIcon>
-                            </ListItemIcon>                  
-                            {/* <ListItemText primary="Profile" style={{ color: "black" }} />                   */}
-                            <Edit_profile />
-                            </ListItem>
+                            <Link to ="/profile/edit" >
+                                <ListItem button key="Profile">
+                                <ListItemIcon>
+                                    <AccountCircleIcon></AccountCircleIcon>
+                                </ListItemIcon>                                                  
+                                <Typography variant="button" style={{ color: "black" }}>
+                                    Edit profile
+                                </Typography >
+                                </ListItem>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to ="/profile/analytics" >
+                                <ListItem button key="Profile">
+                                <ListItemIcon>
+                                    <EqualizerIcon/>
+                                </ListItemIcon>                                                  
+                                <Typography variant="button" style={{ color: "black" }}>
+                                    Analytics
+                                </Typography >
+                                </ListItem>
+                            </Link>
                         </li>
                         <ListItem button key="Saved">
                             <ListItemIcon>
