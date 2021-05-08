@@ -23,7 +23,7 @@ const App = ({ logged_in }) => {
 
           <Route path="/" exact component={loginPage} />
           <Route path="/login" exact component={loginPage} />
-          <Route path="/profile/edit" exact component={editProfile} />
+          <Route path="/profile/edit" exact children={<Dashboard />} component={editProfile} />
           <Route path="/profile/analytics" children={<Dashboard />} exact component={Analytics} />
           <Route path="/explore" exact children={<Dashboard />} component={ExplorePage}/> 
 
