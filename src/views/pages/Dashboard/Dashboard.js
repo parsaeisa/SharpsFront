@@ -1,6 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-
+import CssBaseline from '@material-ui/core/CssBaseline';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Badge from '@material-ui/core/Badge';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Container from '@material-ui/core/Container';
 import InputBase from '@material-ui/core/InputBase';
@@ -30,92 +35,138 @@ import Analytics from '../Analytics/Analytics';
 import "../../styles/Dashboard.css" ;
 const drawerWidth = 240;
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      display: 'flex',
+    },
+    toolbar: {
+      paddingRight: 24, // keep right padding when drawer closed
+    },
+    toolbarIcon: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      height : '20px' ,
+      padding: '0 8px',
+      ...theme.mixins.toolbar,
+    },
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    appBarShift: {
+      marginLeft: drawerWidth,
+      width: `calc(100% - ${drawerWidth}px)`,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    menuButton: {
+      marginRight: 36,
+    },
+    menuButtonHidden: {
+      display: 'none',
+    },
+    title: {
+      flexGrow: 1,
+    },
+    drawerPaper: {
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      width: drawerWidth,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerPaperClose: {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      width: theme.spacing(7),
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9),
+      },
+    },
+    appBarSpacer: theme.mixins.toolbar,
+    content: {
+      flexGrow: 1,
+      height: '100vh',
+      overflow: 'auto',
+    },
+    container: {
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(4),
+      margin : '0px' ,
+    },
+    paper: {
+      padding: theme.spacing(2),
+      display: 'flex',
+      overflow: 'auto',
+      flexDirection: 'column',
+    },
+    fixedHeight: {
+      height: 240,
+    },
+  }));
 
-class Dashboard extends React.Component 
-{
-
-    constructor(props){
-        super(props);
-
-        this.state= {
-            open : false
-        }
-    }
-
-
-
-    render()
-    {
-        const classes = makeStyles((theme) => ({
-
-            drawer: {
-                width: drawerWidth,
-                flexShrink: 0,
-            },
-            drawerPaper: {
-                width: drawerWidth,
-            },
-            drawerContainer: {
-                overflow: 'auto',
-            },
-            content: {
-                flexGrow: 1,
-                height: '100vh',
-                overflow: 'auto',
-            },
-            appBar: {
-                zIndex: theme.zIndex.drawer + 1,
-            },            
-            container: {
-                paddingTop: theme.spacing(4),
-                paddingBottom: theme.spacing(4),
-            },
-            contentShift: {
-                transition: theme.transitions.create('margin', {
-                  easing: theme.transitions.easing.easeOut,
-                  duration: theme.transitions.duration.enteringScreen,
-                }),
-                marginRight: drawerWidth,
-            },
-        }))
+function Dashboard() {    
+        const classes = useStyles();
+        const [open, setOpen] = React.useState(true);
+        const handleDrawerOpen = () => {
+            setOpen(true);
+        };
+        const handleDrawerClose = () => {
+            setOpen(false);
+        };
+        const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
         return (
             <>
-                <AppBar style={{ background: '#0f0b3e' }}
-                    position="fixed"
-                    className={classes.appBar}
-                    >
-                    <Toolbar>
-                        <Typography variant="h6" noWrap>
-                        𝓼𝓱𝓪𝓻𝓹
-                    </Typography>
-                        <div className="ex">
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                            <SearchIcon />
-                            </div>
-                            <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </div >
-                        </div>
-                    </Toolbar>
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <AppBar style={{ background: '#0f0b3e' }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+                        <Toolbar className="toolbar">
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                            Dashboard
+                        </Typography>
+                        <IconButton color="inherit">
+                            <Badge badgeContent={4} color="secondary">
+                            <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
+                        </Toolbar>
                     </AppBar>
-                    <Drawer
-                    className={classes.drawer}
-                    variant="permanent"
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
+                    <Drawer 
+                        variant="permanent"
+                        classes={{
+                        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                        }}
+                        open={open}
                     >
+                        <div className={classes.toolbarIcon}>
+                        <IconButton onClick={handleDrawerClose}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                        </div>                                            
                     <div className={classes.drawerContainer}>
                         <List>
-                        <ListItem button key="Homme" style={{ paddingTop: "30%" }}>
+                        <ListItem button key="Homme">
                             <ListItemIcon>
                             <HomeIcon> </HomeIcon>
                             </ListItemIcon>
@@ -161,11 +212,13 @@ class Dashboard extends React.Component
                         </List>
                     </div>
                     </Drawer>
-                    <main
+                    {/* <main
                     className={clsx(classes.content, {
                         [classes.contentShift]: this.state.open,
                     })}
                     >
+                        <div className="appBarSpacer" /> */}
+                        <main className={classes.content}>
                         <div className="appBarSpacer" />
                         <Container maxWidth="lg" className={classes.container}>
                             <Switch>
@@ -184,12 +237,12 @@ class Dashboard extends React.Component
 
                             </Switch>
                         </Container>
-                    
-                    </main>
+
+                        </main>
+                    </div>                                        
 
             </> 
         )
-    }
 
 }
 
