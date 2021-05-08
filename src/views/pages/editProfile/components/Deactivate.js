@@ -8,7 +8,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import callapi_editprofile_deactivate from "../callapi_editprofile.js/callapi_editprofile_deactivate" ;
-
+import '../../../styles/edit_profile.css' ;
 export default function DeleteAccountModal(props) {  
 
     const history = useHistory();
@@ -34,10 +34,10 @@ export default function DeleteAccountModal(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.handleClose} color="primary">
+          <Button className="Button" variant="contained" onClick={props.handleClose} style={{backgroundColor : '#00695C' , color : 'white'}}>
             Disagree
           </Button>
-          <Button onClick={Deactivate} color="primary" autoFocus>
+          <Button className="Button" variant="contained" onClick={Deactivate} color="secondary" autoFocus>
             Agree
           </Button>
         </DialogActions>
