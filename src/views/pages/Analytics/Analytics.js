@@ -20,10 +20,12 @@ export default class Analytics extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      blocked_domains : []
+    }
   }
 
-  async componentDidMount()
+  async componentWillMount()
   {      
       let userHistory = await callapi_analytics_get() ;
       let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
@@ -101,15 +103,15 @@ export default class Analytics extends React.Component {
 
     const fixedHeightPaper = clsx( classes.paper, "fixedHeight");
 
-
+    var a = new Date() ;
+    console.log(a);
 
     return (
       <div className={classes.root}>
         <CssBaseline />
 
-        <main className="content" >
-          <div className="appBarSpacer"/>
-          <Container maxWidth="lg"  className="container">
+        <main className="content" >          
+          <Container  className="container">
             <Grid container spacing={3}>
               <Grid item xs={12} md={8} lg={8}>
                 <Paper elevation={4} className={fixedHeightPaper}>
@@ -131,7 +133,7 @@ export default class Analytics extends React.Component {
                 </Paper>
               </Grid>
               <Grid item xs={12} md={8} lg={7}>
-                <Paper elevation={4} className="paper">
+                <Paper elevation={4} className="BlockedDomainsPaper">
                   <BlockedTable
                     data ={this.state.blocked_domains}
                   />

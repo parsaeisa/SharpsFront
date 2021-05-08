@@ -45,7 +45,7 @@ class BarChart extends React.Component {
         
         return (
             <Chart style ={{height : (series[0].data.length * 60) + 'px'}}>
-                <ChartTitle text="favorite Links" />
+                <ChartTitle role="BarChartTitle" text="favorite Links" />
                     <ChartCategoryAxis>
                         <ChartCategoryAxisItem categories={categories}>
                             <ChartCategoryAxisTitle />

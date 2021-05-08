@@ -61,7 +61,7 @@ class DonatChart extends React.Component {
         return (
             <div >
                 <Chart style={{height : '260px'}} >
-                    <ChartTitle text="favorite topics" className = "Donat_chart_title"  />
+                    <ChartTitle role="DonatChartTitle" text="favorite topics" className = "Donat_chart_title"  />
                     <ChartSeries  >                        
                         {checksPerTags.map(mapSeries)}
                     </ChartSeries>
