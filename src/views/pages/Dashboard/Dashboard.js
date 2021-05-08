@@ -8,7 +8,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Container from '@material-ui/core/Container';
-import InputBase from '@material-ui/core/InputBase';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,13 +15,17 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { connect } from 'react-redux' ;
 import ListItemText from '@material-ui/core/ListItemText';
-import SearchIcon from '@material-ui/icons/Search';
+import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Drawer from '@material-ui/core/Drawer';
 import ExplorePage from '../explorePage/explorePage';
+import serverURL from '../../../utils/serverURL';
+import tokenConfig from '../../../utils/tokenConfig' ;
+import axios from 'axios' ;
 import Edit_profile from '../editProfile/editprofile' ;
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -66,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
       }),
     },
     menuButton: {
-      marginRight: 36,
+      marginRight: 16,
     },
     menuButtonHidden: {
       display: 'none',
@@ -116,12 +119,26 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Dashboard() {    
+function Dashboard(props) {    
         const classes = useStyles();
         const [open, setOpen] = React.useState(true);
         const handleDrawerOpen = () => {
             setOpen(true);
         };
+
+        const [name , setName] = React.useState("");
+        const [avatar , setAvatar] = React.useState("https://i.stack.imgur.com/l60Hf.png");
+
+        axios.get(serverURL() + "user/"  , tokenConfig())
+        .then((res) => {                
+            console.log(res.data);  
+            setName(res.data.firstname + " " + res.data.lastname);
+            setAvatar(res.data.avatar);            
+        })
+        .catch((e) => {
+            console.log(e);
+        });    
+
         const handleDrawerClose = () => {
             setOpen(false);
         };
@@ -140,16 +157,24 @@ function Dashboard() {
                             onClick={handleDrawerOpen}
                             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                         >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                            Dashboard
-                        </Typography>
-                        <IconButton color="inherit">
+                            <MenuIcon />    
+                        </IconButton>                                         
+                        <IconButton color="inherit" 
+                         className = "appBarOptions" 
+                        >
                             <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
                             </Badge>
                         </IconButton>
+                        <Avatar alt="Remy Sharp" 
+                            src={avatar != null && avatar != "https://i.stack.imgur.com/l60Hf.png" && atob(avatar) }                             
+                            className = "appBarOptions" />
+                        <Typography component="h4" variant="subtitle1" color="inherit" noWrap  >                            
+                            {name}
+                        </Typography>
+
+                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
+                        </Typography>       
                         </Toolbar>
                     </AppBar>
                     <Drawer 
@@ -246,4 +271,12 @@ function Dashboard() {
 
 }
 
-export default Dashboard ;
+const mapStateToProps = (state) => {
+    return {
+        ... state ,
+        avatar : state.UserReducer.avatar ,
+        name : state.UserReducer.firstname +" " +  state.UserReducer.lastname         
+    }
+}
+
+export default connect (mapStateToProps) (Dashboard) ;
