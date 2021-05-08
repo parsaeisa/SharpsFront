@@ -17,12 +17,12 @@
     flex-grow: 1;
     height: 100vh;
     overflow: auto;
-    margin-left: 120px !important;
+    margin-left: 20px !important;
     margin-right: 20px !important;
   }
 .container {
-    padding-top : 32px;
-    padding-bottom : 32px;
+    padding-top : 6px;
+    padding-bottom : 6px;
   }
 .paper {
     padding: 16px ;
@@ -32,6 +32,10 @@
   }
 .fixedHeight {
     height: 300px !important;
+}
+
+.fixedHeightNumber {
+  height: 50px !important;
 }
 
 .fixedHeightPaper{

@@ -12,7 +12,7 @@ import "../../styles/analytics.css";
 import BlockedTable from './components/blocked_links_table';
 import callapi_analytics_get from './callapi_analytics/callapi_analytics' ;
 import callapi_analytics_get_blockedDomains from './callapi_analytics/callapi_analytics_blockdomains';
-
+import CountUp from './components/CountUp' ;
 const drawerWidth = 240;
 
 
@@ -102,7 +102,7 @@ export default class Analytics extends React.Component {
     }));
 
     const fixedHeightPaper = clsx( classes.paper, "fixedHeight");
-
+    const fixedHeightNumberPaper = clsx(classes.paper , "fixedHeightNumber")
     var a = new Date() ;
     console.log(a);
 
@@ -111,8 +111,31 @@ export default class Analytics extends React.Component {
         <CssBaseline />
 
         <main className="content" >          
-          <Container  className="container">
+          <Container  className="container">            
+
             <Grid container spacing={3}>
+              
+              <Grid item xs={4} md={4} lg={4}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  <CountUp 
+                      title = "Visited Sites"
+                      number = {112}
+                  />                      
+                </Paper>
+              </Grid>
+
+              <Grid item xs={4} md={4} lg={4}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  112
+                </Paper>
+              </Grid>
+
+              <Grid item xs={4} md={4} lg={4}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  112
+                </Paper>
+              </Grid>
+
               <Grid item xs={12} md={8} lg={8}>
                 <Paper elevation={4} className={fixedHeightPaper}>
                   <LineChart />
