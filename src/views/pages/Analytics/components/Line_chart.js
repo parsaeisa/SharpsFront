@@ -55,7 +55,7 @@ class LineChart extends React.Component {
         this.setState({
             data : [{
                 name : 'hours' ,
-                data : Object.values(this.props.data)
+                data : this.props.data ? Object.values(this.props.data) : []
             }]
         });
     }
@@ -65,7 +65,7 @@ class LineChart extends React.Component {
 
         return (
             <Chart style={{height : "300px" }}>
-                <ChartTitle role="lineChartTitle" text="Acitivty" />
+                <ChartTitle role="lineChartTitle" text="Activity" />
                 {/* <ChartLegend position="top" orientation="horizontal" /> */}
                 <ChartCategoryAxis>
                     <ChartCategoryAxisItem title={{ text: 'Hours' }} categories={categories} />

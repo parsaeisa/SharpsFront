@@ -22,19 +22,22 @@ class DonatChart extends React.Component {
         const labelContent = (e) => (`${ e.category }`);        
 
         let data = [] ;
-        const all = Object.values(this.props.data).reduce((a,b) => a+b , 0) ;        
+        const all =this.props.data ? Object.values(this.props.data).reduce((a,b) => a+b , 0 ): [] ;        
         
-        Object.keys(this.props.data).forEach(element => {
-          const entry = {
-            "tag" : element ,
-            "count" : Math.round((this.props.data[element] / all) * 100)
-          };
-          data.push(entry);
-        });
-
+        if(this.props.data)
+        {
+          Object.keys(this.props.data).forEach(element => {
+            const entry = {
+              "tag" : element ,
+              "count" : Math.round((this.props.data[element] / all) * 100)
+            };
+            data.push(entry);
+          });
+        }
+         
         let checksPerTags = [{            
           "data": data
-        }]
+        }]        
         
 
         const mapSeries = (series, index, array) => (
