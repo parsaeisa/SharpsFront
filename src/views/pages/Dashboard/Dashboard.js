@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
       paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
+      paddingBottom: theme.spacing(1),
       margin : '0px' ,
     },
     paper: {
@@ -130,8 +130,7 @@ function Dashboard(props) {
         const [avatar , setAvatar] = React.useState("https://i.stack.imgur.com/l60Hf.png");
 
         axios.get(serverURL() + "user/"  , tokenConfig())
-        .then((res) => {                
-            console.log(res.data);  
+        .then((res) => {                            
             setName(res.data.firstname + " " + res.data.lastname);
             setAvatar(res.data.avatar);            
         })
@@ -185,12 +184,17 @@ function Dashboard(props) {
                         open={open}
                     >
                         <div className={classes.toolbarIcon}>
+                        <Typography syle={{marginLeft : "70px"}} variant="h6" noWrap>
+                            𝓼𝓱𝓪𝓻𝓹
+                        </Typography>
+                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
+                        </Typography>       
                         <IconButton onClick={handleDrawerClose}>
                             <ChevronLeftIcon />
                         </IconButton>
                         </div>                                            
-                    <div className={classes.drawerContainer}>
-                        <List>
+                    <div className={classes.drawerContainer} >
+                        <List style ={{paddingTop: '0px'}}>
                         <ListItem button key="Homme">
                             <ListItemIcon>
                             <HomeIcon> </HomeIcon>
