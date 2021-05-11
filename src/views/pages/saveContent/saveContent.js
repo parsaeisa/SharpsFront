@@ -3,6 +3,7 @@ import '../../styles/explorePage.css';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import TurnedInNotRoundedIcon from '@material-ui/icons/TurnedInNotRounded';
 import serverURL from '../../../utils/serverURL';
+import tokenConfig from  '../../../utils/tokenConfig';
 
 import { withRouter } from 'react-router-dom';
 
@@ -12,9 +13,10 @@ class SaveContent extends React.Component {
 
         super(props);
         this.state = {
-
-            url: this.props.url,
-            updated: false,
+            url:null ,   
+            updated:false,
+            items:[], 
+            total:""
         }
 
 
@@ -41,12 +43,18 @@ class SaveContent extends React.Component {
             });
 
         }
+      
+
         this.save();
 
     }
 
     save() {
-        // console.log(this.state.url + "naaaaaaa")
+        console.log(this.props.url+"kkkk")
+        this.state.url=this.props.url
+    //    this.setState({url:  this.props.url});
+
+         console.log(this.state.url + "naaaaaaa")
         var myHeaders = new Headers();
 
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
@@ -54,17 +62,21 @@ class SaveContent extends React.Component {
         var UserCourse = {}
         UserCourse.url = this.state.url;
 
-
+        {console.log(UserCourse.url +"sana")}
         var raw = JSON.stringify(UserCourse);
-        var requestOptions =
-        {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-        };
+        // var requestOptions =
+        // {
+        //     method: 'POST',
+        //     headers: myHeaders,
+        //     body: raw
+        // };
 
-        fetch(serverURL() + "user/savedContents", requestOptions
+        fetch(serverURL() + "user/savedContents",{
 
+         method: 'POST',
+         body: raw , 
+        headers: myHeaders
+    }
         ).then((res) => {
             console.log(res.status);
 
@@ -72,11 +84,53 @@ class SaveContent extends React.Component {
     }
 
 
+    
+    componentDidMount() {  
+            this.getsave();
+      
+    }
+    getsave() {
+          
+    fetch(serverURL() + "user/savedContents", {
+        method: 'GET',
+        headers: {
+          "Authorization": "Bearer " + localStorage.getItem('token')
+        }
+      })
+        .then((result) => {
+          console.log(result)
+          if (result.status === 200) {
+            return result.json()
+          }
+          if (result.status === 401) {
+            window.location.replace("/login")
+          }
+        }
+        )
+        .then( (response)  => {
+            this.setState({
+            items: response.items,
+            total: response.total
+          })
+          {this.state.items.map((l) =>
+                 {  
+                   if(l.url==this.state.url) 
+                 this.setState({
+                    updated:true
+                  }) 
+                  
+                 }
+               )}
+
+        });     
+    
+    }
+    
     render() {
         return (
             <div>
 
-                <i className="material-icons" onClick={() => { this.updatesave() }}><TurnedInNotRoundedIcon></TurnedInNotRoundedIcon></i>
+        <i className="material-icons "  onClick={() => { this.updatesave() }}>{ this.state.updated ? <TurnedInIcon></TurnedInIcon> :<TurnedInNotRoundedIcon></TurnedInNotRoundedIcon>}</i>
 
             </div>
 
