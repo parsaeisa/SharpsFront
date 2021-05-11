@@ -41,10 +41,37 @@ class SaveContent extends React.Component {
             });
 
         }
+        this.save();
 
     }
 
- 
+    save() {
+        // console.log(this.state.url + "naaaaaaa")
+        var myHeaders = new Headers();
+
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
+
+        var UserCourse = {}
+        UserCourse.url = this.state.url;
+
+
+        var raw = JSON.stringify(UserCourse);
+        var requestOptions =
+        {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        fetch(serverURL() + "user/savedContents", requestOptions
+
+        ).then((res) => {
+            console.log(res.status);
+
+        }).then((res) => console.log(res));
+    }
+
+
     render() {
         return (
             <div>
