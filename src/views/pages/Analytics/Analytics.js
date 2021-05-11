@@ -61,21 +61,39 @@ export default class Analytics extends React.Component {
         {
           "domain": "google .com",
           "tag": "politics",
-          "eventType": "CLICK",
-          "createdAt": "2021-05-01T20:04:23.291Z"
+          "eventType": "ENTER",
+          "createdAt": "2021-05-06T20:04:23.291Z"
         },
         {
           "domain": "google.com",
           "tag": "politics",
-          "eventType": "CLICK",
-          "createdAt": "2021-05-01T20:04:23.291Z"
+          "eventType": "EXIT",
+          "createdAt": "2021-05-03T20:04:23.291Z"
         },
         {
           "domain": "google.com",
           "tag": "string",
-          "eventType": "CLICK",
-          "createdAt": "2021-05-01T20:04:23.291Z"
+          "eventType": "ENTER",
+          "createdAt": "2021-05-03T20:04:23.291Z"
         },
+        {
+          "domain": "varzesh3.com",
+          "tag": "string",
+          "eventType": "EXIT",
+          "createdAt": "2021-05-03T20:04:23.291Z"
+        },
+        {
+          "domain": "varzesh3.com",
+          "tag": "string",
+          "eventType": "ENTER",
+          "createdAt": "2021-09-03T20:04:23.291Z"
+        },
+        {
+          "domain": "twitter.com",
+          "tag": "string",
+          "eventType": "ENTER",
+          "createdAt": "2021-09-03T20:04:23.291Z"
+        },        
       ]
     }    
 
@@ -85,6 +103,16 @@ export default class Analytics extends React.Component {
           .assign(res, {
             [item[prop]]: 1 + (res[item[prop]] || 0)
           }), Object.create(null))
+      ;      
+
+    }        
+
+    const aggByWeek = (data, prop) => {
+      return data.filter(  ({eventType}) => eventType == 'ENTER' || eventType == 'EXIT' )
+        .reduce((res, item) => Object.assign(res, 
+          {
+              [new Date(item[prop]).getDay()]: 1 + (res[new Date(item[prop]).getDay()] || 0)              
+          } ), Object.create(null))
       ;      
 
     }        
@@ -138,7 +166,9 @@ export default class Analytics extends React.Component {
 
               <Grid item xs={12} md={8} lg={8}>
                 <Paper elevation={4} className={fixedHeightPaper}>
-                  <LineChart />
+                  <LineChart 
+                    data = {aggByWeek(data.userHistory , "createdAt")}
+                  />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4} lg={4}>

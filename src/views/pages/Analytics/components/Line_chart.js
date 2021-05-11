@@ -13,10 +13,7 @@ import '@progress/kendo-theme-default/dist/all.css';
 import React from 'react';
   
 const categories = [
-'0','1','2','3','4','5','6'
-// ,'7','8'
-// ,'9','10','11','12','13','14','15','16'
-// ,'17','18','19','20','21','22','23','24'
+'Sat','Sun','Mon','Tue','Wen','Thu','Fri'
 ];
 
 const data = [
@@ -45,17 +42,36 @@ const data = [
 
 class LineChart extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            data : []
+        }
+    }
+
+    componentDidMount()
+    {
+        console.log(this.props.data);        
+        this.setState({
+            data : [{
+                name : 'hours' ,
+                data : Object.values(this.props.data)
+            }]
+        });
+    }
+
     render(){
+        
 
         return (
             <Chart style={{height : "300px" }}>
                 <ChartTitle role="lineChartTitle" text="Acitivty" />
-                <ChartLegend position="top" orientation="horizontal" />
+                {/* <ChartLegend position="top" orientation="horizontal" /> */}
                 <ChartCategoryAxis>
                     <ChartCategoryAxisItem title={{ text: 'Hours' }} categories={categories} />
                 </ChartCategoryAxis>
                 <ChartSeries>
-                    {data.map((item, idx) => (
+                    {this.state.data && this.state.data.map((item, idx) => (
                     <ChartSeriesItem
                     key={idx}
                     type="line"
