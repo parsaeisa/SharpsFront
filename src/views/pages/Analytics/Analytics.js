@@ -21,7 +21,8 @@ export default class Analytics extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      blocked_domains : []
+      blocked_domains : [] ,
+      user_history : []
     }
   }
 

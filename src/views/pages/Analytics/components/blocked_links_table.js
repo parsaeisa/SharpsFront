@@ -24,7 +24,11 @@ export default class BlockedTable extends React.Component {
     
     async componentWillMount()
     {
-        // request to back to get blocked links and topics         
+        // request to back to get blocked links and topics 
+        let blocked = await callapi_analytics_get_blockedDomains() ;
+        this.setState({
+            blocked_domains : blocked
+        })        
     }
     
     render ()
@@ -62,10 +66,10 @@ export default class BlockedTable extends React.Component {
                     </TableHead>
                     <TableBody>
                     {this.state.blocked_domains.map((row) => (
-                        <TableRow key={row.name}>
+                        <TableRow key={row}>
                         <TableCell component="th" scope="row">
-                            <a href = {row.name}>
-                            {row.name}
+                            <a exact href = {row}>
+                            {row}
                             </a>
                         </TableCell>              
                         {/* <TableCell align="right">{row.fat}</TableCell> */}
