@@ -19,6 +19,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
+import SaveContent from "../saveContent/saveContent";
 
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
@@ -224,12 +225,26 @@ function ExplorePage() {
                       <div class="row no-gutters">
                         <div class="col-md-4" >
                           <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
+                          <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
+                    
+                      <SaveContent url={item.url}  />
+                 </div>
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
-                            <p class="card-text"> {item.des} </p>
-                            <a href={"//" + item.url} class="stretched-link" />
+                            <p class="card-text"> {item.des}  </p>
+                            <p class="card-text"> {item.url}  </p>
+
+                            {/* <div  class="card-text" style={{ display: "flex", height: "20px", marginBottom: "30px" }}>
+                                     
+                                            <SaveContent url={item.url}   />
+                        </div>
+                                          */}
+
+
+                            {/* <a href={"//" + item.url} class="stretched-link" /> */}
+                           
                           </div>
                         </div>
                       </div>
