@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { Component } from "react";
-import { useState, useEffect } from "react";
+import React from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import serverURL from "../../../utils/serverURL";
 import tokenConfig from "../../../utils/tokenConfig";
@@ -18,7 +18,7 @@ import Collapse from "@material-ui/core/Collapse";
 import CloseIcon from "@material-ui/icons/Close";
 
 import { Form, FormGroup } from "react-bootstrap";
-import "../../styles/loginSignup.css";
+import "../../styles/loginSignup.scss";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -30,7 +30,6 @@ import MarkEmailRead from "@material-ui/icons/Check";
 import { connect } from "react-redux";
 
 import * as loginsignup_actions from "../../../core/login_signup/action/loginSignupAction";
-import { TramRounded } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",

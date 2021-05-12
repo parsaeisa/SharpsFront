@@ -1,5 +1,4 @@
 import {ActionTypes} from "../action/loginSignupActionTypes";
-import axios from 'axios';
 
 const initialstate = { 
   change: false,

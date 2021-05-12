@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import loginPage from "./views/pages/loginPage";
 import editProfile from "./views/pages/editProfile/editprofile";
 import React from "react";
@@ -12,9 +12,9 @@ import verifyEmail from "./views/pages/component/VerifyEmail";
 
 import ProtectedRoute from "./core/ProtectedRoute";
 import { connect } from "react-redux";
-const App = ({ logged_in }) => {
+const App = ({ logged_in, darkmode }) => {
   return (
-    <div className="App">
+    <div className={darkmode=="day" ? 'App-day' : 'App-night'}>
       <Router history={history}>
         <Switch>
           <Route path="/login_signup" exact component={LoginSignUp} />
@@ -37,6 +37,7 @@ const App = ({ logged_in }) => {
 const mapStateToProps = (state) => {
   return {
     logged_in: state.login_signup.logged_in,
+    darkmode: state.dark_mode.darkmode,
   };
 };
 
