@@ -7,3 +7,7 @@
 .appBarOptions {
     margin-right: 10px !important;
 }
+
+.MuiContainer-maxWidthLg {
+    max-width: 1700px !important;
+}
