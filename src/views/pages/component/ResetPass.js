@@ -1,17 +1,18 @@
 import axios from "axios";
-import React, { Component } from "react";
-import { useState, useEffect } from "react";
+import React from "react";
+import { useState} from "react";
 import { useHistory } from "react-router";
 import serverURL from "../../../utils/serverURL";
 import tokenConfig from "../../../utils/tokenConfig";
 import Button from "@material-ui/core/Button";
-import { Form, FormGroup } from "react-bootstrap";
-import "../../styles/loginSignup.css";
+import { Form } from "react-bootstrap";
+import "../../styles/loginSignup.scss";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green } from "@material-ui/core/colors";
-const ResetPass = (e) => {
+import { connect } from "react-redux";
+const ResetPass = ({darkmode}) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -130,7 +131,8 @@ const ResetPass = (e) => {
   };
 
   return (
-    <div>
+    <div className={darkmode}>
+    <div className="backgroundDiv">
       <Form
         className="centered"
         onSubmit={(e) => {
@@ -150,6 +152,7 @@ const ResetPass = (e) => {
         <Form.Control.Feedback type="invalid">{passErr}</Form.Control.Feedback>
 
         <Form.Control
+          style={{marginTop:"10px",marginBottom:"17px"}}
           className="signupforms"
           type="password"
           placeholder="Confirm Password"
@@ -166,7 +169,7 @@ const ResetPass = (e) => {
         <div className={classes.wrapper}>
           <Button
             variant="contained"
-            color="primary"
+            color="black"
             className={buttonClassname}
             disabled={loading}
             onClick={resetPassSubmit}
@@ -178,7 +181,14 @@ const ResetPass = (e) => {
           )}
         </div>
       </Form>
-    </div>
+    </div> 
+     </div>
   );
 };
-export default ResetPass;
+const mapStateToProps = (state) => {
+  return {
+    darkmode: state.dark_mode.darkmode,
+  };
+};
+
+export default connect(mapStateToProps)(ResetPass);

@@ -1,13 +1,10 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react";
-import "../../styles/loginSignup.css";
-import { Form, FormGroup, Label, Input, FormText } from "react-bootstrap";
-import { Button } from "@material-ui/core";
-import { Link, withRouter } from "react-router-dom";
+import "../../styles/loginSignup.scss";
+import { Form} from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import "../../styles/loginSignup.css";
 
 import serverURL from "../../../utils/serverURL";
 import tokenConfig from "../../../utils/tokenConfig";
@@ -31,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SignUp({ setAlertS, setAlertM, alertM, alertS }) {
-  const [errors, setErrors] = useState({});
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -185,7 +181,7 @@ function SignUp({ setAlertS, setAlertM, alertM, alertS }) {
             <Form.Control
               className="signupforms"
               type="text"
-              placeholder="First Name"
+              placeholder="Name"
               onKeyPress={(e) => {
                 e.key === "Enter" && validateFirstname(e.target.value);
               }}
