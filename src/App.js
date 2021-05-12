@@ -11,6 +11,7 @@ import ExplorePage from "./views/pages/explorePage/explorePage" ;
 // import verifyEmail from "./views/pages/component/VerifyEmail";
 
 import SaveContent from "./views/pages/saveContent/saveContent"
+import ViewSaveContent from "./views/pages/saveContent/viewSaveContent"
 
 import ProtectedRoute from "./core/ProtectedRoute";
 import { connect } from "react-redux";
@@ -25,6 +26,7 @@ const App = ({ logged_in }) => {
           {/* <Route path="/login" exact component={loginPage} />
           <Route path="/edit_profile" exact component={editProfile} /> */}
             <Route path="/save" exact component={SaveContent} />
+            <Route path="/vsave" exact component={ViewSaveContent} />
            <Route path="/explore" exact component={ExplorePage}/>  
 
           {/* <Route path="/reset/*" exact component={resetPass} /> */}

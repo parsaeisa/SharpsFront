@@ -13,7 +13,7 @@ class SaveContent extends React.Component {
 
         super(props);
         this.state = {
-            url:null ,   
+            url:[],   
             updated:false,
             items:[], 
             total:""
@@ -50,27 +50,17 @@ class SaveContent extends React.Component {
     }
 
     save() {
-        console.log(this.props.url+"kkkk")
-        this.state.url=this.props.url
-    //    this.setState({url:  this.props.url});
-
-         console.log(this.state.url + "naaaaaaa")
+       
         var myHeaders = new Headers();
 
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
-
+      
+      
         var UserCourse = {}
-        UserCourse.url = this.state.url;
+        UserCourse.url = this.props.url;
 
-        {console.log(UserCourse.url +"sana")}
         var raw = JSON.stringify(UserCourse);
-        // var requestOptions =
-        // {
-        //     method: 'POST',
-        //     headers: myHeaders,
-        //     body: raw
-        // };
-
+    
         fetch(serverURL() + "user/savedContents",{
 
          method: 'POST',
@@ -112,13 +102,15 @@ class SaveContent extends React.Component {
             items: response.items,
             total: response.total
           })
+         
           {this.state.items.map((l) =>
                  {  
-                   if(l.url==this.state.url) 
+               
+                   if(l.url===this.props.url) {
                  this.setState({
                     updated:true
                   }) 
-                  
+                } 
                  }
                )}
 
