@@ -28,9 +28,6 @@ test('display dialog after clicking on button' , async() => {
             <Analytics />            
         );    
     
-    expect(screen.getByRole("lineChartTitleActivity")).toHaveTextContent("Activity");
-    expect(screen.getByRole("DonatChartTitle")).toHaveTextContent("favourite topics");
-    expect(screen.getByRole("BarChartTitle")).toHaveTextContent("favourite Links");
     
     // await waitFor(() => screen.getByText('Save'));
     // // await waitFor(() => screen.getByText('Add photo'));    
