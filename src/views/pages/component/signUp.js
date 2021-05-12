@@ -285,7 +285,7 @@ function SignUp({ setAlertS, setAlertM, alertM, alertS }) {
         </button>
         <div style={{ marginTop: "15px" }} className={classes.alert}>
           <Collapse in={alertS}>
-            <Alert
+       <Alert 
               severity="error"
               action={
                 <IconButton
@@ -297,9 +297,10 @@ function SignUp({ setAlertS, setAlertM, alertM, alertS }) {
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
               }
+
              > 
               {alertM}
-            </Alert>
+           </Alert> 
           </Collapse>
         </div>
       </Form>

@@ -7,10 +7,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
-import SaveContent from "../saveContent/saveContent";
+
+import Like from "../likeContent/like";
+import Block from "../likeContent/block";
 
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
+import SaveContent from "../saveContent/saveContent";
+const drawerWidth = 240;
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -133,11 +140,13 @@ function ExplorePage() {
                         <div class="col-md-4" >
                           <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
                           <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
-                       
-                      <SaveContent url={item.url}  />
-                 </div>
-                        </div>
-                        <div class="col-md-8">
+
+                     <SaveContent url={item.url}  />
+                    <Like url={item.url}  />
+                    <Block url={item.url}  />
+                   </div>
+  </div>
+                    <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
                             <p class="card-text"> {item.des}  </p>
