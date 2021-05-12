@@ -116,6 +116,7 @@ class Avatar extends React.Component {
                 <label htmlFor={avatar}>
                     <Button
                         component="span"
+                        className="Button"
                         variant="contained"
                         color="primary"
                         // className={classes.button}

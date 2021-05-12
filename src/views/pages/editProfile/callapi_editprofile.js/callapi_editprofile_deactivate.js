@@ -1,13 +1,13 @@
 import axios from 'axios' ;
 import serverURL from '../../../../utils/serverURL';
-import tokenConfig from  '../../../../utils/tokenConfig';
+import tokenConfig from  '../../../../utils/tokenConfig'
 
-export default function callapi_editprofile_deactivate () {        
-
-    axios.get(serverURL() + "user/"  , tokenConfig())
+export default function callapi_editprofile_deactivate (redirect) {        
+    
+    axios.delete(serverURL() + "user/"  , tokenConfig())
     .then((res) => {    
         console.log("deleted");            
-        store.dispatch(actions.setState(res.data))
+        redirect() ;        
         // add a redirect
     })
     .catch((e) => {

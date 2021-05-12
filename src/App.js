@@ -9,9 +9,11 @@ import LoginSignUp from "./views/pages/loginPage";
 import ExplorePage from "./views/pages/explorePage/explorePage" ;
 import resetPass from "./views/pages/component/ResetPass";
 import verifyEmail from "./views/pages/component/VerifyEmail";
+import Dashboard from "./views/pages/Dashboard/Dashboard" ;
 
 import ProtectedRoute from "./core/ProtectedRoute";
 import { connect } from "react-redux";
+import Analytics from "./views/pages/Analytics/Analytics";
 const App = ({ logged_in }) => {
   return (
     <div className="App">
@@ -21,8 +23,9 @@ const App = ({ logged_in }) => {
 
           <Route path="/" exact component={loginPage} />
           <Route path="/login" exact component={loginPage} />
-          <Route path="/edit_profile" exact component={editProfile} />
-          <Route path="/explore" exact component={ExplorePage}/> 
+          <Route path="/profile/edit" exact children={<Dashboard />} component={editProfile} />
+          <Route path="/profile/analytics" children={<Dashboard />} exact component={Analytics} />
+          <Route path="/explore" exact children={<Dashboard />} component={ExplorePage}/> 
 
           <Route path="/reset/*" exact component={resetPass} />
           {/* <ProtectedRoute exact path='/' auth={logged_in} unauthLocation="/login_signup" component={} /> */}
