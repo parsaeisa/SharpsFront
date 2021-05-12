@@ -16,6 +16,8 @@ class Like extends React.Component {
             url: null,
             eventType: "LIKE",
             updated: false,
+            userHistory:[{ domain:""}]
+           
         }
 
 
@@ -70,11 +72,55 @@ class Like extends React.Component {
         }
         ).then((res) => {
             console.log(res.status);
-            if (res.status === 200)
+            if (res.status === 201)
             return res.json();
          
 
         }).then((res) => console.log(res));
+    }
+
+
+
+      componentDidMount() {
+        this.getlike();
+
+    }
+    getlike() {
+
+        fetch(serverURL() + "userHistory", {
+            method: 'GET',
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('token')
+            }
+        })
+            .then((result) => {
+                console.log(result)
+                if (result.status === 200) {
+                    return result.json()
+                }
+                if (result.status === 401) {
+                    window.location.replace("/login")
+                }
+            }
+            )
+            .then((response) => {
+                this.setState({
+                    userHistory: response.userHistory,
+                   
+                })
+                {
+                    this.state.userHistory.map((l) => {
+                        if (l.domain == this.state.url)
+                            this.setState({
+                                updated: true
+                            })
+
+                    }
+                    )
+                }
+
+            });
+
     }
 
     render() {
