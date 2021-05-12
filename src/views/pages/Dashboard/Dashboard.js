@@ -36,7 +36,7 @@ import {
   } from "react-router-dom";
 import Analytics from '../Analytics/Analytics';
 import "../../styles/Dashboard.css" ;
-import viewSaveContent from '../saveContent/viewSaveContent';
+import ViewSaveContent from '../saveContent/viewSaveContent';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -278,7 +278,7 @@ function Dashboard(props) {
                                 </Route>
                                 
                                 <Route path="/saved" >
-                                    <viewSaveContent />
+                                    <ViewSaveContent />
                                 </Route>
 
                                 <Route path="/explore" >
