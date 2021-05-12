@@ -7,25 +7,23 @@ import tokenConfig from '../../../utils/tokenConfig';
 import axios from 'axios' ;
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from 'react-router-dom';
+import BlockIcon from '@material-ui/icons/Block';
 
 
-class Like extends React.Component {
+class Block extends React.Component {
 
     constructor(props) {
 
         super(props);
         this.state = {
-            url: "",
-            eventType: "LIKE",
             updated: false,
             openSnack:false,
             massage:"",
-            userHistory:[{ domain:""}]
-           
+            domain:""
         }
 
 
-        this.updatelike = this.updatelike.bind(this);
+        this.updateblock = this.updateblock.bind(this);
         // this.handleCloseSnack = this.handleCloseSnack.bind(this);
 
     }
@@ -38,7 +36,7 @@ class Like extends React.Component {
 //     this.setState({openSnack:false});
 //   }
 
-    updatelike() {
+    updateblock() {
 
         if (!this.state.updated) {
             this.setState((prevState, props) => {
@@ -73,12 +71,12 @@ class Like extends React.Component {
         myHeaders.append("Content-Type","application/json")
 
         var UserCourse = {}
-        UserCourse.url = this.props.url;
-        UserCourse.eventType ="LIKE";
+        UserCourse.domain = this.props.url;
+   
 
         var raw = JSON.stringify(UserCourse);
 
-        fetch(serverURL() + "userHistory", {
+        fetch(serverURL() + "user/blockedDomains", {
 
             method: 'POST',
             body: raw,
@@ -86,10 +84,10 @@ class Like extends React.Component {
         }
         ).then((res) => {
             console.log(res.status);
-            if (res.status === 201){
+            if (res.status === 200){
                 this.setState({openSnack:true});
 
-                this.setState({massage:"liked"});
+                this.setState({massage:"blocked"});
 
             return res.json();
             }
@@ -101,46 +99,16 @@ class Like extends React.Component {
 
 
 
-      componentDidMount() {
-        this.getlike();
-
-    }
-    getlike() {
-                   
-    axios.get(serverURL() + "userHistory"  , tokenConfig())
-    .then((res) => {        
-        this.setState({
-            userHistory: res.userHistory,
-           
-        })
-        {
-            this.state.userHistory.map((l) => {
-                if (l.domain == this.props.url)
-                    this.setState({
-                        updated: true
-                    })
-
-            }
-            )
-        }      
-       
-    })
-    .catch((e) => {
-        console.log(e); 
-    });    
-         
-}
-
     render() {
         return (
             
             <div>
 
-        <i className="material-icons " onClick={() => { this.updatelike() }}> <ThumbUpAltIcon></ThumbUpAltIcon></i>
+        <i className="material-icons " onClick={() => { this.updateblock() }}> <BlockIcon></BlockIcon></i>
                 <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={this.state.openSnack}
-        autoHideDuration={500}
+        autoHideDuration={2500}
         // onClose={this.handleCloseSnack()}
         message={<div style={{ fontSize: 17 }}>{this.state.massage}</div>}
       />
@@ -151,4 +119,4 @@ class Like extends React.Component {
     }
 }
 
-export default Like;
+export default Block;

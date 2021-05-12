@@ -20,9 +20,11 @@ import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
 import Like from "../likeContent/like";
+import Block from "../likeContent/block";
 
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -228,7 +230,9 @@ function ExplorePage() {
                           <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
                     
                     <Like url={item.url}  />
+                    <Block url={item.url}  />
         </div>
+  
                         </div>
                         <div class="col-md-8">
                           <div class="card-body">
