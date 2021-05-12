@@ -11,7 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-import Alert from "@material-ui/lab/Alert";
+ import Alert from "@material-ui/lab/Alert";
 
 import IconButton from "@material-ui/core/IconButton";
 import Collapse from "@material-ui/core/Collapse";
@@ -327,7 +327,7 @@ const LoginC = ({ setAlertS, setAlertM, alertM, alertS }) => {
         </Dialog>
         <div className={classes.alert}>
           <Collapse in={alertS}>
-            <Alert
+           <Alert
               severity="error"
               action={
                 <IconButton
@@ -339,9 +339,12 @@ const LoginC = ({ setAlertS, setAlertM, alertM, alertS }) => {
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
               }
-            >
+
+
+            > 
+
               {alertM}
-            </Alert>
+        </Alert>
           </Collapse>
         </div>
       </Form>
