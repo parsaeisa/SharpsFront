@@ -144,7 +144,7 @@ export default class Analytics extends React.Component {
 
             <Grid container spacing={3}>
               
-              <Grid item xs={4} md={4} lg={4}>
+              {/* <Grid item xs={4} md={4} lg={4}>
                 <Paper elevation={4} className={fixedHeightNumberPaper}>
                   <CountUp 
                       title = "Visited Sites"
@@ -163,7 +163,7 @@ export default class Analytics extends React.Component {
                 <Paper elevation={4} className={fixedHeightNumberPaper}>
                   112
                 </Paper>
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12} md={8} lg={8}>
                 <Paper elevation={4} className={fixedHeightPaper}>
