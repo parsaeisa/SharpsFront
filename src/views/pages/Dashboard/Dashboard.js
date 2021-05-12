@@ -36,6 +36,7 @@ import {
   } from "react-router-dom";
 import Analytics from '../Analytics/Analytics';
 import "../../styles/Dashboard.css" ;
+import viewSaveContent from '../saveContent/viewSaveContent';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -195,12 +196,18 @@ function Dashboard(props) {
                         </div>                                            
                     <div className={classes.drawerContainer} >
                         <List style ={{paddingTop: '0px'}}>
-                        <ListItem button key="Homme">
-                            <ListItemIcon>
-                            <HomeIcon> </HomeIcon>
-                            </ListItemIcon>
-                            <ListItemText primary="Home" />
-                        </ListItem >
+                        <li>
+                          <Link to ="/explore" >
+                            <ListItem button key="Homme">
+                                <ListItemIcon>
+                                <HomeIcon> </HomeIcon>
+                                </ListItemIcon>
+                                <Typography variant="button" style={{ color: "black" }}>
+                                    Home
+                                </Typography >
+                            </ListItem >
+                          </Link>
+                        </li>
                         <li>
                             <Link to ="/profile/edit" >
                                 <ListItem button key="Profile">
@@ -225,13 +232,19 @@ function Dashboard(props) {
                                 </ListItem>
                             </Link>
                         </li>
-                        <ListItem button key="Saved">
-                            <ListItemIcon>
-                            <TurnedInIcon></TurnedInIcon>
-                            </ListItemIcon>
-                            <ListItemText primary="Saved" />
+                        <li>
+                          <Link to ="/saved" >
+                            <ListItem button key="Saved">
+                                <ListItemIcon>
+                                <TurnedInIcon></TurnedInIcon>
+                                </ListItemIcon>
+                                <Typography variant="button" style={{ color: "black" }}>
+                                    Saved
+                                </Typography >
 
-                        </ListItem>
+                            </ListItem>
+                          </Link>
+                        </li>
                         <ListItem button key="Logout">
                             <ListItemIcon>
                             <ExitToAppIcon></ExitToAppIcon>
@@ -262,6 +275,14 @@ function Dashboard(props) {
 
                                 <Route path="/profile/analytics" >
                                     <Analytics />
+                                </Route>
+                                
+                                <Route path="/saved" >
+                                    <viewSaveContent />
+                                </Route>
+
+                                <Route path="/explore" >
+                                    <ExplorePage />
                                 </Route>
 
                             </Switch>
