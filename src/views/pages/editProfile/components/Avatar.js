@@ -24,10 +24,20 @@ class Avatar extends React.Component {
             loading : false
         }
     }      
+
+    static getDerivedStateFromError(error) {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: true };
+    }
+
+    componentDidCatch(error , errInfo){
+        // logErrorToMyService(error, errInfo);
+    }
     
     uploadImage = async (e) => {        
         const file = e.target.files[0];          
-        const base64 = await this.convertBase64(file);                         
+        const base64 = await this.convertBase64(file); 
+        console.log(btoa(base64));                        
         this.props.SET_AVATAR(btoa(base64))        
     }
 
@@ -93,21 +103,22 @@ class Avatar extends React.Component {
                     />
             </div>
             <div className="camera_button">
-                <input accept="image/*" style={{display : "none" }}
+                <input accept="image/*"
+                style={{display : "none" }}
                     id={avatar}
                     name= {avatar}
-                    type="file"                     
-                    onChange={(e) => {
-                        try {
+                    type="file"
+                    onChange={(e) => {                        
+                        this.uploadImage(e);                        
                             this.uploadImage(e);
-                        } catch(error){
-                            console.log(error);
-                        }
+                        this.uploadImage(e);                        
                     }}/>
                 <label htmlFor={avatar}>
                     <Button
+                        component="span"
+                        className="Button"
                         variant="contained"
-                        color="secondary"
+                        color="primary"
                         // className={classes.button}
                         startIcon={<AddAPhotoIcon />}
                     >

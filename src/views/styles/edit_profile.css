@@ -6,6 +6,8 @@
 .Button {
     /* margin: 8px !important;  */
     border-radius: 10px !important;
+    display: flex !important;
+    justify-content: flex-end !important ;
 }
 
 .MuiTooltip-tooltip{
@@ -93,7 +95,7 @@
 }
 
 .closeIcon {
-    fill: blue  !important;
+    fill: #0f0b3e  !important;
 }
 
 .buttonProgress{
@@ -106,7 +108,23 @@
 }
 
 .wrapper {
+    margin-top: 30px;
     position: relative;
     display: 'flex' ;
     align-items: 'center' ;
+}
+
+.MuiButton-containedPrimary {
+    background-color: #0f0b3e !important;
+}
+
+
+.paper {
+    margin-top: 24 ;
+    margin-bottom: 24 ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding: 16 ;
+    width: 800px;    
 }
