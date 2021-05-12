@@ -297,7 +297,7 @@ function SignUp({ setAlertS, setAlertM, alertM, alertS }) {
                   <CloseIcon fontSize="inherit" />
                 </IconButton>
               }
-            >
+             > 
               {alertM}
             </Alert>
           </Collapse>
