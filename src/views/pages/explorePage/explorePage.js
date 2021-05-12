@@ -145,7 +145,7 @@ function ExplorePage() {
                     <Like url={item.url}  />
                     <Block url={item.url}  />
                    </div>
-  
+  </div>
                     <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
