@@ -149,10 +149,11 @@ function ExplorePage() {
                     <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
-                            <p class="card-text"> {item.des}  </p>
-                      
-                             <a href={"//" + item.url} class="stretched-link" /> 
-                           
+                            <p class="card-text"> {item.des +"..." } </p>
+                
+                            <a href={"//" + item.url} class="stretched-link" />
+
+  
                           </div>
                         </div>
                       </div>
