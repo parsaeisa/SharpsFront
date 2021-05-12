@@ -226,7 +226,7 @@ function ExplorePage() {
                         <div class="col-md-4" >
                           <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
                           <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
-                    
+                       
                       <SaveContent url={item.url}  />
                  </div>
                         </div>
@@ -234,16 +234,8 @@ function ExplorePage() {
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
                             <p class="card-text"> {item.des}  </p>
-                            <p class="card-text"> {item.url}  </p>
-
-                            {/* <div  class="card-text" style={{ display: "flex", height: "20px", marginBottom: "30px" }}>
-                                     
-                                            <SaveContent url={item.url}   />
-                        </div>
-                                          */}
-
-
-                            {/* <a href={"//" + item.url} class="stretched-link" /> */}
+                      
+                             <a href={"//" + item.url} class="stretched-link" /> 
                            
                           </div>
                         </div>
