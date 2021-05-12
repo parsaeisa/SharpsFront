@@ -13,7 +13,7 @@ class SaveContent extends React.Component {
 
         super(props);
         this.state = {
-            url:[],   
+            url:"",   
             updated:false,
             items:[], 
             total:""
@@ -54,7 +54,7 @@ class SaveContent extends React.Component {
         var myHeaders = new Headers();
 
         myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
-      
+        myHeaders.append("Content-Type","application/json")
       
         var UserCourse = {}
         UserCourse.url = this.props.url;
