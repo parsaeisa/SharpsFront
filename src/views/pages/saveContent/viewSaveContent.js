@@ -144,78 +144,7 @@ function ViewSaveContent() {
     <div>
       <div className={classes.root}>
         <CssBaseline />
-
-        <AppBar style={{ background: '#0f0b3e' }}
-          position="fixed"
-          className={classes.appBar}
-        >
-          <Toolbar>
-            <Typography variant="h6" noWrap>
-              ??????????
-          </Typography>
-            <div className="ex">
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-              </div >
-            </div>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerContainer}>
-            <List>
-              <ListItem button key="Homme" style={{ paddingTop: "30%" }}>
-                <ListItemIcon>
-                  <HomeIcon> </HomeIcon>
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItem >
-              <li>
-                <ListItem button key="Profile">
-                  <ListItemIcon>
-                    <AccountCircleIcon></AccountCircleIcon>
-                  </ListItemIcon>                  
-                  {/* <ListItemText primary="Profile" style={{ color: "black" }} />                   */}
-                  <Edit_profile />
-                </ListItem>
-              </li>
-              <ListItem button key="Saved">
-                <ListItemIcon>
-                  <TurnedInIcon></TurnedInIcon>
-                </ListItemIcon>
-                <ListItemText primary="Saved" />
-
-              </ListItem>
-              <ListItem button key="Logout">
-                <ListItemIcon>
-                  <ExitToAppIcon></ExitToAppIcon>
-                </ListItemIcon>
-                <ListItemText primary="Logout" />
-              </ListItem>
-            </List>
-          </div>
-        </Drawer>
-        <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        >
-          <div className={classes.drawerHeader} />
+        
           <div className="explore">
             {content.length === 0 ? <div></div> :
               content.items.map((item) => {
@@ -240,11 +169,10 @@ function ViewSaveContent() {
                 )
               })}
 
+          </div>    
           </div>
-        </main>
-      </div>
-
-    </div>
+          </div>
+          
   );
 
 }

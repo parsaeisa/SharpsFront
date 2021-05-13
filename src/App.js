@@ -4,7 +4,7 @@ import "./App.css";
 import loginPage from "./views/pages/loginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
- import loginPage from "./views/pages/loginPage";
+//  import loginPage from "./views/pages/loginPage";
 
 import editProfile from "./views/pages/editProfile/editprofile";
 import React from "react";
