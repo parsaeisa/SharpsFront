@@ -109,7 +109,6 @@ class Edit_profile extends React.Component {
                   </Grid>                  
                 </Grid>
                                 
-                                 
             <Container maxWidth="lg"  className="container">
               <SuccessAlert 
                 show={this.state.showSuccessAlert}
