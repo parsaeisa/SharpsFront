@@ -6,6 +6,7 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Button from '@material-ui/core/Button';
 import 'antd/dist/antd.css';
 import '../../../styles/edit_profile.css' ;
+import AvatarDialog from './AvatarDialog';
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -21,7 +22,8 @@ class Avatar extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            loading : false
+            loading : false ,
+            openAvatarDialog : false 
         }
     }      
 
@@ -60,43 +62,28 @@ class Avatar extends React.Component {
     
     handleCancel = () => this.setState({ previewVisible: false });
 
-    // handlePreview = async file => {
-    // if (!file.url && !file.preview) {
-    //     file.preview = await getBase64(file.originFileObj);
-    // }
-
-    // this.setState({
-    //     previewImage: file.url || file.preview,
-    //     previewVisible: true,
-    //     previewTitle: file.name || file.url.substring(file.url.lastIndexOf('/') + 1),
-    // });
-    // };
-
-    // handleChange = ({ fileList }) => this.setState({ fileList });
-
     render() {
-    // const { previewVisible, previewImage, fileList, previewTitle } = this.state;
-    // const uploadButton = (
-    //     <div>
-    //     <PlusOutlined />
-    //     <div style={{ marginTop: 8 }}>Upload</div>
-    //     </div>
-    //     // <Button
-    //     //     variant="contained"
-    //     //     color="secondary"
-    //     //     // className={classes.button}
-    //     //     startIcon={<AddAPhotoIcon />}
-    //     // >
-    //     //     Add photo
-    //     // </Button>
-    // );
-
+    
     const avatar = "avatar" ;
 
     return (
         <>
+            <AvatarDialog 
+              open = {this.state.openAvatarDialog}
+              src={this.props.avatar != null ? atob(this.props.avatar) : "https://i.stack.imgur.com/l60Hf.png"}
+              onClose = {() => {
+                this.setState({
+                  openAvatarDialog : false
+                })
+              }} />                     
             <div className="imageHolder">              
-                <Image                        
+                <img 
+                        className = 'Avatar'
+                        onClick = {() => {
+                            this.setState({
+                                openAvatarDialog : true                                
+                            })
+                        }}                   
                         width={150}
                         height={150}                                    
                         src={this.props.avatar != null ? atob(this.props.avatar) : "https://i.stack.imgur.com/l60Hf.png"}
