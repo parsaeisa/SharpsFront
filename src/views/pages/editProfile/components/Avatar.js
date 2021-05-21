@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../../core/edit_profile/action/UserAction" ;
-import { Image } from 'antd';
+// import { Image } from 'antd';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Button from '@material-ui/core/Button';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import '../../../styles/edit_profile.css' ;
 import AvatarDialog from './AvatarDialog';
 
