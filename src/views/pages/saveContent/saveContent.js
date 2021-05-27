@@ -32,6 +32,7 @@ class SaveContent extends React.Component {
                 };
 
             });
+            this.save();
 
         } else {
 
@@ -40,15 +41,25 @@ class SaveContent extends React.Component {
                     updated: false
 
                 };
+                
             });
+            this.deleteSave();
 
         }
       
+        // this.setState((prevState, props) => {
+        //     return {
+        //         color: true
 
-        this.save();
+        //     };
+        // });
+      
+        // if (!this.state.updated) {
+        //     console.log("del "+this.state.updated)
+        //     this.deleteSave();
+        // }
 
     }
-
     save() {
        
         var myHeaders = new Headers();
