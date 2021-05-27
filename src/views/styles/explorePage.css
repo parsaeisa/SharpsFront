@@ -86,4 +86,19 @@
       /* border-bottom: 30px solid orange; */
   
     }
+    .horizontal-card-body{
+      display: flex;
+      flex-direction: column;
+      margin-left:1rem;
+    }
+    .horizontal-card-footer{
+      /* position:absolute; */
+      left:0px;
+      right:0px;
+      bottom:0px;
+      /* height: 30px; */
+      display: flex;
+      align-items: center;}
+   
+  
   

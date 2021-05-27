@@ -104,13 +104,13 @@ function ExplorePage() {
       }
     })
       .then((result) => {
-        console.log(result)
+        // console.log(result)
         if (result.status === 200) {
           return result.json()
         }
 
         if (result.status === 401) {
-          window.location.replace("/login")
+          // window.location.replace("/login")
         }
       }
       )
@@ -120,7 +120,7 @@ function ExplorePage() {
           items: response.items,
           total: response.total
         }))
-        console.log("data")
+        // console.log("data")
       });
   }
   return (
@@ -129,7 +129,7 @@ function ExplorePage() {
         <CssBaseline />
 
         
-          <div className={classes.drawerHeader} />
+          {/* <div className={classes.drawerHeader} /> */}
           <div className="explore">
             {content.length === 0 ? <div></div> :
               content.items.map((item) => {
@@ -138,29 +138,34 @@ function ExplorePage() {
                     <div class="card mb-3 " >
                       <div class="row no-gutters">
                         <div class="col-md-4" >
-                          <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
-                          <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
-
-                     <SaveContent url={item.url}  />
-                    <Like url={item.url}  />
-                    <Block url={item.url}  />
-                   </div>
+                          <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..." ></img>
+                        
   </div>
                     <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
                             <p class="card-text"> {item.des +"..." } </p>
-                
+                            <div>
                             <a href={"//" + item.url} class="stretched-link" />
-
-  
+                            </div>
                           </div>
+                          <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">
+                            <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
+
+<SaveContent url={item.url}  />
+<Like url={item.url}   />
+{/* <Block url={item.url}  /> */}
+          
+        </div>
+                           
+</div>
                         </div>
                       </div>
                     </div>
                   </div>
                 )
               })}
+              
 
           </div>
       </div>
