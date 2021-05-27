@@ -2,7 +2,7 @@
   .explore{
     align-items: center;
     /* padding-left: 1%; */
-    /* padding-top: 10%; */
+    padding-top: 10%;
     display: flex !important;
     position: relative;
      justify-content: center;
@@ -18,9 +18,9 @@
   .card {
     position: relative;    
   
-    align-items: center;
+    /* align-items: center;
     width: 90%;
-    height: 50%;
+    height: 50%; */
   
   }
   .card-body {
@@ -70,3 +70,20 @@
   a:link {
     text-decoration: none;
   }
+  
+
+
+
+  .horizontal-card{
+    position:relative;
+    display: flex;
+    border:1px solid gray;
+    margin-bottom:1rem;
+  }
+  img{
+      width: 200px;
+      height: 200px;
+      /* border-bottom: 30px solid orange; */
+  
+    }
+  
