@@ -250,7 +250,7 @@ function Dashboard(props) {
                     </div>
                     </Drawer>                    
                         <main className={classes.content}>
-                        <div className="appBarSpacer" />
+                        {/* <div className="appBarSpacer" /> */}
                         <Container maxWidth="lg" className={classes.container}>
                             <Switch>
 
