@@ -11,3 +11,55 @@
 .MuiContainer-maxWidthLg {
     max-width: 1700px !important;
 }
+
+.makeStyles-appBarShift-5{
+    margin-left: 240px;
+}
+
+.makeStyles-drawerPaper-9{
+    width: 240px ;
+}   
+
+.DrawerSpacer {
+    height: 60vh;
+}
+
+@media only screen and (max-width: 800px) {
+    .MuiContainer-root{
+        display: none;        
+    }
+    
+    .DrawerSpacer {
+        height: 73vh ;
+    }
+
+    .makeStyles-drawerPaper-9{
+        width: 100vw ;
+        object-fit: fill;        
+    }   
+    
+    .makeStyles-appBarShift-5{
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .MuiContainer-root{
+        display: none;        
+    }
+    
+    .DrawerSpacer {
+        height: 65vh ;
+    }
+
+    .makeStyles-drawerPaper-9{
+        width: 100vw ;
+        object-fit: fill;        
+    }   
+    
+    .makeStyles-appBarShift-5{
+        display: none !important;
+    }
+
+}

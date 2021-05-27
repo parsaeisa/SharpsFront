@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
       }),
     },
     appBarShift: {
-      marginLeft: drawerWidth,
+      // marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
       position: 'relative',
       whiteSpace: 'nowrap',
-      width: drawerWidth,
+      // width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -195,9 +195,11 @@ function Dashboard(props) {
                         </IconButton>
                         </div>                                            
                     <div className={classes.drawerContainer} >
-                        <List style ={{paddingTop: '0px'}}>
+                        <List style ={{ paddingTop: '0px'}}>
                         <li>
-                          <Link to ="/explore" >
+                          <Link to ="/explore" onClick={() => {
+                              setOpen(false);
+                            }} >
                             <ListItem button key="Homme">
                                 <ListItemIcon>
                                 <HomeIcon> </HomeIcon>
@@ -209,7 +211,9 @@ function Dashboard(props) {
                           </Link>
                         </li>
                         <li>
-                            <Link to ="/profile/edit" >
+                            <Link to ="/profile/edit" onClick={() => {
+                              setOpen(false);
+                            }} >
                                 <ListItem button key="Profile">
                                 <ListItemIcon>
                                     <AccountCircleIcon></AccountCircleIcon>
@@ -221,7 +225,9 @@ function Dashboard(props) {
                             </Link>
                         </li>
                         <li>
-                            <Link to ="/profile/analytics" >
+                            <Link to ="/profile/analytics" onClick={() => {
+                              setOpen(false);
+                            }} >
                                 <ListItem button key="Profile">
                                 <ListItemIcon>
                                     <EqualizerIcon/>
@@ -233,7 +239,9 @@ function Dashboard(props) {
                             </Link>
                         </li>
                         <li>
-                          <Link to ="/saved" >
+                          <Link to ="/saved" onClick={() => {
+                              setOpen(false);
+                            }}>
                             <ListItem button key="Saved">
                                 <ListItemIcon>
                                 <TurnedInIcon></TurnedInIcon>
@@ -244,8 +252,9 @@ function Dashboard(props) {
 
                             </ListItem>
                           </Link>
-                        </li>
-                        <ListItem button key="Logout">
+                        </li>                        
+                        <div className = "DrawerSpacer" />
+                        <ListItem button key="Logout" >
                             <ListItemIcon>
                             <ExitToAppIcon></ExitToAppIcon>
                             </ListItemIcon>
