@@ -24,6 +24,8 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import BackgroundFromBGjar from './components/BackgroundFromBGjar';
+import ProfileBackground from '../../../assests/ProfileBackground.svg'
 // import 'antd/dist/antd.css';
 // import { Collapse } from 'antd';
 
@@ -108,8 +110,10 @@ class Edit_profile extends React.Component {
       <>          
             <Paper elevation={5} className="paper">
                 <Grid container>
-                  <Grid item xs={12}>
-                    <Typography variant="h6">Edit Profile</Typography>       
+                  <Grid item xs={12} style= {{backgroundColor : 'blue'}}>
+                    {/* <Typography variant="h6">Edit Profile</Typography>        */}
+                    <img style={{width : '100%', height : '250px'}} src={ProfileBackground} />
+                    {/* <BackgroundFromBGjar />  */}
                   </Grid>                  
                 </Grid>
                                 
