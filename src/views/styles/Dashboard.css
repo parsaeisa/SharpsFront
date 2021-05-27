@@ -32,15 +32,6 @@
     .DrawerSpacer {
         height: 73vh ;
     }
-
-    .makeStyles-drawerPaper-9{
-        width: 100vw ;
-        object-fit: fill;        
-    }   
-    
-    .makeStyles-appBarShift-5{
-        display: none !important;
-    }
 }
 
 @media only screen and (max-width: 600px) {
