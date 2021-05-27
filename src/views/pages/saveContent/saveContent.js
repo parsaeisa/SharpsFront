@@ -117,6 +117,26 @@ class SaveContent extends React.Component {
         });     
     
     }
+    deleteSave (){
+        console.log(serverURL()+"user​/savedContents?url="+this.props.url)
+   
+       var myHeaders = new Headers();
+   
+       myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
+       myHeaders.append("Content-Type","application/json")
+   
+       fetch(serverURL()+ "user/savedContents?url=" + this.props.url , {
+           method: 'DELETE',
+           headers: myHeaders
+       }).then((res) => {
+           console.log(res.status);
+           if ( res.status === 200) {
+             
+           }
+           console.log(res);
+       }).then((res) => console.log(res));
+   }
+    
     
     render() {
         return (
