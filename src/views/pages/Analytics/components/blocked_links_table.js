@@ -6,18 +6,21 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import callapi_analytics_get_blockedDomains from '../callapi_analytics/callapi_analytics_blockdomains';
-import callapi_analytics_unblock from '../callapi_analytics/callapi_analytics_unblock';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Typography from '@material-ui/core/Typography';
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten, makeStyles } from '@material-ui/core/styles';
+import callapi_analytics_unblock from '../callapi_analytics/callapi_analytics_unblock';
+import callapi_analytics_get_blockedDomains from '../callapi_analytics/callapi_analytics_blockdomains';
 import Toolbar from '@material-ui/core/Toolbar';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+
 
 
 export default class BlockedTable extends React.Component {    
@@ -28,7 +31,8 @@ export default class BlockedTable extends React.Component {
         this.state = {
             blocked_domains : [] ,
             blocked_topics : [] ,
-            selected : []
+            selected : [] ,
+            unblocked : false ,
         } ;
     }
     
@@ -80,18 +84,24 @@ export default class BlockedTable extends React.Component {
                     {numSelected} selected to be unblocked
                   </Typography>
                 ) : (
-                  <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-                    Nutrition
+                  <Typography style = {{color : "#757575"}} className={classes.title} variant="h6" id="tableTitle" component="div">
+                    Blocked
                   </Typography>
                 )}
           
                 {numSelected > 0 ? (
                   <Tooltip title="Delete">
-                    <IconButton aria-label="delete" onClick = {() => {
+                    <IconButton aria-label="delete" onClick = { async () => {
 
-                        callapi_analytics_unblock(this.state.blocked_domains
+                        await callapi_analytics_unblock(this.state.blocked_domains
                             .concat(this.state.selected)
                             .filter(item => !this.state.selected.includes(item) || !this.state.blocked_domains.includes(item) ))
+                        this.setState({unblocked : true});                            
+                        let blocked = await callapi_analytics_get_blockedDomains() ;
+                        this.setState({
+                            blocked_domains : blocked
+                        })     
+
                     }}>
                       <DeleteIcon />
                     </IconButton>
@@ -261,6 +271,18 @@ export default class BlockedTable extends React.Component {
                         </TableBody>
                     </Table>
                     </TableContainer>
+                    <Snackbar
+                      open={this.state.unblocked}
+                      onClose={() => {
+                        this.setState({
+                          ...this.state,
+                          unblocked: false,
+                        });
+                      }}
+                      TransitionComponent={Fade}
+                      message="addresses unblocked"
+                      // key={state.Transition.name}
+                    />
                 </>
             :
                     <div>
