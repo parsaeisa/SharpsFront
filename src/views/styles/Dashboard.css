@@ -18,10 +18,22 @@
 
 .makeStyles-drawerPaper-9{
     width: 240px ;
+    background: linear-gradient(180deg, rgba(63,81,181,1) 0%, rgba(0,0,0,1) 100%) !important;
+    color: white !important;
 }   
 
 .DrawerSpacer {
-    height: 60vh;
+    height: 52vh;
+}
+
+.MuiListItemIcon-root{
+    color: white !important;
+}
+
+.Divider {
+    color: white !important;
+    margin: 5px;
+    height: 5px !important;
 }
 
 @media only screen and (max-width: 800px) {
@@ -53,4 +65,4 @@
         display: none !important;
     }
 
-}
+}   
