@@ -22,7 +22,7 @@ test('handlers server error', async () => {
     server.use(
       // override the initial "GET /greeting" request handler
       // to return a 500 Server Error
-      rest.get('/user/blockeddddDomains', (req, res, ctx) => {
+      rest.get('/user/blockedDomains', (req, res, ctx) => {
         return res(ctx.status(200))
       })
 )})

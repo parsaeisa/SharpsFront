@@ -50,6 +50,7 @@ class DonatChart extends React.Component {
               field="count"
               categoryField="tag"
               colorField="color"
+              key = {index}
             >
               {
                 index === array.length - 1
