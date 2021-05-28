@@ -40,9 +40,9 @@ test('display dialog after clicking on button' , async() => {
     await waitFor(() => screen.getByText('Name :'));
     await waitFor(() => screen.getByText('Email :'));
     await waitFor(() => screen.getByText('Password :'));
-    await waitFor(() => screen.getByText('deactivate'));
+    await waitFor(() => screen.getByText('Deactivate'));
 
-    fireEvent.click(screen.getByText('deactivate'))    
+    fireEvent.click(screen.getByText('Deactivate'))    
     
     await waitFor(() => screen.getByText("Delete Account"))
 
