@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
+import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -166,22 +167,15 @@ export default class BlockedTable extends React.Component {
         
         const rows = this.state.blocked_domains.map( i => createData(i , false)) ;
         
-        EnhancedTableHead.propTypes = {
-            classes: PropTypes.object.isRequired,
-            numSelected: PropTypes.number.isRequired,
-            onRequestSort: PropTypes.func.isRequired,
+        EnhancedTableHead.propTypes = {            
+            numSelected: PropTypes.number.isRequired,            
             onSelectAllClick: PropTypes.func.isRequired,
-            order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-            orderBy: PropTypes.string.isRequired,
             rowCount: PropTypes.number.isRequired,
         };
 
         
         function EnhancedTableHead(props) {
-            const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-            const createSortHandler = (property) => (event) => {
-            onRequestSort(event, property);
-            };
+            const { onSelectAllClick, numSelected, rowCount } = props;            
         
             return (
             <TableHead>
@@ -199,7 +193,7 @@ export default class BlockedTable extends React.Component {
                     key={headCell.id}
                     align={headCell.numeric ? 'right' : 'left'}
                     padding={headCell.disablePadding ? 'none' : 'default'}
-                    sortDirection={orderBy === headCell.id ? order : false}
+                    // sortDirection={orderBy === headCell.id ? order : false}
                     >                    
                         {headCell.label}                     
                     </TableCell>
@@ -261,8 +255,8 @@ export default class BlockedTable extends React.Component {
                                         />
                                 </TableCell>            
                                 <TableCell component="th" scope="row">
-                                    <a exact href = {row.name}>
-                                    {row.name}
+                                    <a target="_blank" rel="noreferrer nofollow" href = {row.name}>                                    
+                                    {row.name}                                    
                                     </a>
                                 </TableCell>                              
                             {/* <TableCell align="right">{row.fat}</TableCell> */}
