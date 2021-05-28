@@ -155,9 +155,9 @@ function Dashboard(props) {
                         <div className={classes.toolbarIcon}>
                         <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
                         </Typography>       
-                        <Typography syle={{padding : "70px"}} variant="h6" noWrap>
+                        {/* <Typography syle={{padding : "70px"}} variant="h6" noWrap>
                             𝓼𝓱𝓪𝓻𝓹
-                        </Typography>
+                        </Typography> */}
                         <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
                         </Typography>       
                         <IconButton onClick={() => {
