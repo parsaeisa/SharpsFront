@@ -98,8 +98,39 @@ class Like extends React.Component {
 
        
     }
+    unlike() {
 
+        var myHeaders = new Headers();
 
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
+        myHeaders.append("Content-Type","application/json")
+
+        var UserCourse = {}
+        UserCourse.url = this.props.url;
+        UserCourse.eventType ="UNLIKE";
+      
+        var raw = JSON.stringify(UserCourse);
+
+        fetch(serverURL() + "userHistory", {
+
+            method: 'POST',
+            body: raw,
+            headers: myHeaders
+        }
+        ).then((res) => {
+            console.log(res.status);
+            if (res.status === 201){
+                this.setState({openSnack:true});
+
+                this.setState({massage:"unliked"});
+
+            return res.json();
+            }
+
+        }).then((res) => console.log(res));
+
+       
+    }
 
       componentDidMount() {
         this.getlike();
