@@ -15,6 +15,9 @@ import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import SaveContent from "../saveContent/saveContent";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import ShowMoreText from 'react-show-more-text';
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 const drawerWidth = 240;
 
 
@@ -182,7 +185,23 @@ function ExplorePage() {
                     <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
-                            <p class="card-text"> {item.des +"..." } </p>
+                            <p class="card-text"  style={{whitespacing:"pre-lines", display:"inline"}}>
+                             
+                            <ShowMoreText
+                                lines={2}
+                                more='Show more'
+                                less='Show less'
+                                // more={<ExpandMore />}
+                                // less={<ExpandLess />}
+                                className='content-css'
+                                anchorClass='my-anchor-css-class'
+                                expanded={false}
+                                keepNewLines = {true}
+                                 width={500}
+                            >
+                            {item.des} 
+                            </ShowMoreText>
+                               </p>
                             <div>
                             {/* <a href={"//" + item.url} class="stretched-link" /> */}
                             </div>
