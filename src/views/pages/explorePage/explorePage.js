@@ -146,7 +146,7 @@ function ExplorePage() {
                             <h5 class="card-title">{item.title}</h5>
                             <p class="card-text"> {item.des +"..." } </p>
                             <div>
-                            <a href={"//" + item.url} class="stretched-link" />
+                            {/* <a href={"//" + item.url} class="stretched-link" /> */}
                             </div>
                           </div>
                           <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">

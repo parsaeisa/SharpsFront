@@ -7,6 +7,8 @@ import tokenConfig from '../../../utils/tokenConfig';
 import axios from 'axios' ;
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from 'react-router-dom';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 class Like extends React.Component {
@@ -170,7 +172,8 @@ updatelike() {
             
             <div>
 
-        <i className="material-icons " onClick={() => { this.updatelike() }}> <ThumbUpAltIcon></ThumbUpAltIcon></i>
+<i className="material-icons "  style={{color:this.state.updated ? "red": "black"}} onClick={() => { this.updatelike() }}> {this.state.updated ?<FavoriteIcon></FavoriteIcon> : 
+ <FavoriteBorderIcon></FavoriteBorderIcon> }</i>
                 <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={this.state.openSnack}
