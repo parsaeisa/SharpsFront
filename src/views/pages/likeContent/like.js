@@ -38,32 +38,35 @@ class Like extends React.Component {
 //     this.setState({openSnack:false});
 //   }
 
-    updatelike() {
+updatelike() {
+     
 
-        if (!this.state.updated) {
-            this.setState((prevState, props) => {
-                return {
-                    updated: true
-                };
+    if (!this.state.updated) {
+        this.setState((prevState, props) => {
+            return {
+                updated: true
+            };
 
-            });
-
-        } else {
-
-            this.setState((prevState, props) => {
-                return {
-                    updated: false
-
-                };
-            });
-
-        }
-
-
+        });
         this.content();
+
+    } else {
+
+        this.setState((prevState, props) => {
+            return {
+                updated: false
+                
+
+            };
+        });
+        this.unlike();
 
     }
 
+
+  
+
+}
     content() {
       
       
