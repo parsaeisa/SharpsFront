@@ -4,7 +4,7 @@ import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useCallback } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
 
@@ -14,6 +14,7 @@ import Block from "../likeContent/block";
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import SaveContent from "../saveContent/saveContent";
+import InfiniteScroll from 'react-infinite-scroll-component';
 const drawerWidth = 240;
 
 
@@ -81,6 +82,10 @@ function ExplorePage() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState({ items: [], total: "" });
+  const [hasMore, setHasMore] =useState(true);
+  const[ nextPage, SetNextPage] = useState(serverURL()+"user/suggestions?skip=0&limit=10&showAds=true");
+  const [value, setValue] =useState(0);
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -90,23 +95,29 @@ function ExplorePage() {
     setOpen(false);
   };
 
-
   useEffect(async () => {
     fetchData()
-  });
+    
+    // await timeout(20);
+  }, []);
 
-  const fetchData = () => {
-
-    fetch(serverURL() + "user/suggestions", {
+  const fetchData = (value)=>{
+  
+  console.log(localStorage.getItem('token')+"hhhhhhhhhhhhhhh")
+    fetch(nextPage, {
       method: 'GET',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('token')
       }
     })
       .then((result) => {
-        // console.log(result)
+         console.log("sanaaaaaaaaaaa")
         if (result.status === 200) {
-          return result.json()
+        
+     
+        //   setValue(value+1)
+        // SetNextPage(serverURL()+"user/suggestions?skip="+value+"&limit=10&showAds=false");
+        return result.json()
         }
 
         if (result.status === 401) {
@@ -121,8 +132,20 @@ function ExplorePage() {
           total: response.total
         }))
         // console.log("data")
+        setValue(value+10)
+        SetNextPage(serverURL()+"user/suggestions?skip="+value+"&limit=10&showAds=true");
+      })
+      
+      .then((response) => {
+       
+        // if(response.next === null){
+        //   setHasMore(false)
+        // }
       });
-  }
+   
+    }
+ { console.log(content+"cont")}
+ { console.log(value+"valueeee")}
   return (
     <div>
       <div className={classes.root}>
@@ -131,6 +154,21 @@ function ExplorePage() {
         
           {/* <div className={classes.drawerHeader} /> */}
           <div className="explore">
+
+         <InfiniteScroll
+                scrollThreshold="90%"
+                dataLength={content.items.length}
+
+                next={fetchData()}
+                hasMore={hasMore}
+                loader={
+                //  <h4>Loading...</h4>
+                <div style={{width: "100%", justifyContent:"center", display:"flex"}}>
+                <div className="loading" />
+                </div>
+            }
+                endMessage={ null
+                }>
             {content.length === 0 ? <div></div> :
               content.items.map((item) => {
                 if (item) return (
@@ -165,7 +203,7 @@ function ExplorePage() {
                   </div>
                 )
               })}
-              
+              </InfiniteScroll>
 
           </div>
       </div>
