@@ -87,9 +87,9 @@ function ExplorePage() {
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState({ items: [], total: "" });
   const [hasMore, setHasMore] = useState(true);
-  const [nextPage, SetNextPage] = useState(serverURL() + "user/suggestions?skip=0&limit=10&showAds=true");
+  const [nextPage, SetNextPage] = useState(serverURL() + "user/suggestions?skip=0&limit=40&showAds=true");
   const [value, setValue] = useState(0);
-
+  const [contentGet , setContentGet] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,12 +100,19 @@ function ExplorePage() {
   };
 
   useEffect(async () => {
-    fetchData()
+   
+      if(contentGet == false)
+      {
+        fetchData();
+        setContentGet(true);
+      }
+    
+   
 
     // await timeout(20);
   }, []);
 
-  const fetchData = (value) => {
+  const fetchData = () => {
 
     console.log(localStorage.getItem('token') + "hhhhhhhhhhhhhhh")
     fetch(nextPage, {
@@ -136,8 +143,8 @@ function ExplorePage() {
           total: response.total
         }))
         // console.log("data")
-        setValue(value + 10)
-        SetNextPage(serverURL() + "user/suggestions?skip=" + value + "&limit=10&showAds=true");
+        // setValue(value + 10)
+        // SetNextPage(serverURL() + "user/suggestions?skip=" + value + "&limit=10&showAds=true");
       })
 
       .then((response) => {
@@ -170,7 +177,7 @@ function ExplorePage() {
             endMessage={null
             }>
             {content.length === 0 ? <div></div> :
-              content.items.map((item) => {
+              content.items.map((item,index) => {
                 if (item) return (
                   <div style={{ spacing: "50%" }}>
                     <div class="card mb-3" >
@@ -178,10 +185,14 @@ function ExplorePage() {
                         <div class="col-md-4" >
                           <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..." ></img>
                           <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">
-                            <div style={{ display: "flex", content: "center", paddingLeft: "20px", marginTop: "" }}  >
 
-                              <SaveContent url={item.url} />
+                            <div style={{ display: "flex", content: "center", paddingLeft: "20px", marginTop: "" }}  >
+                              {index==0?<div></div> :
+
+                              <SaveContent url={item.url} /> }
+                              {index==0?<div></div> :
                               <Like url={item.url} />
+              }
 
                             </div>
 
@@ -190,7 +201,9 @@ function ExplorePage() {
                         </div>
                         <div class="col-md-8">
                           <div className="reportwrapper" style={{ float: "right", display: "inline-block", marginTop: "13px", color: "black" }} >
+                          {index==0?<div></div> :
                             <Block url={item.url} />
+                          }
                           </div>
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
