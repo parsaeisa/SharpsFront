@@ -18,6 +18,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import ShowMoreText from 'react-show-more-text';
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 const drawerWidth = 240;
 
 
@@ -178,14 +179,20 @@ function ExplorePage() {
                   <div style={{ spacing: "50%" }}>
                     <div class="card mb-3 " >
                       <div class="row no-gutters">
+                      {/* <div className="backButton" style={{height:"60px", fontSize:"20px", paddingTop:"15px", color:"#e3e3e3"}}>
+                                        <a  href={"//" + item.url}  ><ArrowBackIcon /> </a>
+                                        </div> */}
                         <div class="col-md-4" >
                           <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..." ></img>
                         
   </div>
                     <div class="col-md-8">
+                    <div className="reportwrapper" style={{ float: "right", display:"inline-block", marginTop:"9px",color:"black" }} >
+                    <Block url={item.url}  />
+                                            </div>
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
-                            <p class="card-text"  style={{whitespacing:"pre-lines", display:"inline"}}>
+                            <p class="card-text"  style={{ display:"inline",whiteSpace: "pre-line" }}>
                              
                             <ShowMoreText
                                 lines={2}
@@ -197,7 +204,7 @@ function ExplorePage() {
                                 anchorClass='my-anchor-css-class'
                                 expanded={false}
                                 keepNewLines = {true}
-                                 width={500}
+                                  width={500}
                             >
                             {item.des} 
                             </ShowMoreText>
@@ -205,9 +212,8 @@ function ExplorePage() {
                             <div>
                             {/* <a href={"//" + item.url} class="stretched-link" /> */}
                             </div>
-                          </div>
-                          <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">
-                            <div style={{ display: "flex",content:"center", height: "40px", marginBottom: "2px",paddingLeft:"20px" }}  >
+                          <div class="card-footer "style={{paddingBottom:"0%",paddingBottom:"10%" }} >
+                            <div style={{ display: "flex",content:"center",paddingLeft:"20px"}}  >
 
 <SaveContent url={item.url}  />
 <Like url={item.url}   />
@@ -215,6 +221,8 @@ function ExplorePage() {
           
         </div>
                            
+</div>
+
 </div>
                         </div>
                       </div>
