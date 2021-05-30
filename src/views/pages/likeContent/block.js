@@ -44,13 +44,7 @@ class Block extends React.Component {
 
     }
     
-//    handleCloseSnack =(event, reason) => {
-//     if (reason === "clickaway") {
-//       return;
-//     }
-    
-//     this.setState({openSnack:false});
-//   }
+    handleClose =() =>{ this.setState({openSnack:false})};
 
     updateblock() {
 
@@ -124,8 +118,8 @@ class Block extends React.Component {
                 <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={this.state.openSnack}
-        autoHideDuration={2500}
-        // onClose={this.handleCloseSnack()}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
         message={<div style={{ fontSize: 17 }}>{this.state.massage}</div>}
       />
 
