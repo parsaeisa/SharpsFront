@@ -154,19 +154,27 @@ class Edit_profile extends React.Component {
                   <Accordion>
                      <AccordionSummary expandIcon={<ExpandMoreIcon />} > Email :  </AccordionSummary >
                      <AccordionDetails >
-                  <TextField disabled className ="TextField" value={this.props.email} onChange={(e) => {this.props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" role="EmailTextField" />
-                  <ul style={{width : '50%'}}><li>
-                  <Typography variant="subtitle1" style={{marginTop : '5px'}}>                  
-                    Your email would be used to communicate with you . 
-                  </Typography>
-                  </li>
-                  </ul>
+                       <Grid container>
+                    <Grid item xs={12} md={12} lg={6} >
+                      <TextField disabled className ="TextField" value={this.props.email} onChange={(e) => {this.props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" role="EmailTextField" />
+                    </Grid>
+                    <Grid item xs={12} lg={6} md={12} >
+                    {/* <ul style={{width : '50%'}}><li> */}
+                      <Typography variant="subtitle1" style={{marginTop : '5px'}}>                  
+                        Your email would be used to communicate with you . 
+                      </Typography>
+                    </Grid>
+                    </Grid>
+                  {/* </li>
+                  </ul> */}
                   </AccordionDetails>
                  </Accordion> 
                  <Accordion>
                      <AccordionSummary expandIcon={<ExpandMoreIcon />} >Password :  </AccordionSummary >
                      <AccordionDetails >
-                
+                  
+              <Grid container>
+                <Grid item xs={12} md={12} lg={6} >
                   <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
@@ -187,7 +195,8 @@ class Edit_profile extends React.Component {
                       labelWidth={70}
                     />
                   </FormControl>
-                  
+                  </Grid>
+                  <Grid item xs={12} md={12} lg={6} >
                   <FormControl className={clsx(classes.margin, classes.textField)} style={{marginleft : "5px"}} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Confirm</InputLabel>
                     <OutlinedInput 
@@ -210,6 +219,8 @@ class Edit_profile extends React.Component {
                       labelWidth={70}
                     />
                   </FormControl>
+                  </Grid>
+                </Grid>
                 </AccordionDetails>
                 </Accordion>
                 <Accordion>
