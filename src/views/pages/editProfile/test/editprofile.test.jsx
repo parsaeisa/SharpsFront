@@ -30,8 +30,7 @@ test('display dialog after clicking on button' , async() => {
     render(<Provider store={store} >
             <Edit_profile />
             </Provider>
-        );    
-    fireEvent.click(screen.getByText('Edit Profile'))    
+        );        
     
     await waitFor(() => screen.getByText('Save'));
     // await waitFor(() => screen.getByText('Add photo'));    
