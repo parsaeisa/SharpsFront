@@ -131,7 +131,7 @@ class Edit_profile extends React.Component {
                  {this.props.avatar != "undefined" ? <> <Avatar /> </> : <CircularProgress
                   style={{marginBottom : "15px"}}
                  color="#0f0b3e" /> }              
-                   <Accordion>
+                   <Accordion className = "Accordion">
                      <AccordionSummary 
                      expandIcon={<ExpandMoreIcon />}>
                       {this.state.last_state ? this.state.last_state.firstname : "Name :" }

@@ -99,6 +99,13 @@
     width: 430px;
 }
 
+.Avatar {
+    position:  relative;
+    margin-top: -115px;
+    border-radius: 100px;
+    border-style: dotted;
+}
+
 .paper {
     /* margin-top: 24 ; */
     /* margin-bottom: 24 ; */
