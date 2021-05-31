@@ -19,7 +19,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
-
+import ShowMoreText from 'react-show-more-text';
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 const drawerWidth = 240;
@@ -158,8 +158,22 @@ function ViewSaveContent() {
                         <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
-                            {console.log(item.title)}
-                            <p class="card-text"> {item.des} </p>
+                           
+                            <p class="card-text" style={{ display: "inline", whiteSpace: "pre-line" }}>
+
+<ShowMoreText
+  lines={2}
+  more='Show more'
+  less='Show less'
+  className='content-css'
+  anchorClass='my-anchor-css-class'
+  expanded={false}
+  keepNewLines={true}
+  width={500}
+>
+  {item.des}
+</ShowMoreText>
+</p>
                             <a href={"//" + item.url} class="stretched-link" />
                           </div>
                         </div>
