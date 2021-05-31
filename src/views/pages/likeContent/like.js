@@ -7,6 +7,8 @@ import tokenConfig from '../../../utils/tokenConfig';
 import axios from 'axios' ;
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from 'react-router-dom';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
 class Like extends React.Component {
@@ -29,41 +31,39 @@ class Like extends React.Component {
         // this.handleCloseSnack = this.handleCloseSnack.bind(this);
 
     }
-    
-//    handleCloseSnack =(event, reason) => {
-//     if (reason === "clickaway") {
-//       return;
-//     }
-    
-//     this.setState({openSnack:false});
-//   }
 
-    updatelike() {
-
-        if (!this.state.updated) {
-            this.setState((prevState, props) => {
-                return {
-                    updated: true
-                };
-
-            });
-
-        } else {
-
-            this.setState((prevState, props) => {
-                return {
-                    updated: false
-
-                };
-            });
-
-        }
+handleClose =() =>{ this.setState({openSnack:false})};
 
 
+updatelike() {
+     
+
+    if (!this.state.updated) {
+        this.setState((prevState, props) => {
+            return {
+                updated: true
+            };
+
+        });
         this.content();
+
+    } else {
+
+        this.setState((prevState, props) => {
+            return {
+                updated: false
+                
+
+            };
+        });
+        this.unlike();
 
     }
 
+
+  
+
+}
     content() {
       
       
@@ -98,8 +98,39 @@ class Like extends React.Component {
 
        
     }
+    unlike() {
 
+        var myHeaders = new Headers();
 
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem('token'));
+        myHeaders.append("Content-Type","application/json")
+
+        var UserCourse = {}
+        UserCourse.url = this.props.url;
+        UserCourse.eventType ="UNLIKE";
+      
+        var raw = JSON.stringify(UserCourse);
+
+        fetch(serverURL() + "userHistory", {
+
+            method: 'POST',
+            body: raw,
+            headers: myHeaders
+        }
+        ).then((res) => {
+            console.log(res.status);
+            if (res.status === 201){
+                this.setState({openSnack:true});
+
+                this.setState({massage:"unliked"});
+
+            return res.json();
+            }
+
+        }).then((res) => console.log(res));
+
+       
+    }
 
       componentDidMount() {
         this.getlike();
@@ -136,12 +167,13 @@ class Like extends React.Component {
             
             <div>
 
-        <i className="material-icons " onClick={() => { this.updatelike() }}> <ThumbUpAltIcon></ThumbUpAltIcon></i>
+<i className="material-icons "  style={{color:this.state.updated ? "red": "black"}} onClick={() => { this.updatelike() }}> {this.state.updated ?<FavoriteIcon></FavoriteIcon> : 
+ <FavoriteBorderIcon></FavoriteBorderIcon> }</i>
                 <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={this.state.openSnack}
-        autoHideDuration={500}
-        // onClose={this.handleCloseSnack()}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
         message={<div style={{ fontSize: 17 }}>{this.state.massage}</div>}
       />
             </div>

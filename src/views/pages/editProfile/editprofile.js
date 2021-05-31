@@ -20,8 +20,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
 import callapi_editprofile_get from './callapi_editprofile.js/callapi_editprofile_get' ;
 import DeleteAccountModal from './components/Deactivate' ;
-import 'antd/dist/antd.css';
-import { Collapse } from 'antd';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import 'antd/dist/antd.css';
+// import { Collapse } from 'antd';
 
 import '../../styles/edit_profile.css' ;
 import Avatar from './components/Avatar';
@@ -76,7 +80,7 @@ class Edit_profile extends React.Component {
     
     function callback(key) {      
     }  
-    const {Panel} = Collapse ;
+    // const {Panel} = Collapse ;
 
     const handleChange = (prop) => (event) => {
       this.setState({values : { ...this.state.values, [prop]: event.target.value }});
@@ -109,7 +113,6 @@ class Edit_profile extends React.Component {
                   </Grid>                  
                 </Grid>
                                 
-                                 
             <Container maxWidth="lg"  className="container">
               <SuccessAlert 
                 show={this.state.showSuccessAlert}
@@ -123,17 +126,30 @@ class Edit_profile extends React.Component {
                  
                  {this.props.avatar != "undefined" ? <> <Avatar /> </> : <CircularProgress
                   style={{marginBottom : "15px"}}
-                 color="#0f0b3e" /> }
-              <Collapse data-testid="Collapse" onChange={callback}>              
-                <Panel style={{textAlign: "left"}}  header= {this.state.last_state ? this.state.last_state.firstname : "Name :" }
-                 key="1">
-                  <TextField className ="TextField" onChange={(e) => {this.props.SET_FIRSTNAME(e.target.value)}} value={this.props.firstname} label="FirstName" variant="outlined" role="FirstnameTextField" />
-                  <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" role="LastnameTextField" />
-                </Panel>
-                <Panel style={{textAlign: "left"}} header="Username :" key="2">
+                 color="#0f0b3e" /> }              
+                   <Accordion>
+                     <AccordionSummary 
+                     expandIcon={<ExpandMoreIcon />}>
+                      {this.state.last_state ? this.state.last_state.firstname : "Name :" }
+                     </AccordionSummary >
+                     <AccordionDetails>
+                      <TextField className ="TextField" onChange={(e) => {this.props.SET_FIRSTNAME(e.target.value)}} value={this.props.firstname} label="FirstName" variant="outlined" role="FirstnameTextField" />
+                      <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" role="LastnameTextField" />
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                     <AccordionSummary  expandIcon={<ExpandMoreIcon />}> 
+                     Username :                
+                  </AccordionSummary >
+                  <AccordionDetails >
                   <TextField disabled className ="TextField" id="outlined-basic" value={this.props.username} onChange={(e) => {this.props.SET_USERNAME(e.target.value)}} label="Username" variant="outlined" role="UsernameTextField"/>
-                </Panel>
-                <Panel style={{textAlign: "left"}} header="Email : " key="3">
+                {/* </Panel> */}
+                {/* <Panel style={{textAlign: "left"}} header="Email : " key="3"> */}
+                </AccordionDetails>
+                  </Accordion>
+                  <Accordion>
+                     <AccordionSummary expandIcon={<ExpandMoreIcon />} > Email :  </AccordionSummary >
+                     <AccordionDetails >
                   <TextField disabled className ="TextField" value={this.props.email} onChange={(e) => {this.props.SET_EMAIL(e.target.value)}} id="outlined-basic" label="Email" variant="outlined" role="EmailTextField" />
                   <ul style={{width : '50%'}}><li>
                   <Typography variant="subtitle1" style={{marginTop : '5px'}}>                  
@@ -141,8 +157,12 @@ class Edit_profile extends React.Component {
                   </Typography>
                   </li>
                   </ul>
-                </Panel>
-                <Panel style={{textAlign: "left"}} header="Password : " key="4">
+                  </AccordionDetails>
+                 </Accordion> 
+                 <Accordion>
+                     <AccordionSummary expandIcon={<ExpandMoreIcon />} >Password :  </AccordionSummary >
+                     <AccordionDetails >
+                
                   <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
@@ -186,9 +206,15 @@ class Edit_profile extends React.Component {
                       labelWidth={70}
                     />
                   </FormControl>
-
-                </Panel>
-                <Panel style={{textAlign: "left"}} header="deactivate" key="5">                    
+                </AccordionDetails>
+                </Accordion>
+                <Accordion>
+                     <AccordionSummary
+                     expandIcon={<ExpandMoreIcon />}
+                      > Deactivate </AccordionSummary >
+                     <AccordionDetails >
+                {/* </Panel>
+                <Panel style={{textAlign: "left"}} header="deactivate" key="5">                     */}
                     <Button onClick= {() => {
                       this.setState({
                         deleteAccountModalOpen : true
@@ -203,8 +229,10 @@ class Edit_profile extends React.Component {
                         deleteAccountModalOpen : false
                       })
                     }} />
-                </Panel>
-              </Collapse>                      
+                 </AccordionDetails >   
+                 </Accordion >
+                {/* </Panel>
+              </Collapse>                       */}
                         
             <div className="wrapper">
                 <Button disabled={this.state.loading}  size="large" className="Button" variant="contained" color="primary"

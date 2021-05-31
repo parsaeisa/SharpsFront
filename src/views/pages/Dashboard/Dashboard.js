@@ -1,23 +1,20 @@
 import React from 'react';
+import Divider from '@material-ui/core/Divider';
 import clsx from 'clsx';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Badge from '@material-ui/core/Badge';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Container from '@material-ui/core/Container';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux' ;
 import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -62,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       }),
     },
     appBarShift: {
-      marginLeft: drawerWidth,
+      // marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
@@ -81,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
       position: 'relative',
       whiteSpace: 'nowrap',
-      width: drawerWidth,
+      // width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -147,36 +144,7 @@ function Dashboard(props) {
         return (
             <>
                 <div className={classes.root}>
-                    <CssBaseline />
-                    <AppBar style={{ background: '#0f0b3e' }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-                        <Toolbar className="toolbar">
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-                        >
-                            <MenuIcon />    
-                        </IconButton>                                         
-                        <IconButton color="inherit" 
-                         className = "appBarOptions" 
-                        >
-                            <Badge badgeContent={4} color="secondary">
-                            <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                        <Avatar alt="Remy Sharp" 
-                            src={avatar != null && avatar != "https://i.stack.imgur.com/l60Hf.png" && atob(avatar) }                             
-                            className = "appBarOptions" />
-                        <Typography component="h4" variant="subtitle1" color="inherit" noWrap  >                            
-                            {name}
-                        </Typography>
-
-                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
-                        </Typography>       
-                        </Toolbar>
-                    </AppBar>
+                    <CssBaseline />                    
                     <Drawer 
                         variant="permanent"
                         classes={{
@@ -185,67 +153,94 @@ function Dashboard(props) {
                         open={open}
                     >
                         <div className={classes.toolbarIcon}>
-                        <Typography syle={{marginLeft : "70px"}} variant="h6" noWrap>
-                            𝓼𝓱𝓪𝓻𝓹
-                        </Typography>
                         <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
                         </Typography>       
-                        <IconButton onClick={handleDrawerClose}>
+                        {/* <Typography syle={{padding : "70px"}} variant="h6" noWrap>
+                            𝓼𝓱𝓪𝓻𝓹
+                        </Typography> */}
+                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
+                        </Typography>       
+                        <IconButton onClick={() => {
+                          setOpen(!open);
+                        }}>
                             <ChevronLeftIcon />
                         </IconButton>
                         </div>                                            
                     <div className={classes.drawerContainer} >
-                        <List style ={{paddingTop: '0px'}}>
+                        <List style ={{ paddingTop: '0px'}}>
                         <li>
-                          <Link to ="/explore" >
+                          {/* <Grid container direction="row" >                             */}
+                          <ListItem button >
+                            <ListItemIcon>
+                              <Avatar
+                                  src={avatar != null && avatar != "https://i.stack.imgur.com/l60Hf.png" && atob(avatar) }                             
+                                  className = "appBarOptions" />
+                            </ListItemIcon>                            
+                                <Typography variant="button" style={{ marginLeft:'2px' , color: "white" }}>  
+                                    {name}
+                                </Typography>                            
+                          </ListItem>
+                        </li>
+                        <Divider  variant="inset" component="li" className ="Divider" />
+                        <li>
+                          <Link to ="/explore" onClick={() => {
+                              setOpen(false);
+                            }} >
                             <ListItem button key="Homme">
                                 <ListItemIcon>
                                 <HomeIcon> </HomeIcon>
                                 </ListItemIcon>
-                                <Typography variant="button" style={{ color: "black" }}>
+                                <Typography variant="button" style={{ color: "white" }}>
                                     Home
                                 </Typography >
                             </ListItem >
                           </Link>
                         </li>
                         <li>
-                            <Link to ="/profile/edit" >
+                            <Link to ="/profile/edit" onClick={() => {
+                              setOpen(false);
+                            }} >
                                 <ListItem button key="Profile">
                                 <ListItemIcon>
                                     <AccountCircleIcon></AccountCircleIcon>
                                 </ListItemIcon>                                                  
-                                <Typography variant="button" style={{ color: "black" }}>
+                                <Typography variant="button" style={{ color: "white" }}>
                                     Edit profile
                                 </Typography >
                                 </ListItem>
                             </Link>
-                        </li>
+                        </li>                      
                         <li>
-                            <Link to ="/profile/analytics" >
+                            <Link to ="/profile/analytics" onClick={() => {
+                              setOpen(false);
+                            }} >
                                 <ListItem button key="Profile">
                                 <ListItemIcon>
                                     <EqualizerIcon/>
                                 </ListItemIcon>                                                  
-                                <Typography variant="button" style={{ color: "black" }}>
+                                <Typography variant="button" style={{ color: "white" }}>
                                     Analytics
                                 </Typography >
                                 </ListItem>
                             </Link>
                         </li>
                         <li>
-                          <Link to ="/saved" >
+                          <Link to ="/saved" onClick={() => {
+                              setOpen(false);
+                            }}>
                             <ListItem button key="Saved">
                                 <ListItemIcon>
                                 <TurnedInIcon></TurnedInIcon>
                                 </ListItemIcon>
-                                <Typography variant="button" style={{ color: "black" }}>
+                                <Typography variant="button" style={{ color: "white" }}>
                                     Saved
                                 </Typography >
 
                             </ListItem>
                           </Link>
-                        </li>
-                        <ListItem button key="Logout">
+                        </li>                        
+                        <div className = "DrawerSpacer" />
+                        <ListItem button key="Logout" >
                             <ListItemIcon>
                             <ExitToAppIcon></ExitToAppIcon>
                             </ListItemIcon>
@@ -253,15 +248,9 @@ function Dashboard(props) {
                         </ListItem>
                         </List>
                     </div>
-                    </Drawer>
-                    {/* <main
-                    className={clsx(classes.content, {
-                        [classes.contentShift]: this.state.open,
-                    })}
-                    >
-                        <div className="appBarSpacer" /> */}
+                    </Drawer>                    
                         <main className={classes.content}>
-                        <div className="appBarSpacer" />
+                        {/* <div className="appBarSpacer" /> */}
                         <Container maxWidth="lg" className={classes.container}>
                             <Switch>
 

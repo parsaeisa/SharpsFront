@@ -8,8 +8,24 @@ import axios from 'axios' ;
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter } from 'react-router-dom';
 import BlockIcon from '@material-ui/icons/Block';
+import Dropdown from 'react-bootstrap/Dropdown';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-
+const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    <a
+      href=""
+      ref={ref}
+      onClick={e => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+      {children}
+      <span class="material-icons" style={{color:"black"}}>
+  <MoreVertIcon></MoreVertIcon>
+  </span>
+    </a>
+  ));
 class Block extends React.Component {
 
     constructor(props) {
@@ -28,13 +44,7 @@ class Block extends React.Component {
 
     }
     
-//    handleCloseSnack =(event, reason) => {
-//     if (reason === "clickaway") {
-//       return;
-//     }
-    
-//     this.setState({openSnack:false});
-//   }
+    handleClose =() =>{ this.setState({openSnack:false})};
 
     updateblock() {
 
@@ -104,16 +114,25 @@ class Block extends React.Component {
             
             <div>
 
-        <i className="material-icons " onClick={() => { this.updateblock() }}> <BlockIcon></BlockIcon></i>
+        {/* <i className="material-icons " onClick={() => { this.updateblock() }}> <BlockIcon></BlockIcon></i> */}
                 <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={this.state.openSnack}
-        autoHideDuration={2500}
-        // onClose={this.handleCloseSnack()}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
         message={<div style={{ fontSize: 17 }}>{this.state.massage}</div>}
       />
-            </div>
 
+                                                               
+ <Dropdown>
+<Dropdown.Toggle  as={CustomToggle}></Dropdown.Toggle>
+<Dropdown.Menu>
+<Dropdown.Item onClick={() => { this.updateblock() }}> block</Dropdown.Item>
+</Dropdown.Menu>
+</Dropdown> 
+
+                                         
+</div>
         );
 
     }
