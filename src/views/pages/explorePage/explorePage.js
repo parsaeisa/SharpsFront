@@ -68,6 +68,21 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  appBar: {
+    // zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },  
   inputRoot: {
     color: 'inherit',
   },
@@ -96,6 +111,8 @@ function ExplorePage() {
   const [openAdvancedSearch , setOpenAdvancedSearch]   = useState(false);
   const [searchMode , setSearchMode] = useState("") ;
 
+  const [isSearched , setIsSearched ] = useState(false);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -106,7 +123,12 @@ function ExplorePage() {
 
 
   useEffect(async () => {
-    fetchData()
+    if(isSearched == false)
+    {
+      fetchData();
+      setIsSearched(true);
+    }      
+
   });
 
   const fetchData = () => {
@@ -167,15 +189,20 @@ function ExplorePage() {
                             <InputBase
                               className={classes.input}
                               placeholder="Search Content"
-                              inputProps={{ 'aria-label': 'search' }}
+                              // inputProps={{ 'aria-label': 'search' }}
                               onChange = {(e) => {
                                 setSearched(e.target.value);
                               }}
                             />
-                            <IconButton onClick = { async () => {
+                            <IconButton onClick = {async () => {
                                 // set(await callapi_explore_search(searched));
+                                const search_respoonse = await callapi_explore_search(searched  , searchMode);
+                                setContent((prevState) => ({                                  
+                                  items: search_respoonse.items,
+                                  total: search_respoonse.total
+                                }));
                             }}  
-                            type="submit" className={classes.iconButton} aria-label="search">
+                             className={classes.iconButton} >
                               <SearchIcon />
                             </IconButton>
                             <Divider className={classes.divider} orientation="vertical" />                            
