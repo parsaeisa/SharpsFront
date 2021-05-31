@@ -19,7 +19,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState, useEffect } from "react";
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
-
+import ShowMoreText from 'react-show-more-text';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 const drawerWidth = 240;
@@ -97,6 +98,10 @@ function ViewSaveContent() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState({ items: [], total: "" });
+  const [contentGet , setContentGet] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [nextPage, SetNextPage] = useState(serverURL() + "user/savedContents?skip=0&limit=10");
+  const [value, setValue] = useState(0);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,19 +113,25 @@ function ViewSaveContent() {
 
 
   useEffect(async () => {
-    fetchData()
-  });
+    console.log("sanaooooo")
+    if(contentGet === false)
+    {
+      fetchData();
+      setContentGet(true);
+      console.log(contentGet+"")
+
+    }
+  },[]);
 
   const fetchData = () => {
 
-    fetch(serverURL() + "user/savedContents", {
+    fetch(nextPage, {
       method: 'GET',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('token')
       }
     })
       .then((result) => {
-        console.log(result)
         if (result.status === 200) {
           return result.json()
         }
@@ -137,15 +148,32 @@ function ViewSaveContent() {
           total: response.total
         }))
         // console.log("data"+ response.items)
+        // console.log("data")
+        // setValue(value + 10)
+        // SetNextPage(serverURL() + "user/savedContents?skip=" + value + "&limit=10&showAds=true");
       });
     }
-   { console.log("data"+ content.items)}
+  
   return (
     <div>
       <div className={classes.root}>
         <CssBaseline />
         
           <div className="explore">
+          <InfiniteScroll
+            scrollThreshold="90%"
+            dataLength={content.items.length}
+
+            next={fetchData()}
+            hasMore={hasMore}
+            loader={
+              //  <h4>Loading...</h4>
+              <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
+                <div className="loading" />
+              </div>
+            }
+            endMessage={null
+            }>
             {content.length === 0 ? <div></div> :
               content.items.map((item) => {
                 if (item) return (
@@ -158,8 +186,22 @@ function ViewSaveContent() {
                         <div class="col-md-8">
                           <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
-                            {console.log(item.title)}
-                            <p class="card-text"> {item.des} </p>
+                           
+                            <p class="card-text" style={{ display: "inline", whiteSpace: "pre-line" }}>
+
+<ShowMoreText
+  lines={2}
+  more='Show more'
+  less='Show less'
+  className='content-css'
+  anchorClass='my-anchor-css-class'
+  expanded={false}
+  keepNewLines={true}
+  width={500}
+>
+  {item.des}
+</ShowMoreText>
+</p>
                             <a href={"//" + item.url} class="stretched-link" />
                           </div>
                         </div>
@@ -168,7 +210,7 @@ function ViewSaveContent() {
                   </div>
                 )
               })}
-
+ </InfiniteScroll>
           </div>    
           </div>
           </div>

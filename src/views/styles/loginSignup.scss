@@ -1,10 +1,4 @@
-// .root {
-//   background: linear-gradient(
-//     150deg,
-//     rgba(13, 73, 114, 1) 0%,
-//     rgba(26, 1, 28, 1) 100%
-//   );
-// }
+
 .centered {
   position: absolute  ;
   top: 50%  ;
@@ -36,8 +30,6 @@
   width: 60%;
   height: 75%;
   border-radius: 15%;
-  box-shadow: 100%;
-  box-shadow: black;
 }
 .layout {
   margin-bottom: 20%;
@@ -56,28 +48,18 @@
   width: 100%;
   height: 100%;
   .backgroundDiv{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-image: url("./bigdatalightblur2.png");
     background-repeat: no-repeat;
     background-size: cover;
   }
   
-.photo_login {
-  position: absolute;
-  background-color: black;
-  background-position: center;
-  background-size: cover;
-  width: 50%;
-  float: left;
-  top: -8%;
-  left: -6%;
-  height: 100%;
-}
 
   .photo_login {
+    box-shadow: 0px 0px 7px 0px #9c5a448c;
     position: absolute;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.484);
     background-position: center;
     background-size: cover;
     width: 50%;
@@ -93,9 +75,9 @@
     }
   
     to {
-      text-shadow: 0 0 20px #fff, 0 0 30px rgb(51, 51, 51),
-        0 0 40px rgb(31, 31, 31), 0 0 50px rgb(0, 0, 0),
-        0 0 60px rgb(12, 12, 12);
+      text-shadow: 0 0 20px rgb(243, 158, 130), 0 0 30px rgb(189, 109, 83)aa,
+        0 0 40px #502313, 0 0 50px #9c5a44,
+        0 0 60px #000000;
     }
   }
 .start-text1{
@@ -154,7 +136,7 @@
     position: relative;
     top: 7%;
     font-size: 40px;
-    color: black;
+    color: rgba(0, 0, 0, 0.76);
     // animation: glowD 1s ease-in-out infinite alternate;
   }
   
@@ -168,10 +150,11 @@
     font-size: 13px  ;
   }
   .buttonMain:hover {
-    background-color: rgba(186, 187, 179, 0.534)  ;
+    background-color: rgba(186, 187, 179, 0.39)  ;
   }
   .loginform {
-    background-color: whitesmoke;
+    box-shadow: 0px 0px 7px 0px #9c5a448c;
+    background-color: rgba(245, 245, 245, 0.484);
     width: 50%;
     float: right;
     position: absolute;
@@ -186,7 +169,8 @@
   
 
   .signupform {
-    background-color: whitesmoke  ;
+    box-shadow: 0px 0px 7px 0px #9c5a448c;
+    background-color: rgba(245, 245, 245, 0.484);
     width: 50%;
     float: left;
     top: -8%;
@@ -211,7 +195,7 @@
   
   .signupforms {
     width: 103%  ;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.356);
     font-size: 17px;
     border-color: black;
     border-width: 1px;
@@ -219,7 +203,7 @@
   }
   
   .loginforms {
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.356);
     font-size: 17px;
     border-color: black;
     border-width: 1px;
@@ -242,26 +226,26 @@
   .loginB {
     width: 100%;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.356);
     font-size: 17px;
     border-color: black;
     border-width: 1px;
     color: black;
   }
   .loginB:hover {
-    background-color: rgba(186, 187, 179, 0.534);
+    background-color: rgba(186, 187, 179, 0.39);
   }
   .signupB {
     width: 102%;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.356);
     font-size: 17px;
     border-color: black;
     border-width: 1px;
     color: black;
   }
   .signupB:hover {
-    background-color: rgba(186, 187, 179, 0.534);
+    background-color: rgba(186, 187, 179, 0.39);
   }
   .forgotpassword {
     margin-top: 15px;
@@ -305,7 +289,7 @@
   width: 100%;
   height: 100%;
   .backgroundDiv{
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-image: url("./bigdatadarkblur2.png");
     background-repeat: no-repeat;
@@ -313,8 +297,9 @@
   }
   
 .photo_login {
+  box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 0.5);
   position: absolute;
-  background-color: black;
+  background-color:rgba(0, 0, 0, 0.473) ;
   background-position: center;
   background-size: cover;
   width: 50%;
@@ -397,7 +382,7 @@
   position: relative;
   top: 60%;
   text-align: center;
-  border-color: #c0c0c0  ;
+  border-color: rgba(245, 245, 245, 0.450)  ;
   border-radius: 0  ;
   font-size: 13px  ;
 }
@@ -405,7 +390,8 @@
   background-color: #c0c0c06b  ;
 }
 .loginform {
-  background-color: black;
+  box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 0.5);
+  background-color:rgba(0, 0, 0, 0.473) ;
   width: 50%;
   float: right;
   position: absolute;
@@ -418,7 +404,8 @@
 }
 
 .signupform {
-  background-color: black  ;
+  box-shadow: 0px 0px 7px 0px rgba(255, 255, 255, 0.5);
+  background-color:rgba(0, 0, 0, 0.473) ;
   width: 50%;
   float: left; 
    top: -8%;
@@ -441,17 +428,18 @@
 
 .signupforms {
   width: 103%  ;
-  background-color: black;
+  background-color:rgba(0, 0, 0, 0.473) ;
+  opacity: 1 !important;
   font-size: 17px;
-  border-color: whitesmoke;
+  border-color: rgba(245, 245, 245, 0.450);
   border-width: 1px;
   border-radius: 0;
 }
 
 .loginforms {
-  background-color: black;
+  background-color:rgba(0, 0, 0, 0.473) ;
   font-size: 17px;
-  border-color: whitesmoke;
+  border-color: rgba(245, 245, 245, 0.450);
   border-width: 1px;
   border-radius: 0;
 }
@@ -474,29 +462,36 @@
 .loginB {
   width: 100%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: black;
+  background-color:rgba(0, 0, 0, 0.473) ;
   font-size: 17px;
-  border-color: whitesmoke;
+  border-color: rgba(245, 245, 245, 0.450);
   color: grey;
+   border-width: 1px;
 }
 .signupB {
   width: 102%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: black;
+  background-color:rgba(0, 0, 0, 0.473) ;
   font-size: 17px;
-  border-color: whitesmoke;
+  border-color: rgba(245, 245, 245, 0.450);
   color: grey;
+  border-width: 1px;
 }
-
+.loginB:hover{
+  background-color: #c0c0c03d;
+}
+.signupB:hover{
+  background-color: #c0c0c03d;
+}
 .forgotpassword {
   margin-top: 15px;
-  color: rgb(104, 104, 104);
+  color: rgba(245, 245, 245, 0.450);
   cursor: pointer;
   text-underline-position: below;
   text-decoration-thickness: 2px;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-color: rgb(104, 104, 104)  ;
+  text-decoration-color: rgba(245, 245, 245, 0.450)  ;
 }
 .forgotpassword:hover {
   transition: all 0.25s ease-in;
