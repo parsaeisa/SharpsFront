@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import Button from '@material-ui/core/Button';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -24,6 +25,7 @@ import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import SaveContent from "../saveContent/saveContent";
+import LinearBuffer from './component/progress_bar_search';
 const drawerWidth = 240;
 
 
@@ -110,6 +112,8 @@ function ExplorePage() {
   const [searched , setSearched] = useState("");
   const [openAdvancedSearch , setOpenAdvancedSearch]   = useState(false);
   const [searchMode , setSearchMode] = useState("") ;
+  const [searching , setSearching] = useState(false);
+  const [search , setSearch] = useState(false);
 
   const [isSearched , setIsSearched ] = useState(false);
 
@@ -195,8 +199,10 @@ function ExplorePage() {
                               }}
                             />
                             <IconButton onClick = {async () => {
-                                // set(await callapi_explore_search(searched));
+                                setSearching(true);
                                 const search_respoonse = await callapi_explore_search(searched  , searchMode);
+                                setSearching(false);
+                                setSearch(true);
                                 setContent((prevState) => ({                                  
                                   items: search_respoonse.items,
                                   total: search_respoonse.total
@@ -214,10 +220,19 @@ function ExplorePage() {
                             <FilterListIcon />
                           </IconButton >
 
+                          {search &&
+                          <Button className="Button" variant="contained" onClick={() => {
+                            fetchData();
+                            setSearch(false);                            
+                          }} color="secondary" autoFocus>
+                            cancel
+                          </Button> }
+
                         <Typography style={{flexGrow : '1'}} component="h1" variant="h6" color="inherit" noWrap>                            
                         </Typography>       
                         </Toolbar>
                     </AppBar>
+                    {searching && < LinearBuffer />}
       <div style={{height : '60px'}} />
       <div className={classes.root}>
         <CssBaseline />
