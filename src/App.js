@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
-import loginPage from "./views/pages/loginPage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 //  import loginPage from "./views/pages/loginPage";
@@ -17,7 +16,7 @@ import Dashboard from "./views/pages/Dashboard/Dashboard" ;
 
 import SaveContent from "./views/pages/saveContent/saveContent"
 import ViewSaveContent from "./views/pages/saveContent/viewSaveContent"
-
+import LandingPage from "./views/pages/Landing2/Total";
 import ProtectedRoute from "./core/ProtectedRoute";
 import { connect } from "react-redux";
 import Analytics from "./views/pages/Analytics/Analytics";
@@ -30,12 +29,9 @@ const App = ({ logged_in, darkmode }) => {
     <div className={darkmode=="day" ? 'App-day' : 'App-night'}>
       <Router history={history}>
         <Switch>
+        <Route path="/" exact component={LandingPage} />
           <Route path="/login_signup" exact component={LoginSignUp} />
 
-          <Route path="/" exact component={loginPage} />
-          <Route path="/login" exact component={loginPage} />
-
-      
             <Route path="/save" exact component={SaveContent} />
             <Route path="/saved" exact children={<Dashboard />} component={ViewSaveContent} />
           
