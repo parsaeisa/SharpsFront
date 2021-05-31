@@ -32,10 +32,6 @@
 .card {
   position: relative;    
 
-  /* align-items: center;
-  width: 90%;
-  height: 50%; */
-
 }
 .card-body {
   padding: 0.5em 1.2em;
@@ -91,7 +87,7 @@ a:link {
 .horizontal-card{
   position:relative;
   display: flex;
-  border:1px solid gray;
+  border:1px solid rgb(0, 0, 0);
   margin-bottom:1rem;
 }
 img{
