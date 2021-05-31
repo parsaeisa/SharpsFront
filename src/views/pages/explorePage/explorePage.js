@@ -6,15 +6,21 @@ import { makeStyles, useTheme, fade } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import { useState, useEffect, useCallback } from "react";
 =======
+=======
+import { useState, useEffect, useCallback } from "react";
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
 import AppBar from '@material-ui/core/AppBar';
-import { useState, useEffect } from "react";
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
+<<<<<<< HEAD
 >>>>>>> 37504de9a8362bf5fb687c616be0b85b3435e898
+=======
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
 import '../../styles/explorePage.css';
 import serverURL from '../../../utils/serverURL';
 import SearchIcon from '@material-ui/icons/Search';
@@ -31,14 +37,22 @@ import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import SaveContent from "../saveContent/saveContent";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ShowMoreText from 'react-show-more-text';
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+<<<<<<< HEAD
 =======
 import LinearBuffer from './component/progress_bar_search';
 >>>>>>> 37504de9a8362bf5fb687c616be0b85b3435e898
+=======
+import LinearBuffer from './component/progress_bar_search';
+
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
 const drawerWidth = 240;
 
 
@@ -144,6 +158,9 @@ function ExplorePage() {
 
   useEffect(async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
    
       if(contentGet == false)
       {
@@ -151,19 +168,30 @@ function ExplorePage() {
         setContentGet(true);
       }
     
+<<<<<<< HEAD
    
 
     // await timeout(20);
   }, []);
 =======
     if(isSearched == false)
+=======
+     if(isSearched == false)
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
     {
       fetchData();
       setIsSearched(true);
     }      
 
+<<<<<<< HEAD
   });
 >>>>>>> 37504de9a8362bf5fb687c616be0b85b3435e898
+=======
+    // await timeout(20);
+  }, []);
+
+
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
 
   const fetchData = () => {
 
@@ -281,6 +309,9 @@ function ExplorePage() {
         <CssBaseline />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
 
         {/* <div className={classes.drawerHeader} /> */}
         <div className="explore">
@@ -299,12 +330,17 @@ function ExplorePage() {
             }
             endMessage={null
             }>
+<<<<<<< HEAD
 =======
         
           <div className={classes.drawerHeader} />
 
           <div className="explore">
 >>>>>>> 37504de9a8362bf5fb687c616be0b85b3435e898
+=======
+
+        
+>>>>>>> 9aef2f55f5e98510450522dac6de000556692de1
             {content.length === 0 ? <div></div> :
               content.items.map((item,index) => {
                 if (item) return (
