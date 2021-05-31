@@ -6,10 +6,12 @@ import Adapter from 'enzyme-adapter-react-16';
 import { shallow , configure } from "enzyme";
 import { Provider } from "react-redux";
 import store from "../../../../core/store/index";
+import { StateMock } from '@react-mock/state';
 import Analytics from "../Analytics" ;
 import LineChart from "../components/Line_chart"  ;
 import DonatChart from "../components/Donat_chart";
 import BarChart from "../components/Bar_chart";
+import BlockedTable from '../components/blocked_links_table' ;
 
  describe('authenticate action', () => {
     
@@ -60,4 +62,46 @@ test('display Donat chart', () => {
 
 test('display bar chart' , () => {
     render(<BarChart />) 
+    expect(screen.getByText('favorite Links')).toBeInTheDocument() ;
+})
+
+
+test('display blocked addresses table ' , () => {
+    render(<BlockedTable />) 
+})
+
+const renderBlockedTable = (state) => render(
+    <StateMock state = {state} >
+        <BlockedTable />
+    </StateMock>
+);
+
+it ("show you haven't blocked " , async () => {
+    const {notblocked} = renderBlockedTable({blocked_domains : []});
+
+    expect(screen.getByText("You haven't blocked any domain .")).toBeInTheDocument() ;
+})
+
+it ("render blocked lists " , async () => {
+    const {notblocked} = renderBlockedTable({
+                blocked_domains : ['google.com' , 'facebook.com'] ,
+                selected : []
+            });
+
+    expect(screen.getByText("google.com")).toBeInTheDocument() ;
+    expect(screen.getByText("facebook.com")).toBeInTheDocument() ;
+
+    
+})
+
+it ("render selecteds to unblock" , async () => {
+    const {notblocked} = renderBlockedTable({
+                blocked_domains : ['google.com' , 'facebook.com'] ,
+                selected : ['google.com']
+            });
+
+    expect(screen.getByText("google.com")).toBeInTheDocument() ;
+    expect(screen.getByText("facebook.com")).toBeInTheDocument() ;
+
+    expect(screen.getByText("1 selected to be unblocked")).toBeInTheDocument() ;
 })
