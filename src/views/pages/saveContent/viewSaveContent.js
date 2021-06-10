@@ -24,7 +24,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import Block from "../likeContent/block";
-import SaveContent from "./saveContent"
+import SaveContent from "./saveContent";
+import Like from "../likeContent/like";
 
 const drawerWidth = 240;
 
@@ -188,6 +189,7 @@ function ViewSaveContent() {
                           <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">
                           <div style={{ display: "flex", content: "center", paddingLeft: "20px", marginTop: "" }}  >
                           <SaveContent url={item.url} />
+                          <Like url={item.url} />
                           </div>
 
                         </div>
