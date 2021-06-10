@@ -24,6 +24,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import Block from "../likeContent/block";
+import SaveContent from "./saveContent"
 
 const drawerWidth = 240;
 
@@ -184,6 +185,12 @@ function ViewSaveContent() {
                       <div class="row no-gutters">
                         <div class="col-md-4" >
                           <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
+                          <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">
+                          <div style={{ display: "flex", content: "center", paddingLeft: "20px", marginTop: "" }}  >
+                          <SaveContent url={item.url} />
+                          </div>
+
+                        </div>
                         </div>
                         <div class="col-md-8">
                         <div className="reportwrapper" style={{ float: "right", display: "inline-block", marginTop: "13px", color: "black" }} >
