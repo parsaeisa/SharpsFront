@@ -4,6 +4,7 @@ import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import TurnedInNotRoundedIcon from '@material-ui/icons/TurnedInNotRounded';
 import serverURL from '../../../utils/serverURL';
 import tokenConfig from  '../../../utils/tokenConfig';
+import Snackbar from "@material-ui/core/Snackbar";
 
 import { withRouter } from 'react-router-dom';
 
@@ -16,13 +17,18 @@ class SaveContent extends React.Component {
             url:"",   
             updated:false,
             items:[], 
-            total:""
+            total:"",
+            massage:"",
+            openSnack:false,
+
         }
 
 
         this.updatesave = this.updatesave.bind(this);
 
     }
+
+    handleClose =() =>{ this.setState({openSnack:false})};
     updatesave() {
 
         if (!this.state.updated) {
@@ -80,6 +86,11 @@ class SaveContent extends React.Component {
     }
         ).then((res) => {
             console.log(res.status);
+            if (res.status === 200){
+                this.setState({openSnack:true});
+
+                this.setState({massage:"saved"});
+            }
 
         }).then((res) => console.log(res));
     }
@@ -142,7 +153,10 @@ class SaveContent extends React.Component {
        }).then((res) => {
            console.log(res.status);
            if ( res.status === 200) {
-             
+                this.setState({openSnack:true});
+
+                this.setState({massage:"unsaved"});
+
            }
            console.log(res);
        }).then((res) => console.log(res));
@@ -154,7 +168,13 @@ class SaveContent extends React.Component {
             <div>
 
         <i className="material-icons "  onClick={() => { this.updatesave() }}>{ this.state.updated ? <TurnedInIcon></TurnedInIcon> :<TurnedInNotRoundedIcon></TurnedInNotRoundedIcon>}</i>
-
+        <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={this.state.openSnack}
+        autoHideDuration={2000}
+        onClose={this.handleClose}
+        message={<div style={{ fontSize: 17 }}>{this.state.massage}</div>}
+      />
             </div>
 
         );
