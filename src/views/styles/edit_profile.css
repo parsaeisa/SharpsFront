@@ -116,6 +116,11 @@
     width: 800px;    
 }
 
+.BlockedDomainsPaper {
+    padding-bottom : 10px ;
+    padding-top : 10px ;
+  }
+
 @media only screen and (max-width: 800px) {    
 
     .paper {        

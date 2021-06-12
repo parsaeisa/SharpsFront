@@ -9,9 +9,9 @@ import DonatChart from './components/Donat_chart';
 import LineChart from './components/Line_chart';
 import BarChart from './components/Bar_chart';
 import "../../styles/analytics.css";
-import BlockedTable from './components/blocked_links_table';
+// import BlockedTable from './components/blocked_links_table';
 import callapi_analytics_get from './callapi_analytics/callapi_analytics' ;
-import callapi_analytics_get_blockedDomains from './callapi_analytics/callapi_analytics_blockdomains';
+import callapi_analytics_get_blockedDomains from '../editProfile/callapi_editprofile.js/callapi_analytics_blockdomains';
 import CountUp from './components/CountUp' ;
 const drawerWidth = 240;
 
@@ -188,9 +188,9 @@ export default class Analytics extends React.Component {
               </Grid>
               <Grid item xs={12} md={8} lg={7}>
                 <Paper elevation={4} className="BlockedDomainsPaper">
-                  <BlockedTable
+                  {/* <BlockedTable
                     data ={this.state.blocked_domains}
-                  />
+                  /> */}
                 </Paper>
               </Grid>
             </Grid>

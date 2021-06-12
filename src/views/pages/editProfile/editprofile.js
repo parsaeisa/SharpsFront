@@ -17,6 +17,7 @@ import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 import Grid from '@material-ui/core/Grid';
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
+import callapi_analytics_get_blockedDomains from './callapi_editprofile.js/callapi_analytics_blockdomains';
 import store from "../../../core/store/index"
 import { makeStyles } from '@material-ui/core/styles';
 import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
@@ -28,6 +29,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import BackgroundFromBGjar from './components/BackgroundFromBGjar';
 import ProfileBackground from '../../../assests/ProfileBackground.svg'
+import BlockedTable from './components/blocked_links_table';
 // import 'antd/dist/antd.css';
 // import { Collapse } from 'antd';
 
@@ -43,6 +45,7 @@ class Edit_profile extends React.Component {
       callapi_editprofile_get()    
 
       this.state = {
+        blocked_domains : [] ,
         visible : false ,
         showSuccessAlert : false ,
         SuccesAlertText : "Profile has been changed succes fully " ,
@@ -63,8 +66,12 @@ class Edit_profile extends React.Component {
       }
     }
 
-    componentWillMount(){
-      
+    async componentWillMount(){
+      let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
+
+      this.setState({        
+        blocked_domains : blocked_domains
+      })
     }
 
     render()
@@ -301,7 +308,15 @@ class Edit_profile extends React.Component {
                 </Button > 
             </div>  
           </Container >
-            </Paper>          
+            </Paper>        
+
+            <Paper
+            style={{marginBottom : '30px'}}
+            className="paper" elevation={5} >
+              < BlockedTable 
+                date = {this.state.blocked_domains}
+                  />
+            </Paper>
       </>
     )  }  
 }
