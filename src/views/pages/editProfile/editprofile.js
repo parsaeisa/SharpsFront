@@ -15,6 +15,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 import Grid from '@material-ui/core/Grid';
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
 import store from "../../../core/store/index"
 import { makeStyles } from '@material-ui/core/styles';
 import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
@@ -31,8 +33,6 @@ import ProfileBackground from '../../../assests/ProfileBackground.svg'
 
 import '../../styles/edit_profile.css' ;
 import Avatar from './components/Avatar';
-import SuccessAlert from './components/Success_alert';
-import FailAlert from './components/fail_alert';
 
 class Edit_profile extends React.Component {        
                 
@@ -117,15 +117,32 @@ class Edit_profile extends React.Component {
                   </Grid>                  
                 </Grid>
                                 
-            <Container maxWidth="lg"  className="container">
-              <SuccessAlert 
-                show={this.state.showSuccessAlert}
-                text= {this.state.SuccesAlertText}
-                />
-              <FailAlert 
-                show={this.state.showFailureAlert}
-                text = {this.state.FailAlertText}
-                />
+            <Container maxWidth="lg"  className="container">              
+
+              <Snackbar
+                open={this.state.showSuccessAlert}
+                onClose={() => {
+                  this.setState({
+                    ...this.state,
+                    showSuccessAlert: false,
+                  });
+                }}
+                TransitionComponent={Fade}
+                message={this.state.SuccesAlertText}                
+              />              
+              <Snackbar
+                open={this.state.showFailureAlert}
+                onClose={() => {
+                  this.setState({
+                    ...this.state,
+                    showFailureAlert: false,
+                  });
+                }}
+                TransitionComponent={Fade}
+                message={this.state.FailAlertText}
+                // key={state.Transition.name}
+              />
+                
               
                  
                  {this.props.avatar != "undefined" ? <> <Avatar /> </> : <CircularProgress
