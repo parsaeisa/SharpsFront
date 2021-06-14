@@ -76,6 +76,7 @@ class Block extends React.Component {
 
 
         this.content();
+        this.setState({smShow:false});
 
     }
 
@@ -134,7 +135,7 @@ class Block extends React.Component {
  <Dropdown>
 <Dropdown.Toggle  as={CustomToggle}></Dropdown.Toggle>
 <Dropdown.Menu>
-<Dropdown.Item onClick={() => { this.updateblock() }}> block</Dropdown.Item>
+<Dropdown.Item  onClick={() =>   this.setState({smShow:true})}> block</Dropdown.Item>
 </Dropdown.Menu>
 </Dropdown> 
 
@@ -153,10 +154,10 @@ class Block extends React.Component {
     </DialogContentText>
   </DialogContent> */}
   <DialogActions>
-    <Button  color="primary">
+    <Button onClick={() => this.setState({smShow:false})} color="primary">
       Disagree
     </Button>
-    <Button  color="primary" autoFocus>
+    <Button   onClick={() => { this.updateblock() }} color="primary" autoFocus>
       Agree
     </Button>
   </DialogActions>
