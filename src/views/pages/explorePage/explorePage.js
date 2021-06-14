@@ -318,7 +318,7 @@ function ExplorePage() {
                               </ShowMoreText>
                             </p>
                             <div>
-                              {/* <a href={"//" + item.url} class="stretched-link" /> */}
+                              <a href={"//" + item.url} class="stretched-link" />
                             </div>
 
                           </div>
