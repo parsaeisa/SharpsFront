@@ -10,6 +10,12 @@ import { withRouter } from 'react-router-dom';
 import BlockIcon from '@material-ui/icons/Block';
 import Dropdown from 'react-bootstrap/Dropdown';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from "@material-ui/core/Button";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -35,7 +41,8 @@ class Block extends React.Component {
             updated: false,
             openSnack:false,
             massage:"",
-            domain:""
+            domain:"",
+            smShow:false
         }
 
 
@@ -131,7 +138,30 @@ class Block extends React.Component {
 </Dropdown.Menu>
 </Dropdown> 
 
-                                         
+<div>
+
+<Dialog
+  open={this.state.smShow}
+  onClose={() =>   this.setState({smShow:false})}
+  aria-labelledby="alert-dialog-title"
+  aria-describedby="alert-dialog-description"
+>
+  <DialogTitle id="alert-dialog-title">{"Are you sure you want to block this domain?"}</DialogTitle>
+  {/* <DialogContent>
+    <DialogContentText id="alert-dialog-description">
+     
+    </DialogContentText>
+  </DialogContent> */}
+  <DialogActions>
+    <Button  color="primary">
+      Disagree
+    </Button>
+    <Button  color="primary" autoFocus>
+      Agree
+    </Button>
+  </DialogActions>
+</Dialog>
+</div>                                            
 </div>
         );
 
