@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/explorePage.css';
+import '../../styles/explorePage.scss';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import serverURL from '../../../utils/serverURL';

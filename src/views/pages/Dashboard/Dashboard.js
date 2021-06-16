@@ -32,8 +32,9 @@ import {
     Link
   } from "react-router-dom";
 import Analytics from '../Analytics/Analytics';
-import "../../styles/Dashboard.css" ;
+import "../../styles/Dashboard.scss" ;
 import ViewSaveContent from '../saveContent/viewSaveContent';
+import * as darkmode_actions from "../../../core/dark_mode/action/darkModeActions";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -117,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Dashboard(props) {    
+function Dashboard({darkmode,setDarkMode}) {    
         const classes = useStyles();
         const [open, setOpen] = React.useState(true);
         const handleDrawerOpen = () => {
@@ -140,9 +141,17 @@ function Dashboard(props) {
             setOpen(false);
         };
         const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+        const setDarkStatus = () => {
+          console.log(darkmode);
+          if (darkmode === "day") {
+            setDarkMode("night");
+          } else {
+            setDarkMode("day");
+          }
+        };
         return (
-            <>
+          <div className={darkmode}>
+          
                 <div className={classes.root}>
                     <CssBaseline />                    
                     <Drawer 
@@ -172,11 +181,19 @@ function Dashboard(props) {
                           {/* <Grid container direction="row" >                             */}
                           <ListItem button >
                             <ListItemIcon>
+                            <div className="darkmode-icon" onClick={setDarkStatus}>
+            {darkmode == "day" && (
+                <img  className="darkmode" src="moon.svg"></img>
+              )}
+              {darkmode == "night" && (
+               <img  className="darkmode" src="sun.svg"></img>
+              )}
+                      </div>
                               <Avatar
                                   src={avatar != null && avatar != "https://i.stack.imgur.com/l60Hf.png" && atob(avatar) }                             
                                   className = "appBarOptions" />
                             </ListItemIcon>                            
-                                <Typography variant="button" style={{ marginLeft:'2px' , color: "white" }}>  
+                                <Typography variant="button" style={{ marginLeft:'2px' , color: "red" }}>  
                                     {name}
                                 </Typography>                            
                           </ListItem>
@@ -280,7 +297,7 @@ function Dashboard(props) {
                         </main>
                     </div>                                        
 
-            </> 
+            </div> 
         )
 
 }
@@ -289,8 +306,15 @@ const mapStateToProps = (state) => {
     return {
         ... state ,
         avatar : state.UserReducer.avatar ,
-        name : state.UserReducer.firstname +" " +  state.UserReducer.lastname         
+        name : state.UserReducer.firstname +" " +  state.UserReducer.lastname, 
+        darkmode: state.dark_mode.darkmode         
     }
 }
 
-export default connect (mapStateToProps) (Dashboard) ;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setDarkMode: (av) => dispatch(darkmode_actions.setDarkMode(av)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
