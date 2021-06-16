@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux' ;
 import { useHistory } from "react-router";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,7 +9,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import callapi_editprofile_deactivate from "../callapi_editprofile.js/callapi_editprofile_deactivate" ;
-import '../../../styles/edit_profile.css' ;
+import '../../../styles/edit_profile.scss' ;
 export default function DeleteAccountModal(props) {  
 
     const history = useHistory();

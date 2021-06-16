@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/explorePage.css';
+import '../../styles/explorePage.scss';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import TurnedInNotRoundedIcon from '@material-ui/icons/TurnedInNotRounded';
 import serverURL from '../../../utils/serverURL';

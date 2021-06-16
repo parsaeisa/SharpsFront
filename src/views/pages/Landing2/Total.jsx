@@ -45,13 +45,13 @@ const LandingPage = ({
             }
           },
           "color": {
-            "value": "#9c5a44"
+            "value": "#3d3f8bf6"
           },
           "shape": {
             "type": "circle",
             "stroke": {
               "width": 0,
-              "color": "#523228"
+              "color": "#3d3f8bf6"
             },
             "polygon": {
               "nb_sides": 5
@@ -80,7 +80,7 @@ const LandingPage = ({
           "line_linked": {
             "enable": true,
             "distance": 150,
-            "color": "#523228",
+            "color": "#3d3f8bf6",
             "opacity": 0.4,
             "width": 1
           },

@@ -24,10 +24,7 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import 'antd/dist/antd.css';
-// import { Collapse } from 'antd';
-
-import '../../styles/edit_profile.css' ;
+import '../../styles/edit_profile.scss' ;
 import Avatar from './components/Avatar';
 import SuccessAlert from './components/Success_alert';
 import FailAlert from './components/fail_alert';
@@ -43,7 +40,7 @@ class Edit_profile extends React.Component {
       this.state = {
         visible : false ,
         showSuccessAlert : false ,
-        SuccesAlertText : "Profile has been changed succes fully " ,
+        SuccesAlertText : "Profile has been changed success fully " ,
         showFailureAlert : false ,
         FailAlertText : "" ,
         deleteAccountModalOpen : false ,
@@ -103,9 +100,8 @@ class Edit_profile extends React.Component {
       this.setState({visible : false });
     };      
 
-    
     return (           
-      <>          
+      <div className={this.props.darkmode}>         
             <Paper elevation={5} className="paper">
                 <Grid container>
                   <Grid item xs={12}>
@@ -270,7 +266,7 @@ class Edit_profile extends React.Component {
             </div>  
           </Container >
             </Paper>          
-      </>
+      </div>
     )  }  
 }
 
@@ -283,6 +279,7 @@ const mapStateToProps = (state) => {
     email : state.UserReducer.email ,
     password : state.UserReducer.password ,
     avatar : state.UserReducer.avatar ,
+    darkmode: state.dark_mode.darkmode,
   }
 }
 

@@ -57,7 +57,7 @@
   
 
   .photo_login {
-    box-shadow: 0px 0px 7px 0px #9c5a448c;
+    box-shadow: 0px 0px 7px 0px #44469ccb;
     position: absolute;
     background-color: rgba(245, 245, 245, 0.484);
     background-position: center;
@@ -75,8 +75,8 @@
     }
   
     to {
-      text-shadow: 0 0 20px rgb(243, 158, 130), 0 0 30px rgb(189, 109, 83)aa,
-        0 0 40px #502313, 0 0 50px #9c5a44,
+      text-shadow: 0 0 20px #44469ccb, 
+        0 0 40px #44469ccb, 0 0 50px #44469c71,
         0 0 60px #000000;
     }
   }
@@ -153,7 +153,7 @@
     background-color: rgba(186, 187, 179, 0.39)  ;
   }
   .loginform {
-    box-shadow: 0px 0px 7px 0px #9c5a448c;
+    box-shadow: 0px 0px 7px 0px #44469ccb;
     background-color: rgba(245, 245, 245, 0.484);
     width: 50%;
     float: right;
@@ -169,7 +169,7 @@
   
 
   .signupform {
-    box-shadow: 0px 0px 7px 0px #9c5a448c;
+    box-shadow: 0px 0px 7px 0px #44469ccb;
     background-color: rgba(245, 245, 245, 0.484);
     width: 50%;
     float: left;
