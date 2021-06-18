@@ -31,7 +31,6 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ProfileBackground from '../../../assests/ProfileBackground.svg'
 import BlockedTable from './components/blocked_links_table';
 
-import '../../styles/edit_profile.css' ;
 import '../../styles/edit_profile.scss' ;
 import Avatar from './components/Avatar';
 

@@ -49,6 +49,12 @@
 .MuiDialogActions-root {
 	border-top: 0.5px solid #bfbfbf;
 }
+.Avatar {
+    position:  relative;
+    margin-top: -115px;
+    border-radius: 100px;
+    border-style: dotted;
+}
 .MuiDialogTitle-root {
 	border-bottom: 0.5px solid #bfbfbf;
 }
@@ -87,12 +93,37 @@
 	background-color: #0f0b3e !important;
 }
 .paper {
-	margin-top: 24;
+	margin-top: 50px;
 	margin-bottom: 24;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 16;
+	padding: 0px !important ;
 	width: 800px;
+}
+@media only screen and (max-width: 800px) {    
+
+    .paper {        
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        padding: 0px !important ;
+        width: 100%;    
+    }
+
+    .AvatarDialog {
+        height: 100%;
+        width: 100%;
+    }
+
+    
+    .MuiDialogContent-root {
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+
 }
 }
 .night{
@@ -174,6 +205,12 @@
 	top: '50%';
 	margin-top: -12;
 }
+.Avatar {
+    position:  relative;
+    margin-top: -115px;
+    border-radius: 100px;
+    border-style: dotted;
+}
 .wrapper {
 	margin-top: 30px;
 	position: relative;
@@ -184,11 +221,37 @@
 	background-color: #0f0b3e !important;
 }
 .paper {
-	margin-top: 24;
-	margin-bottom: 24;
+	margin-top: 50px;
+	// margin-bottom: 24;
 	margin-left: auto;
 	margin-right: auto;
-	padding: 16;
+	padding: 0px !important ;
 	width: 800px;
-}}
+}
+@media only screen and (max-width: 800px) {    
+
+    .paper {        
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        padding: 0px !important ;
+        width: 100%;    
+    }
+
+    .AvatarDialog {
+        height: 100%;
+        width: 100%;
+    }
+
+    
+    .MuiDialogContent-root {
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+
+}
+}
 
