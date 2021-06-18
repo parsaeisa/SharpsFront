@@ -17,7 +17,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useState, useEffect } from "react";
-import '../../styles/explorePage.css';
+import '../../styles/explorePage.scss';
 import serverURL from '../../../utils/serverURL';
 import ShowMoreText from 'react-show-more-text';
 import InfiniteScroll from 'react-infinite-scroll-component';

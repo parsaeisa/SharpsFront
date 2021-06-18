@@ -5,7 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { useState, useEffect, useCallback } from "react";
-import '../../styles/explorePage.css';
+import '../../styles/explorePage.scss';
 import serverURL from '../../../utils/serverURL';
 
 import Like from "../likeContent/like";
@@ -26,7 +26,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
-import '../../styles/explorePage.css';
+import '../../styles/explorePage.scss';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import callapi_explore_search from './callapi_explore/callapi_search' ;

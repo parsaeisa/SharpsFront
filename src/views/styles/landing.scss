@@ -192,7 +192,7 @@
   .landing-navbar {
     position: absolute;
     background-color: whitesmoke;
-    box-shadow: 0px 3px 7px 0px #9c5a44cb;
+    box-shadow: 0px 3px 7px 0px #44469ccb;
     height: 10%;
     width: 100%;
     .darkmode-icon {
@@ -218,14 +218,14 @@
     }
     .landing-navbar-items:hover {
       cursor: pointer;
-      background-color: #c0755c28;
-      box-shadow: 0px 0px 10px 5px #9c5a44cb;
+      background-color: #44469c38;
+      box-shadow: 0px 0px 10px 5px #44469c7e;
     }
   }
 
   .header {
-    background-color: #9c5a4462;
-    box-shadow: 0px 0px 10px 3px #9c5a44cb;
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 10px 3px #44469ccb;
     height: 8%;
     width: 100%;
     margin: 0;
@@ -235,12 +235,12 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
-  @keyframes glowN {
+  @keyframes glowD {
     from {
     }
 
     to {
-      text-shadow: 0 3px 7px #ffffff, 0 5px 10px #fdfdfd, 0 5px 10px #ffffff;
+      text-shadow: 0 3px 7px #44469c2f, 0 5px 10px #44469ccb, 0 5px 10px #3d3f8bf6, 0 5px 10px #44469cf6;
     }
   }
   .header-title {
@@ -249,8 +249,8 @@
     font-style: italic;
     font-variant: normal;
     font-size: 40px;
-    color: #523228;
-    animation: glowN 1.5s ease-in-out infinite alternate;
+    color: whitesmoke;
+    animation: glowD 1.5s ease-in-out infinite alternate;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -266,9 +266,9 @@
     width: 100px;
     color: black;
     text-align: center;
-    box-shadow: 0px 7px 10px 0px #9c5a44cb;
+    box-shadow: 0px 7px 10px 0px #44469cf6;
     border: none;
-    background-color: #c0755c70;
+    background-color: #44469c54;
     margin: 0;
     position: absolute;
     top: 92%;
@@ -306,7 +306,7 @@
       padding: 10px;
       color: black;
       text-align: center;
-      box-shadow: 0px 3px 10px 0px #9c5a44cb;
+      box-shadow: 0px 3px 10px 0px #44469ccb;
     }
     .team-avatars {
       margin: 10px;
@@ -341,7 +341,7 @@
       padding-bottom: 10px;
       color: black;
       text-align: center;
-      box-shadow: 0px 10px 10px 0px #a0624b86;
+      box-shadow: 0px 10px 10px 0px #44469c70;
     }
     .features-text-divs {
       width: 40%;

@@ -30,10 +30,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import BackgroundFromBGjar from './components/BackgroundFromBGjar';
 import ProfileBackground from '../../../assests/ProfileBackground.svg'
 import BlockedTable from './components/blocked_links_table';
-// import 'antd/dist/antd.css';
-// import { Collapse } from 'antd';
 
 import '../../styles/edit_profile.css' ;
+import '../../styles/edit_profile.scss' ;
 import Avatar from './components/Avatar';
 
 class Edit_profile extends React.Component {        
@@ -48,7 +47,7 @@ class Edit_profile extends React.Component {
         blocked_domains : [] ,
         visible : false ,
         showSuccessAlert : false ,
-        SuccesAlertText : "Profile has been changed succes fully " ,
+        SuccesAlertText : "Profile has been changed success fully " ,
         showFailureAlert : false ,
         FailAlertText : "" ,
         deleteAccountModalOpen : false ,
@@ -112,9 +111,9 @@ class Edit_profile extends React.Component {
       this.setState({visible : false });
     };      
 
-    
-    return (           
-      <>          
+    return (     
+      <>      
+      <div className={this.props.darkmode}>         
             <Paper elevation={5} className="paper">
                 <Grid container>
                   <Grid item xs={12} style= {{backgroundColor : 'blue'}}>
@@ -317,6 +316,7 @@ class Edit_profile extends React.Component {
                 date = {this.state.blocked_domains}
                   />
             </Paper>
+        </div>
       </>
     )  }  
 }
@@ -330,6 +330,7 @@ const mapStateToProps = (state) => {
     email : state.UserReducer.email ,
     password : state.UserReducer.password ,
     avatar : state.UserReducer.avatar ,
+    darkmode: state.dark_mode.darkmode,
   }
 }
 
