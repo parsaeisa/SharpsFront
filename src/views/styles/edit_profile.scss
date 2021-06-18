@@ -92,6 +92,10 @@
 .MuiButton-containedPrimary {
 	background-color: #0f0b3e !important;
 }
+.MuiDialog-paper {
+    height: 430px;
+    width: 430px;
+}
 .paper {
 	margin-top: 50px;
 	margin-bottom: 24;
@@ -220,6 +224,10 @@
 .MuiButton-containedPrimary {
 	background-color: #0f0b3e !important;
 }
+.AvatarDialog {
+    height: 430px ;
+    width: 430px;
+}
 .paper {
 	margin-top: 50px;
 	// margin-bottom: 24;
@@ -241,7 +249,7 @@
     .AvatarDialog {
         height: 100%;
         width: 100%;
-    }
+	}	
 
     
     .MuiDialogContent-root {

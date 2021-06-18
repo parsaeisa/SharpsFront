@@ -19,6 +19,7 @@ export default function AvatarDialog(props) {
         TransitionComponent={Transition}
         keepMounted
         maxWidth = '480px'
+        className = "AvatarDialog"
         onClose={props.onClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"        
