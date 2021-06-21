@@ -203,11 +203,12 @@ function ExplorePage() {
                         <Typography style={{flexGrow : '1'}} component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
                         </Typography>                                                          
 
-                        <Paper component="form" className='searchFormPaper'>                            
+                        <Paper component="form" className='searchFormPaper'
+                          elevation = '5'
+                        >                           
                             <InputBase
-                              className={classes.input}
-                              placeholder="Search Content"
-                              // inputProps={{ 'aria-label': 'search' }}
+                            className = "inputBase"                                                           
+                              placeholder="Search Content"                              
                               onChange = {(e) => {
                                 setSearched(e.target.value);
                               }}
