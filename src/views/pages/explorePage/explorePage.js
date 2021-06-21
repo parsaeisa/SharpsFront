@@ -104,17 +104,20 @@ function ExplorePage() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [content, setContent] = useState({ items: [], total: "" });
+  const [content, setContent] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const [nextPage, SetNextPage] = useState(serverURL() + "user/suggestions?skip=0&limit=40&showAds=true");
+  const [nextPage, SetNextPage] = useState(serverURL() + "user/suggestions?skip=0&limit=10&showAds=true");
   const [value, setValue] = useState(0);
   const [contentGet , setContentGet] = useState(false);
+  const [contentfetch , setContentFetch] = useState(false);
+
 
   const [searched , setSearched] = useState("");
   const [openAdvancedSearch , setOpenAdvancedSearch]   = useState(false);
   const [searchMode , setSearchMode] = useState("") ;
   const [searching , setSearching] = useState(false);
   const [search , setSearch] = useState(false);
+
 
   const [isSearched , setIsSearched ] = useState(false);
 
@@ -126,7 +129,7 @@ function ExplorePage() {
     setOpen(false);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
    
       if(contentGet == false)
       {
@@ -164,14 +167,9 @@ function ExplorePage() {
       }
       )
       .then(function (response) {
-        setContent((prevState) => ({
-          ...prevState,
-          items: response.items,
-          total: response.total
-        }))
-        // console.log("data")
-        // setValue(value + 10)
-        // SetNextPage(serverURL() + "user/suggestions?skip=" + value + "&limit=10&showAds=true");
+        setValue(value+1)
+        SetNextPage(serverURL()+"user/suggestions?skip="+value+"&limit=10&showAds=false");
+        setContent(content.concat(response.items))
       })
 
       .then((response) => {
@@ -260,20 +258,20 @@ function ExplorePage() {
 
           <InfiniteScroll
             scrollThreshold="90%"
-            dataLength={content.items.length}
+            dataLength={content.length}
 
             // next={ search == false ? fetchData() : null}
             hasMore={hasMore}
             loader={
-              //  <h4>Loading...</h4>
-              <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
-                <div className="loading" />
-              </div>
+               <h4>Loading...</h4>
+              // <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
+              //   <div className="loading" />
+              // </div>
             }
             endMessage={null
             }>
             {content.length === 0 ? <div></div> :
-              content.items.map((item,index) => {
+              content.map((item,index) => {
                 if (item) return (
                   <div style={{ spacing: "50%" }}>
                     <div class="card mb-3" >
