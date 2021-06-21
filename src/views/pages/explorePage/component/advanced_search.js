@@ -39,7 +39,7 @@ export default function AdvancedSearch(props) {
 
   return (
     <div>
-      <Button onClick={props.handleOpen}>Open select dialog</Button>
+      {/* <Button onClick={props.handleOpen}>Open select dialog</Button> */}
       <Dialog disableBackdropClick disableEscapeKeyDown open={props.open} onClose={props.handleClose}>
         <DialogTitle>URL or a title ??</DialogTitle>
         <DialogContent>

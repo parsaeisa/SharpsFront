@@ -19,23 +19,14 @@ import ShowMoreText from 'react-show-more-text';
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
-import Button from '@material-ui/core/Button';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import AppBar from '@material-ui/core/AppBar';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
-import Divider from '@material-ui/core/Divider';
 import '../../styles/explorePage.scss';
-import SearchIcon from '@material-ui/icons/Search';
-import DirectionsIcon from '@material-ui/icons/Directions';
-import callapi_explore_search from './callapi_explore/callapi_search' ;
 import Toolbar from '@material-ui/core/Toolbar';
-import AdvancedSearch from './component/advanced_search';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import LinearBuffer from './component/progress_bar_search';
+import Search from './component/search' ;
 
 const drawerWidth = 240;
 
@@ -107,13 +98,8 @@ function ExplorePage() {
   const [value, setValue] = useState(0);
   const [contentGet , setContentGet] = useState(false);
 
-  const [searched , setSearched] = useState("");
-  const [openAdvancedSearch , setOpenAdvancedSearch]   = useState(false);
-  const [searchMode , setSearchMode] = useState("") ;
   const [searching , setSearching] = useState(false);
-  const [search , setSearch] = useState(false);
-
-  const [isSearched , setIsSearched ] = useState(false);
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -178,16 +164,7 @@ function ExplorePage() {
   { console.log(content + "cont") }
   { console.log(value + "valueeee") }
   return (
-    <div>
-      <AdvancedSearch
-        open = {openAdvancedSearch}
-        handleChange = {(mode) => {
-          setSearchMode(mode)
-        }}
-        handleClose = {() => {
-          setOpenAdvancedSearch(false);
-        }}
-      />
+    <div>      
       <AppBar style={{ background: '#ffffff' }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                         <Toolbar className="toolbar">
                         <IconButton
@@ -203,45 +180,20 @@ function ExplorePage() {
                         <Typography style={{flexGrow : '1'}} component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
                         </Typography>                                                          
 
-                        <Paper component="form" className='searchFormPaper'
-                          elevation = '5'
-                        >                           
-                            <InputBase
-                            className = "inputBase"                                                           
-                              placeholder="Search Content"                              
-                              onChange = {(e) => {
-                                setSearched(e.target.value);
-                              }}
-                            />
-                            <IconButton onClick = {async () => {
-                                setSearching(true);
-                                const search_respoonse = await callapi_explore_search(searched  , searchMode);
-                                setSearching(false);
-                                setSearch(true);
-                                setContent((prevState) => ({                                  
-                                  items: search_respoonse.items,
-                                  total: search_respoonse.total
-                                }));
-                            }}  
-                             className={classes.iconButton} >
-                              <SearchIcon />
-                            </IconButton>
-                            <Divider className={classes.divider} orientation="vertical" />                            
-                          </Paper> 
-
-                          <IconButton onClick= {() => {
-                              setOpenAdvancedSearch(true);
-                          }} >
-                            <FilterListIcon />
-                          </IconButton >
-
-                          {search &&
-                          <Button className="Button" variant="contained" onClick={() => {
+                        <Search
+                          fetchData = {() => {
                             fetchData();
-                            setSearch(false);                            
-                          }} color="secondary" autoFocus>
-                            cancel
-                          </Button> }
+                          }}
+
+                          setContent = {(content) => {
+                            setContent(content);
+                          }}
+
+                          setSearching = {(searching) => {
+                            setSearching(searching);
+                          }}
+
+                        />
 
                         <Typography style={{flexGrow : '1'}} component="h1" variant="h6" color="inherit" noWrap>                            
                         </Typography>       
@@ -253,7 +205,7 @@ function ExplorePage() {
 
 
 
-        {/* <div className={classes.drawerHeader} /> */}
+        <div className="appBarSpacer" />
         <div className="explore">
 
           <InfiniteScroll
