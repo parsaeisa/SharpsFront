@@ -36,6 +36,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import LinearBuffer from './component/progress_bar_search';
+import Badge from 'react-bootstrap/Badge';
 
 const drawerWidth = 240;
 
@@ -294,7 +295,10 @@ function ExplorePage() {
                         </div>
                         <div class="col-md-8">
                           <div className="reportwrapper" style={{ float: "right", display: "inline-block", marginTop: "13px", color: "black" }} >
-                          {index==0?<div></div> :
+                          {index==0?<div style={{fontSize:"25px",paddingRight:"10px",}}> 
+                          <h5>
+                                <Badge pill variant="secondary">
+ads</Badge>{' '}</h5></div> :
                             <Block url={item.url} />
                           }
                           </div>
