@@ -11,7 +11,7 @@ import serverURL from '../../../utils/serverURL';
 import Like from "../likeContent/like";
 import Block from "../likeContent/block";
 
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import SaveContent from "../saveContent/saveContent";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -38,6 +38,7 @@ import Typography from '@material-ui/core/Typography';
 import LinearBuffer from './component/progress_bar_search';
 import Badge from 'react-bootstrap/Badge';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
 
 const drawerWidth = 240;
 
@@ -323,9 +324,16 @@ ads</Badge>{' '}</h5></div> :
                               </ShowMoreText>
                             </p>
                             {index==0?<div> </div>:
-                            <div>
-                                        <a href={"//" + item.url} target="_blank" style={{ color:"#0f0878"}}>< ArrowForwardIcon/> go to link</a>
-                                        </div>
+                             <div   style={{paddingTop:"10px"}}>
+                                        <Link to= {"//" + item.url} target="_blank" > <Button
+                                        variant="contained"
+                                        color="primary"
+                                       //  className={classes.button}
+                                        endIcon={<ArrowForwardIcon/>}
+                                      >
+                                        visit
+                                      </Button>{' '} </Link>
+                                         </div>
               }
                           </div>
                         </div>
