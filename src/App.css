@@ -1,14 +1,21 @@
+@font-face {
+  font-family: sitesFont;
+  src: url(./Rokkitt-Medium.ttf);
+}
+
 .App-day {
   text-align: center;
   height: 100%;
   width: 100%;
-  background-color: whitesmoke ;
+  background-color: whitesmoke;
+  font-family: sitesFont;
 }
-.App-night{
+.App-night {
   text-align: center;
   height: 100%;
   width: 100%;
-  background-color: rgba(1,3,5,255);
+  background-color: rgba(1, 3, 5, 255);
+  font-family: sitesFont;
 }
 .App-logo {
   height: 40vmin;
