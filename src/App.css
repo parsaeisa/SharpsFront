@@ -17,15 +17,15 @@
   background-color: rgba(1, 3, 5, 255);
   font-family: sitesFont;
 }
+.App-day-logo {
+  height: 40vmin;
+  pointer-events: none;
+  animation: App-logo-spin infinite 20s linear;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  animation: App-logo-spin infinite 20s linear;
 }
 
 .App-header {
@@ -39,7 +39,7 @@
   color: white;
 }
 
-.App-link {
+.App-day-link {
   color: #61dafb;
 }
 
