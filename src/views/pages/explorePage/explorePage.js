@@ -297,10 +297,8 @@ function ExplorePage() {
                         </div>
                         <div class="col-md-8">
                           <div className="reportwrapper" style={{ float: "right", display: "inline-block", marginTop: "13px", color: "black" }} >
-                          {index==0?<div style={{fontSize:"25px",paddingRight:"10px",}}> 
-                          <h5>
-                                <Badge pill variant="secondary">
-ads</Badge>{' '}</h5></div> :
+                          {index==0? 
+                                        <div></div>:
                             <Block url={item.url} />
                           }
                           </div>
@@ -323,6 +321,12 @@ ads</Badge>{' '}</h5></div> :
                                 {item.des}
                               </ShowMoreText>
                             </p>
+                            {index==0?<div style={{fontSize:"25px",paddingTop:"10px",}}> 
+                          <h5>
+                                <Badge pill variant="secondary">
+ads</Badge>{' '}</h5></div> :
+                            <div></div>
+                          }
                             {index==0?<div> </div>:
                              <div   style={{paddingTop:"10px"}}>
                                         <Link to= {"//" + item.url} target="_blank" > <Button
