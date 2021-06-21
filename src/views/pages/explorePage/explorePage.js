@@ -37,6 +37,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import LinearBuffer from './component/progress_bar_search';
 import Badge from 'react-bootstrap/Badge';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const drawerWidth = 240;
 
@@ -321,10 +322,11 @@ ads</Badge>{' '}</h5></div> :
                                 {item.des}
                               </ShowMoreText>
                             </p>
+                            {index==0?<div> </div>:
                             <div>
-                              <a href={"//" + item.url} class="stretched-link" />
-                            </div>
-
+                                        <a href={"//" + item.url} target="_blank" style={{ color:"#0f0878"}}>< ArrowForwardIcon/> go to link</a>
+                                        </div>
+              }
                           </div>
                         </div>
                       </div>
