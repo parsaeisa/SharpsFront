@@ -38,6 +38,7 @@ import Typography from '@material-ui/core/Typography';
 import LinearBuffer from './component/progress_bar_search';
 import Badge from 'react-bootstrap/Badge';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import callapi_user_history from './callapi_explore/use_histoty_callapi';
 
 
 const drawerWidth = 240;
@@ -334,6 +335,12 @@ ads</Badge>{' '}</h5></div> :
                                         color="primary"
                                        //  className={classes.button}
                                         endIcon={<ArrowForwardIcon/>}
+                                        onClick = {() => {
+                                          callapi_user_history({
+                                            "url" : item.url ,
+                                            "eventType" : "CLICK"
+                                          })
+                                        }}
                                       >
                                         visit
                                       </Button>{' '} </Link>
