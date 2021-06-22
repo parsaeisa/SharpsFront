@@ -11,7 +11,7 @@ import serverURL from '../../../utils/serverURL';
 import Like from "../likeContent/like";
 import Block from "../likeContent/block";
 
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import SaveContent from "../saveContent/saveContent";
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -27,6 +27,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import LinearBuffer from './component/progress_bar_search';
 import Search from './component/search' ;
+import Badge from 'react-bootstrap/Badge';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
 
 const drawerWidth = 240;
 
@@ -247,7 +250,8 @@ function ExplorePage() {
                         </div>
                         <div class="col-md-8">
                           <div className="reportwrapper" style={{ float: "right", display: "inline-block", marginTop: "13px", color: "black" }} >
-                          {index==0?<div></div> :
+                          {index==0? 
+                                        <div></div>:
                             <Block url={item.url} />
                           }
                           </div>
@@ -270,10 +274,24 @@ function ExplorePage() {
                                 {item.des}
                               </ShowMoreText>
                             </p>
-                            <div>
-                              {/* <a href={"//" + item.url} class="stretched-link" /> */}
-                            </div>
-
+                            {index==0?<div style={{fontSize:"25px",paddingTop:"10px",}}> 
+                          <h5>
+                                <Badge pill variant="secondary">
+ads</Badge>{' '}</h5></div> :
+                            <div></div>
+                          }
+                            {index==0?<div> </div>:
+                             <div   style={{paddingTop:"10px"}}>
+                                        <Link to= {"//" + item.url} target="_blank" > <Button
+                                        variant="contained"
+                                        color="primary"
+                                       //  className={classes.button}
+                                        endIcon={<ArrowForwardIcon/>}
+                                      >
+                                        visit
+                                      </Button>{' '} </Link>
+                                         </div>
+              }
                           </div>
                         </div>
                       </div>

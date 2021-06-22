@@ -21,11 +21,16 @@ import '../../styles/explorePage.scss';
 import serverURL from '../../../utils/serverURL';
 import ShowMoreText from 'react-show-more-text';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Edit_profile from '../editProfile/editprofile';
 import Block from "../likeContent/block";
 import SaveContent from "./saveContent";
 import Like from "../likeContent/like";
+import Badge from 'react-bootstrap/Badge';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import Button from '@material-ui/core/Button';
+
+
 
 const drawerWidth = 240;
 
@@ -215,7 +220,17 @@ function ViewSaveContent() {
   {item.des}
 </ShowMoreText>
 </p>
-                            {/* <a href={"//" + item.url} class="stretched-link" /> */}
+                             <div   style={{paddingTop:"10px"}}>
+                                        <Link to= {"//" + item.url} target="_blank" > <Button
+                                        variant="contained"
+                                        color="primary"
+                                       //  className={classes.button}
+                                        endIcon={<ArrowForwardIcon/>}
+                                      >
+                                        visit
+                                      </Button>{' '} </Link>
+                                         </div>
+           
                           </div>
                         </div>
                       </div>
