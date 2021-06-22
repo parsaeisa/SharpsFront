@@ -32,7 +32,7 @@ class BarChart extends React.Component {
     {
 
         const categories = this.props.data ? Object.keys(this.props.data) : [];
-
+        console.log(this.props.data);
         const series = [
             {
                 name : "time checks" ,

@@ -30,7 +30,7 @@ export default class Analytics extends React.Component {
   {      
       let userHistory = await callapi_analytics_get() ;
       let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
-
+      console.log(userHistory);
       this.setState({
         user_history : userHistory ,
         blocked_domains : blocked_domains
@@ -96,7 +96,7 @@ export default class Analytics extends React.Component {
           "createdAt": "2021-09-03T20:04:23.291Z"
         },        
       ]
-    }    
+    }     
 
     const mapToProp = (data, prop) => {
       return data
@@ -182,7 +182,7 @@ export default class Analytics extends React.Component {
               <Grid item xs={12} md={4} lg={5}>
                 <Paper style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
                   <BarChart
-                    data = {mapToProp(data.userHistory , "domain")}
+                    data = {mapToProp(this.state.user_history , "domain")}
                   />
                 </Paper>
               </Grid>
