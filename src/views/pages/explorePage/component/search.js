@@ -4,13 +4,20 @@ import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import SearchIcon from '@material-ui/icons/Search';
 import AdvancedSearch from './advanced_search';
-import DirectionsIcon from '@material-ui/icons/Directions';
+import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import callapi_explore_search from '../callapi_explore/callapi_search' ;
 import '../../../styles/explorePage.scss';
 import Button from '@material-ui/core/Button';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import Popover from '@material-ui/core/Popover';
+import SearchPanel from './searchPanel';
+
+const useStyles = makeStyles((theme) => ({
+    typography: {
+      padding: theme.spacing(2),
+    },
+  }));
 
 export default function Search(props) {
 
@@ -20,10 +27,14 @@ export default function Search(props) {
     const [isSearched , setIsSearched ] = useState(false);
     const [search , setSearch] = useState(false);
 
+    const [anchorEl , setAnchorEl] = useState(null);
+
+    const popover_id = 'search-panel' ;
+
     return (
         <>
         <AdvancedSearch
-        open = {openAdvancedSearch}
+        open = {false}
         handleChange = {(mode) => {
           setSearchMode(mode)
         }}
@@ -31,8 +42,11 @@ export default function Search(props) {
           setOpenAdvancedSearch(false);
         }}
       />
-        <Paper component="form" className='searchFormPaper' aria-describedby = 'search-panel'>                            
+        <Paper  component="form" className='searchFormPaper' aria-describedby = {popover_id} >                            
             <InputBase
+            onClick = {(event) => {
+                setAnchorEl(event.currentTarget);
+            }}
             className = "inputBase"                                                           
                 placeholder="Search Content"                              
                 onChange = {(e) => {
@@ -56,7 +70,9 @@ export default function Search(props) {
             </Paper> 
 
             <Popover 
-            id = 'search-panel'
+            id = {popover_id}
+            anchorEl = {anchorEl}
+            open={Boolean(anchorEl)}
             anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'center',
@@ -65,8 +81,11 @@ export default function Search(props) {
                 vertical: 'top',
                 horizontal: 'center',
             }}
+
+            className = "popover"
             >
                 The content of the Popover.
+                <SearchPanel />
             </Popover>
 
             <IconButton onClick= {() => {
