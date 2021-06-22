@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useState, useEffect, useCallback } from "react";
 import '../../styles/explorePage.scss';
 import serverURL from '../../../utils/serverURL';
-
+import Button from '@material-ui/core/Button';
 import Like from "../likeContent/like";
 import Block from "../likeContent/block";
 
