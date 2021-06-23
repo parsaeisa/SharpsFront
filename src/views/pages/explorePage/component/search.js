@@ -10,9 +10,11 @@ import callapi_explore_search from '../callapi_explore/callapi_search' ;
 import '../../../styles/explorePage.scss';
 import Button from '@material-ui/core/Button';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import Popover from '@material-ui/core/Popover';
 import SearchPanel from './searchPanel';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
 const useStyles = makeStyles((theme) => ({
     typography: {
       padding: theme.spacing(2),
@@ -27,18 +29,11 @@ export default function Search(props) {
     const [isSearched , setIsSearched ] = useState(false);
     const [search , setSearch] = useState(false);
 
-    const [anchorEl , setAnchorEl] = useState(null);
+    const [expanded, setExpanded] = useState(false);
 
-    const openPopover = Boolean(anchorEl)
-    const popover_id = openPopover ? 'search-panel' : undefined ;
-
-    const handleClosePopover = () => {
-        setAnchorEl(null);
-      };
-
-    const handleClickPopover = (event) => {
-        setAnchorEl(event.currentTarget);
-      };
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
 
     return (
         <>
@@ -51,64 +46,48 @@ export default function Search(props) {
           setOpenAdvancedSearch(false);
         }}
       />
-        <Paper  component="form" className='searchFormPaper' aria-describedby = {popover_id} >                            
-            <InputBase
-            onClick = {handleClickPopover}
-            className = "inputBase"                                                           
-                placeholder="Search Content"                              
-                onChange = {(e) => {
-                setSearched(e.target.value);
-                }}
-            />
-            <IconButton onClick = {async () => {
-                props.setSearching(true);
-                const search_respoonse = await callapi_explore_search(searched  , searchMode);
-                props.setSearching(false);
-                setSearch(true);
-                props.setContent((prevState) => ({                                  
-                    items: search_respoonse.items,
-                    total: search_respoonse.total
-                }));
-            }}  
-                >
-                <SearchIcon />
-            </IconButton>
-            <Divider orientation="vertical" />                            
-            </Paper> 
+      <div className = "accordeonRoot" >
+        <Accordion style={{marginLeft : '30px' , paddingRight : '0px'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')} elevation={4}>
+            <AccordionSummary            
+            expandIcon={<ExpandMoreIcon />}            
+            >
+                <Paper  component="form" className='searchFormPaper'  >                            
+                    <InputBase            
+                    className = "inputBase"                                                           
+                        placeholder="Search Content"                              
+                        onChange = {(e) => {
+                        setSearched(e.target.value);
+                        }}
+                    />
+                    <IconButton onClick = {async () => {
+                        props.setSearching(true);
+                        const search_respoonse = await callapi_explore_search(searched  , searchMode);
+                        props.setSearching(false);
+                        setSearch(true);
+                        props.setContent((prevState) => ({                                  
+                            items: search_respoonse.items,
+                            total: search_respoonse.total
+                        }));
+                    }}  
+                        >
+                        <SearchIcon />
+                    </IconButton>
+                    {/* <Divider orientation="vertical" /> */}
+                </Paper> 
 
-        <Popover 
-            id = {popover_id}
-            anchorEl = {anchorEl}
-            open={openPopover}
-            onClose = {handleClosePopover}
-            anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-            }}
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-            }}
-
-            className = "popover"
-        >
-            The content of the Popover.
-            <SearchPanel />
-        </Popover>
-
-            <IconButton onClick= {() => {
-                setOpenAdvancedSearch(true);
-            }} >
-            <FilterListIcon />
-            </IconButton >
-
-            {search &&
-            <Button className="Button" variant="contained" onClick={() => {
-            props.fetchData();
-            setSearch(false);                            
-            }} color="secondary" autoFocus>
-            cancel
-            </Button> }
+                {search &&
+                <Button className="Button" variant="contained" onClick={() => {
+                props.fetchData();
+                setSearch(false);                            
+                }} color="secondary" autoFocus>
+                cancel
+                </Button> }
+            </AccordionSummary>
+            <AccordionDetails>
+                <SearchPanel />                        
+            </AccordionDetails>
+        </Accordion>
+    </div>
 
         </>        
     )
