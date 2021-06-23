@@ -20,6 +20,9 @@
 	// width: 800px;
 }
 .day{
+	background-image: url("./bigdatalightblur2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 	.ex {
 		align-items: center;
 		padding-left: 40%;
@@ -37,7 +40,16 @@
 		width: 250px !important;
 		text-align: center;
 	}
+	.view-page-button{
+		background-color: rgba(255, 255, 255, 0.65);
+		box-shadow: 0px 3px 7px 0px rgba(255, 255, 255, 0.5);
+		color:  rgba(68, 68, 68, 0.55);	
+	}
+	.view-page-button:hover{
+		background-color: rgba(68, 68, 68, 0.55);
+	}
 	.card {
+		background-color: rgba(255, 255, 255, 0.65);
 		position: relative;
 		margin: 0 auto;
 		float: none;
@@ -113,21 +125,27 @@
 	
 }
 .night{
+// <<<<<<< HEAD
 	
-	.toolbar{
-		background-color: #424242;
-		border-bottom: 2px solid;
-		border-color: #6381B5;
-		// background:  rgba(0, 0, 0, 0.32) !important ;
-	}
-	.inputBase{
-		color: white;
-	}
-	.searchFormPaper{
-		background-color: #424242;
-		border-bottom: 2px solid;
-		border-color: #6381B5;		
-	}
+// 	.toolbar{
+// 		background-color: #424242;
+// 		border-bottom: 2px solid;
+// 		border-color: #6381B5;
+// 		// background:  rgba(0, 0, 0, 0.32) !important ;
+// 	}
+// 	.inputBase{
+// 		color: white;
+// 	}
+// 	.searchFormPaper{
+// 		background-color: #424242;
+// 		border-bottom: 2px solid;
+// 		border-color: #6381B5;		
+// 	}
+// =======
+	background-image: url("./bigdatadarkblur2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+// >>>>>>> ed5da9065e5249dd79220d5b8eb52db8dec4c86a
 	.ex {
 		align-items: center;
 		padding-left: 40%;
@@ -148,7 +166,17 @@
 		width: 250px !important;
 		text-align: center;
 	}
+	.view-page-button{
+		background-color: rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 3px 7px 0px rgba(255, 255, 255, 0.5);
+		color:  rgba(184, 217, 255, 0.877);	
+	}
+	.view-page-button:hover{
+		background-color: rgba(68, 68, 68, 0.55);
+	}
 	.card {
+		background-color: rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 3px 7px 0px rgba(255, 255, 255, 0.5);
 		position: relative;
 		margin: 0 auto;
 		float: none;
@@ -172,8 +200,9 @@
 		padding: 0.5em 1.2em;
 	}
 	.card-title {
+		color: white;
 		padding-top: 3%;
-		font-weight: bold;
+		font-size: 27px;
 	}
 	.img {
 		&:hover {
@@ -188,14 +217,19 @@
 		animation-duration: 2s;
 	}
 	a {
+		color: rgb(145, 187, 235);
 		&:link {
-			text-decoration: none;
+			text-decoration: underline;
+			text-decoration-color: rgba(184, 217, 255, 0.877);
 		}
+	}
+	.card-text{
+		color: rgba(245, 245, 245, 0.67);
+		font-size: 19.5px;
 	}
 	.horizontal-card {
 		position: relative;
 		display: flex;
-		border: 1px solid rgb(0, 0, 0);
 		margin-bottom: 1rem;
 	}
 	img {
@@ -219,7 +253,7 @@
 		align-items: center;
 	}
 	.text-muted {
-		color: black;
+		color: white;
 	}
 	
 }
