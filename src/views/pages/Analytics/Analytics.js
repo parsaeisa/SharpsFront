@@ -29,8 +29,7 @@ export default class Analytics extends React.Component {
   async componentWillMount()
   {      
       let userHistory = await callapi_analytics_get() ;
-      let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
-      console.log(userHistory);
+      let blocked_domains = await  callapi_analytics_get_blockedDomains() ;         
       this.setState({
         user_history : userHistory ,
         blocked_domains : blocked_domains
@@ -62,49 +61,53 @@ export default class Analytics extends React.Component {
         {
           "domain": "google .com",
           "tag": "politics",
-          "eventType": "ENTER",
+          "eventType": "CLICK",
           "createdAt": "2021-05-06T20:04:23.291Z"
         },
         {
           "domain": "google.com",
           "tag": "politics",
-          "eventType": "EXIT",
+          "eventType": "CLICK",
           "createdAt": "2021-05-03T20:04:23.291Z"
         },
         {
           "domain": "google.com",
           "tag": "string",
-          "eventType": "ENTER",
+          "eventType": "CLICK",
           "createdAt": "2021-05-03T20:04:23.291Z"
         },
         {
           "domain": "varzesh3.com",
           "tag": "string",
-          "eventType": "EXIT",
+          "eventType": "CLICK",
           "createdAt": "2021-05-03T20:04:23.291Z"
         },
         {
           "domain": "varzesh3.com",
           "tag": "string",
-          "eventType": "ENTER",
+          "eventType": "CLICK",
           "createdAt": "2021-09-03T20:04:23.291Z"
         },
         {
           "domain": "twitter.com",
           "tag": "string",
-          "eventType": "ENTER",
+          "eventType": "CLICK",
           "createdAt": "2021-09-03T20:04:23.291Z"
         },        
       ]
     }     
 
-    const mapToProp = (data, prop) => {
+    const mapToProp = (data, prop) => {      
+
       return data
+        .filter(  ({eventType}) => eventType == 'CLICK')
         .reduce((res, item) => Object
           .assign(res, {
             [item[prop]]: 1 + (res[item[prop]] || 0)
           }), Object.create(null))
-      ;      
+      ;
+      
+      return [] ;
 
     }        
 
@@ -132,8 +135,7 @@ export default class Analytics extends React.Component {
 
     const fixedHeightPaper = clsx( classes.paper, "fixedHeight");
     const fixedHeightNumberPaper = clsx(classes.paper , "fixedHeightNumber")
-    var a = new Date() ;
-    console.log(a);
+    var a = new Date() ;    
 
     return (
       <div className={classes.root}>
@@ -142,28 +144,7 @@ export default class Analytics extends React.Component {
         <main className="content" >          
           <Container  className="container">            
 
-            <Grid container spacing={3}>
-              
-              {/* <Grid item xs={4} md={4} lg={4}>
-                <Paper elevation={4} className={fixedHeightNumberPaper}>
-                  <CountUp 
-                      title = "Visited Sites"
-                      number = {112}
-                  />                      
-                </Paper>
-              </Grid>
-
-              <Grid item xs={4} md={4} lg={4}>
-                <Paper elevation={4} className={fixedHeightNumberPaper}>
-                  112
-                </Paper>
-              </Grid>
-
-              <Grid item xs={4} md={4} lg={4}>
-                <Paper elevation={4} className={fixedHeightNumberPaper}>
-                  112
-                </Paper>
-              </Grid> */}
+            <Grid container spacing={3}>                        
 
               <Grid item xs={12} md={8} lg={8}>
                 <Paper elevation={4} className={fixedHeightPaper}>
@@ -179,6 +160,52 @@ export default class Analytics extends React.Component {
                   />
                 </Paper>
               </Grid>
+
+              {/* <Grid item xs={.5} md={.5} lg={.5} /> */}
+              <Grid item xs={3} md={3} lg={3}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  <CountUp 
+                      title = "Domains"                      
+                      number = {Object.keys(mapToProp(this.state.user_history , "domain")).length}
+                  />                      
+                </Paper>
+              </Grid>
+              {/* <Grid item xs={.5} md={.5} lg={.5} />
+
+              <Grid item xs={.5} md={.5} lg={.5} /> */}
+
+              <Grid item xs={3} md={3} lg={3}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  <CountUp 
+                        title = "Links"
+                        number = {this.state.user_history.filter (({eventType}) => eventType == 'CLICK').length}
+                    />  
+                </Paper>
+              </Grid>
+
+              {/* <Grid item xs={.5} md={.5} lg={.5} />
+              <Grid item xs={.5} md={.5} lg={.5} /> */}
+
+              <Grid item xs={3} md={3} lg={3}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  <CountUp 
+                        title = "Hours / day"
+                        number = {2}
+                    />  
+                </Paper>
+              </Grid> 
+
+              {/* <Grid item xs={.5} md={.5} lg={.5} /> */}
+
+              <Grid item xs={3} md={3} lg={3}>
+                <Paper elevation={4} className={fixedHeightNumberPaper}>
+                  <CountUp 
+                        title = "tags"
+                        number = {11}
+                    />  
+                </Paper>
+              </Grid> 
+
               <Grid item xs={12} md={4} lg={5}>
                 <Paper style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
                   <BarChart

@@ -1,3 +1,15 @@
+.countupItem{	
+	margin: 0 !important;
+	margin-right: 0 !important;
+}
+.coutupRoot{
+	/* flex-grow: 1; */
+	display: flex;  
+}
+
+.countupText {
+  color: #757575;
+}
 
 .Donat_chart_title {
     margin-bottom: 20px !important;
@@ -35,7 +47,7 @@
 }
 
 .fixedHeightNumber {
-  height: 50px !important;
+  /* height: 100px !important; */
 }
 
 .fixedHeightPaper{
