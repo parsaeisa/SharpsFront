@@ -29,7 +29,16 @@ export default function Search(props) {
 
     const [anchorEl , setAnchorEl] = useState(null);
 
-    const popover_id = 'search-panel' ;
+    const openPopover = Boolean(anchorEl)
+    const popover_id = openPopover ? 'search-panel' : undefined ;
+
+    const handleClosePopover = () => {
+        setAnchorEl(null);
+      };
+
+    const handleClickPopover = (event) => {
+        setAnchorEl(event.currentTarget);
+      };
 
     return (
         <>
@@ -44,9 +53,7 @@ export default function Search(props) {
       />
         <Paper  component="form" className='searchFormPaper' aria-describedby = {popover_id} >                            
             <InputBase
-            onClick = {(event) => {
-                setAnchorEl(event.currentTarget);
-            }}
+            onClick = {handleClickPopover}
             className = "inputBase"                                                           
                 placeholder="Search Content"                              
                 onChange = {(e) => {
@@ -69,10 +76,11 @@ export default function Search(props) {
             <Divider orientation="vertical" />                            
             </Paper> 
 
-            <Popover 
+        <Popover 
             id = {popover_id}
             anchorEl = {anchorEl}
-            open={Boolean(anchorEl)}
+            open={openPopover}
+            onClose = {handleClosePopover}
             anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'center',
@@ -83,10 +91,10 @@ export default function Search(props) {
             }}
 
             className = "popover"
-            >
-                The content of the Popover.
-                <SearchPanel />
-            </Popover>
+        >
+            The content of the Popover.
+            <SearchPanel />
+        </Popover>
 
             <IconButton onClick= {() => {
                 setOpenAdvancedSearch(true);
