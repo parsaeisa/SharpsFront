@@ -20,10 +20,32 @@ import LandingPage from "./views/pages/Landing2/Total";
 import ProtectedRoute from "./core/ProtectedRoute";
 import { connect } from "react-redux";
 import Analytics from "./views/pages/Analytics/Analytics";
+import callapi_user_history_enter from "./user_enterance_api_call";
 
 const App = ({ logged_in, darkmode }) => {
 
+  // const [sent , setSent] = React.useState(false);
+  
+  // if(sent == false)
+  // {
+  //   callapi_user_history_enter({
+  //     "eventType" : "ENTER"
+  //   })
+  //   setSent(true);
+  // }
 
+  // window.addEventListener('beforeunload' , (event) => {
+
+  //   event.preventDefault();
+  //   // event.returnValue = '';
+  //   callapi_user_history_enter({
+  //     "eventType" : "EXIT"
+  //   })
+
+  //   return event.returnValue = 'Are you sure you want to close?';
+  // })
+
+  // window.addEventListener('')
 
   return (
     <div className={darkmode=="day" ? 'App-day' : 'App-night'}>
