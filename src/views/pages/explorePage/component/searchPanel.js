@@ -2,11 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import '../../../styles/explorePage.scss';
-import InputLabel from '@material-ui/core/InputLabel';
-import Input from '@material-ui/core/Input';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -32,16 +27,10 @@ export default function SearchPanel (props)
     const [age, setAge] = React.useState('');
 
     const [ url, setURL] = React.useState(false);
-    const [ tag, setTag] = React.useState(false);
+    const [ tag, setTag] = React.useState(false);    
 
-
-    const handleChange = (event) => {
-        setAge(Number(event.target.value) || '');
-        if(event.target.value == 10)
-          props.handleChange("URL") ;
-        else
-          props.handleChange("title");
-      };
+    const searchBasedOn = "search based on : ";
+    const topic = "topic : "
 
     return (    
         // <form className={classes.container}>            
@@ -63,25 +52,61 @@ export default function SearchPanel (props)
         //     </FormControl>
         // </form>
 
-        <>        
+        <>     
+        <FormGroup column >           
           <FormGroup row>
-            <Typography variant="h6" component="h6">
-              search priority :
+            <Typography style={{marginTop: '2px' , marginRight : '20px' , marginLeft : '5px'}} variant="h6" component="h6">
+              {searchBasedOn}
             </Typography>
             <FormControlLabel
+            className  = "checkbox"
               control={<Checkbox checked={url} onChange={() => {
                 setURL(!url);
+                props.handleChange("URL") ;
               }} name="url" />}
               label="url"
             />  
 
             <FormControlLabel
+              className  = "checkbox"
               control={<Checkbox checked={tag} onChange={() => {
                 setTag(!tag);
+                props.handleChange("title");
               }} name="tag" />}
               label="tag"
             />  
           </FormGroup>
+          
+          <FormGroup row>
+            <Typography style={{marginTop: '2px' , marginRight : '20px' , marginLeft : '5px'}} variant="h6" component="h6">
+              {topic}
+            </Typography>
+            <FormControlLabel
+            className  = "checkbox"
+              control={<Checkbox checked={false} name="url" />}
+              label="Sport"
+            />  
+
+            <FormControlLabel
+              className  = "checkbox"
+              control={<Checkbox checked={false}  name="tag" />}
+              label="Politics"
+            />  
+
+            <FormControlLabel
+              className  = "checkbox"
+              control={<Checkbox checked={false} name="url" />}
+              label="Art"
+            />  
+
+            <FormControlLabel
+              className  = "checkbox"
+              control={<Checkbox checked={false} name="url" />}
+              label="Technology"
+            />  
+          </FormGroup>
+          
+        </FormGroup>
         </>
     )
 }

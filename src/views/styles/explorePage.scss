@@ -1,5 +1,5 @@
 .inputBase {
-	width: 43vw !important;
+	width: 63vw !important;
 }	
 .toolbar{
 	align-items: left	;
@@ -7,7 +7,9 @@
 .accordeonRoot {
 	width: 100%;
 }
-
+.checkbox{
+	// margin : 0px ;
+}
 .searchFormPaper {
 	// padding-left: 30px;
 	// padding-right: 10px;	
@@ -128,7 +130,10 @@
 }
 .night{
 // <<<<<<< HEAD
-	
+	.accordion{
+		background-color: #424242;
+		color: white !important;
+	}
 	.toolbar{
 		background-color: #424242;
 		border-bottom: 2px solid;
@@ -160,9 +165,6 @@
 		flex-direction: column;
 		text-align: left;
 	}
-	.inputBase {
-		width: 43vw !important;
-	}		
 	.MuiDialog-paperWidthSm {
 		max-width: 400px;
 		width: 250px !important;

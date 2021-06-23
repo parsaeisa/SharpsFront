@@ -47,7 +47,9 @@ export default function Search(props) {
         }}
       />
       <div className = "accordeonRoot" >
-        <Accordion style={{marginLeft : '30px' , paddingRight : '0px'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')} elevation={4}>
+        <Accordion
+        className = "accordion"
+        style={{marginLeft : '30px'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')} elevation={4}>
             <AccordionSummary            
             expandIcon={<ExpandMoreIcon />}            
             >
@@ -84,7 +86,7 @@ export default function Search(props) {
                 </Button> }
             </AccordionSummary>
             <AccordionDetails>
-                <SearchPanel />                        
+                <SearchPanel handleChange />                        
             </AccordionDetails>
         </Accordion>
     </div>
