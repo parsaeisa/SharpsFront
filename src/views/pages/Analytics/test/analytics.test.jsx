@@ -14,33 +14,15 @@ import BarChart from "../components/Bar_chart";
 
  describe('authenticate action', () => {
     
-    test('display whole editprofile component ' , async() => {        
+    test('display whole analytics component ' , async() => {        
         render(            
-                <Analytics />            
+            <Provider store={store} >
+                <Analytics />        
+            </Provider>    
         );
 
     })
  })
-
- 
-test('display dialog after clicking on button' , async() => {
-
-    render(
-            <Analytics />            
-        );    
-    
-    
-    // await waitFor(() => screen.getByText('Save'));
-    // // await waitFor(() => screen.getByText('Add photo'));    
-
-    // await waitFor(() => screen.getByText('Username :'));
-    // await waitFor(() => screen.getByText('Name :'));
-    // await waitFor(() => screen.getByText('Email :'));
-    // await waitFor(() => screen.getByText('Password :'));
-    // await waitFor(() => screen.getByText('deactivate'));
-
-
-})
 
 test('display line chart' , () => {
     render(<LineChart  />)

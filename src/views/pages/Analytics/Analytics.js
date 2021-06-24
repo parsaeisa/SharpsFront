@@ -5,10 +5,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux' ;
 import DonatChart from './components/Donat_chart';
 import LineChart from './components/Line_chart';
 import BarChart from './components/Bar_chart';
-import "../../styles/analytics.css";
+import "../../styles/analytics.scss";
 // import BlockedTable from './components/blocked_links_table';
 import callapi_analytics_get from './callapi_analytics/callapi_analytics' ;
 import callapi_analytics_get_blockedDomains from '../editProfile/callapi_editprofile.js/callapi_analytics_blockdomains';
@@ -16,7 +17,7 @@ import CountUp from './components/CountUp' ;
 const drawerWidth = 240;
 
 
-export default class Analytics extends React.Component {
+class Analytics extends React.Component {
 
   constructor(props) {
     super(props);
@@ -130,6 +131,7 @@ export default class Analytics extends React.Component {
         display: 'flex',
         overflow: 'auto',
         flexDirection: 'column',
+        
       },      
     }));
 
@@ -207,14 +209,14 @@ export default class Analytics extends React.Component {
               </Grid> 
 
               <Grid item xs={12} md={4} lg={5}>
-                <Paper style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
+                <Paper clasaNam= "paper" style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
                   <BarChart
                     data = {mapToProp(this.state.user_history , "domain")}
                   />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={8} lg={7}>
-                <Paper elevation={4} className="BlockedDomainsPaper">
+                <Paper  elevation={4} className="BlockedDomainsPaper">
                   {/* <BlockedTable
                     data ={this.state.blocked_domains}
                   /> */}
@@ -227,3 +229,18 @@ export default class Analytics extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    firstname : state.UserReducer.firstname ,
+    lastname : state.UserReducer.lastname ,
+    username : state.UserReducer.username ,
+    email : state.UserReducer.email ,
+    password : state.UserReducer.password ,
+    avatar : state.UserReducer.avatar ,
+    darkmode: state.dark_mode.darkmode,
+  }
+}
+
+export default connect (mapStateToProps) (Analytics); 

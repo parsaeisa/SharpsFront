@@ -63,3 +63,16 @@
   padding-bottom : 10px ;
   padding-top : 10px ;
 }
+
+.paper{
+  padding: 16px ;
+  display: flex ;
+  overflow: auto ;
+  flex-direction: column ;
+}
+
+.night {
+  .paper{
+    background-color : #424242 ;
+  }
+}
