@@ -1,10 +1,43 @@
+.toolbar{
+	align-items: left	;
+}
+.accordeonRoot {
+	width: 99%;
+}
+.MuiAccordion-root{
+	margin-left : 57px !important ;
+	padding-left : 16px ;
+}
+.searchIcon{
+	height : 2px !important;
+	width : 2px !important;
+}
+.MuiToolbar-root{
+	padding : 0px !important;
+}
+.searchFormPaper {
+	// padding-left: 30px;
+	// padding-right: 10px;	
+	width: 76%;
+	height: 44px !important;		
+	border-radius: 8px !important;
+	border: 1px solid;
+	box-shadow: none !important;
+	z-index: 30;
+}
+.appBarSpacer {
+	height: 800px ;
+}
 .day{
-	background-image: url("./bigdatalightblur2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+	// background-image: url("./bigdatalightblur2.png");	
+    // background-repeat: no-repeat;
+    // background-size: cover;
 	.ex {
 		align-items: center;
 		padding-left: 40%;
+	}
+	.MuiCheckbox-colorSecondary.Mui-checked{
+		color : #44469c ;
 	}
 	.explore {
 		align-items: center;
@@ -13,13 +46,7 @@
 		justify-content: center;
 		flex-direction: column;
 		text-align: left;
-	}
-	.searchFormPaper {
-		padding-left: 30px;
-		padding-right: 10px;
-		border-radius: 20px !important;
-		box-shadow: 0px 0px 1px 1px !important;
-	}
+	}	
 	.MuiDialog-paperWidthSm {
 		max-width: 400px;
 		width: 250px !important;
@@ -95,7 +122,7 @@
 	.horizontal-card-body {
 		display: flex;
 		flex-direction: column;
-		margin-left: 1rem;
+		margin-left: 1rem;		
 	}
 	.horizontal-card-footer {
 		left: 0px;
@@ -110,9 +137,28 @@
 	
 }
 .night{
-	background-image: url("./bigdatadarkblur2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+// <<<<<<< HEAD
+	.accordion{
+		background-color: #424242;
+		color: white !important;
+	}
+	.toolbar{
+		background-color: #424242;
+		border-bottom: 2px solid;
+		border-color: #6381B5;
+		// background:  rgba(0, 0, 0, 0.32) !important ;
+	}	
+	.searchFormPaper{
+		background-color: #424242;
+		border-bottom: 2px solid;
+		border-color: #6381B5;		
+		color : white !important ;
+	}
+// =======
+// 	background-image: url("./bigdatadarkblur2.png");
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// >>>>>>> ed5da9065e5249dd79220d5b8eb52db8dec4c86a
 	.ex {
 		align-items: center;
 		padding-left: 40%;
@@ -124,12 +170,6 @@
 		justify-content: center;
 		flex-direction: column;
 		text-align: left;
-	}
-	.searchFormPaper {
-		padding-left: 30px;
-		padding-right: 10px;
-		border-radius: 20px !important;
-		box-shadow: 0px 0px 1px 1px !important;
 	}
 	.MuiDialog-paperWidthSm {
 		max-width: 400px;
@@ -193,6 +233,12 @@
 			text-decoration-color: rgba(184, 217, 255, 0.877);
 		}
 	}
+	.MuiCheckbox-colorSecondary.Mui-checked{
+		color : white ;
+	}
+	.MuiCheckbox-colorSecondary{
+		color: white;
+	}
 	.card-text{
 		color: rgba(245, 245, 245, 0.67);
 		font-size: 19.5px;
@@ -210,6 +256,13 @@
 		display: flex;
 		flex: 1 1 auto;
 	}
+	.MuiSvgIcon-root{
+		color : #757575 !important;
+	}
+	.inputBase {
+		// width: 63vw !important;
+		color: white ;
+	}	
 	.horizontal-card-body {
 		display: flex;
 		flex-direction: column;

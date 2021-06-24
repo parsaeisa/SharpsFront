@@ -11,13 +11,12 @@
 	.makeStyles-appBarShift-5 {
 		margin-left: 240px;
 	}
-	.makeStyles-drawerPaper-9 {
-		width: 240px;
-		background: linear-gradient(180deg, #44469ccb 0%, #ffffffcb 120%) !important;
+	.makeStyles-drawerPaper-9 {		
+		background: linear-gradient(180deg, #44469c, #ffffffcb 120%) !important;
 		color: white !important;
 	}
 	.DrawerSpacer {
-		height: 52vh;
+		height: 40vh;
 	}
 	.MuiListItemIcon-root {
 		color: white !important;
@@ -52,7 +51,7 @@
 .night{
 	.appBarSpacer {
 		height: 60px;
-	}
+	}	
 	.appBarOptions {
 		margin-right: 10px !important;
 	}
@@ -62,13 +61,13 @@
 	.makeStyles-appBarShift-5 {
 		margin-left: 240px;
 	}
-	.makeStyles-drawerPaper-9 {
-		width: 240px;
-		background: linear-gradient(180deg, #95bce9 0%, rgb(0, 0, 0) 105%) !important;
+	.makeStyles-drawerPaper-9 {		
+		// background: linear-gradient(180deg, #95bce9 0%, rgb(0, 0, 0) 105%) !important;
+		background: linear-gradient(180deg, rgba(63,81,181,1) 0%, rgba(0,0,0,1) 100%) !important;
 		color: rgb(0, 0, 0) !important;
 	}
 	.DrawerSpacer {
-		height: 52vh;
+		height: 40vh;
 	}
 	.MuiListItemIcon-root {
 		color: rgb(0, 0, 0) !important;
