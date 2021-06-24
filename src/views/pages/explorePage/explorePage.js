@@ -14,12 +14,10 @@ import { Link, withRouter } from "react-router-dom";
 import SaveContent from "../saveContent/saveContent";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ShowMoreText from "react-show-more-text";
-import '../../styles/explorePage.scss';
 import Search from './component/search' ;
 
 import Button from "@material-ui/core/Button";
 import AppBar from "@material-ui/core/AppBar";
-import "../../styles/explorePage.scss";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import LinearBuffer from "./component/progress_bar_search";

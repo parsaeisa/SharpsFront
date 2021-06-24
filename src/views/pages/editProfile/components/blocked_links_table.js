@@ -85,7 +85,7 @@ export default class BlockedTable extends React.Component {
                     {numSelected} selected to be unblocked
                   </Typography>
                 ) : (
-                  <Typography style = {{color : "#757575"}} className={classes.title} variant="h6" id="tableTitle" component="div">
+                  <Typography style = {{color : props.darkmode != 'night' ? "#757575" : 'white'}} className={classes.title} variant="h6" id="tableTitle" component="div">
                     Blocked
                   </Typography>
                 )}
@@ -191,6 +191,7 @@ export default class BlockedTable extends React.Component {
                 {headCells.map((headCell) => (
                     <TableCell
                     key={headCell.id}
+                    style = {{color : props.darkmode != 'night' ? "#757575" : 'white'}}
                     align={headCell.numeric ? 'right' : 'left'}
                     padding={headCell.disablePadding ? 'none' : 'default'}
                     // sortDirection={orderBy === headCell.id ? order : false}
@@ -216,9 +217,9 @@ export default class BlockedTable extends React.Component {
             <>
             {this.state.blocked_domains.length != 0 ?
                 <>
-                    <EnhancedTableToolbar numSelected={this.state.selected.length} />
+                    <EnhancedTableToolbar darkmode = {this.props.darkmode} numSelected={this.state.selected.length} />
                     <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
+                    <Table className="blockedTable" aria-label="simple table">
                         {/* <TableHead>
                         <TableRow>
                             <TableCell> <b>Blocked Links </b></TableCell>                    
@@ -230,6 +231,7 @@ export default class BlockedTable extends React.Component {
                         numSelected={this.state.selected.length}                    
                         onSelectAllClick={handleSelectAllClick}                    
                         rowCount={rows.length}
+                        darkmode = {this.props.darkmode}
                         />
                         <TableBody>
                         {rows.map((row, index) => {
