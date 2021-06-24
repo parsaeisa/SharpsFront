@@ -1,4 +1,5 @@
 import { useState , React} from 'react';
+import clsx from "clsx";
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
@@ -15,13 +16,22 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
+
 const useStyles = makeStyles((theme) => ({
     typography: {
       padding: theme.spacing(2),
     },
+    inputBase : {
+        width: '63vw' 
+    },
+    inputBaseShift : {
+        width: '53vw' 
+    }
   }));
 
 export default function Search(props) {
+
+    const classes= useStyles ();
 
     const [searched , setSearched] = useState("");
     const [openAdvancedSearch , setOpenAdvancedSearch]   = useState(false);
@@ -54,8 +64,9 @@ export default function Search(props) {
             expandIcon={<ExpandMoreIcon />}            
             >
                 <Paper  component="form" className='searchFormPaper'  >                            
-                    <InputBase            
-                    className = "inputBase"                                                           
+                    <InputBase    
+                    className = {clsx(classes.inputBase, props.drawerOpen && classes.inputBaseShift)}        
+                    // className = "inputBase"                                                           
                         placeholder="Search Content"                              
                         onChange = {(e) => {
                         setSearched(e.target.value);
@@ -72,7 +83,7 @@ export default function Search(props) {
                         }));
                     }}  
                         >
-                        <SearchIcon />
+                        <SearchIcon />                        
                     </IconButton>
                     {/* <Divider orientation="vertical" /> */}
                 </Paper> 

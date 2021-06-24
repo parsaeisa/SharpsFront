@@ -279,7 +279,7 @@ function Dashboard({darkmode,setDarkMode}) {
                             <Switch>
 
                                 <Route path="/explore">
-                                    <ExplorePage />
+                                    <ExplorePage drawerOpen = {open} />
                                 </Route>
 
                                 <Route path="/profile/edit">

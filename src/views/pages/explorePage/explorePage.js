@@ -39,7 +39,7 @@ import LinearBuffer from "./component/progress_bar_search";
 import Badge from "react-bootstrap/Badge";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
-const drawerWidth = 240;
+const drawerWidth = 160;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,6 +78,21 @@ const useStyles = makeStyles((theme) => ({
   inputRoot: {
     color: "inherit",
   },
+  appBar: {
+    // zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    // marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
 
@@ -93,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ExplorePage() {
+function ExplorePage(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -166,26 +181,14 @@ function ExplorePage() {
   }
   return (
     <div>      
-      <AppBar style={{ background: '#ffffff' }} position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-                        <Toolbar className="toolbar">
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-                        >
-                            <MenuIcon />    
-                        </IconButton> 
-
-                        <Typography style={{flexGrow : '1'}} component="h1" variant="h6" color="inherit" noWrap className={classes.title}>                            
-                        </Typography>                                                          
+      <AppBar style={{ background: '#ffffff' }} position="absolute" className={clsx(classes.appBar, props.drawerOpen && classes.appBarShift)}>
+                        <Toolbar className="toolbar">                                                
 
                         <Search
                           fetchData = {() => {
                             fetchData();
                           }}
-
+                          drawerOpen = {props.drawerOpen}
                           setContent = {(content) => {
                             setContent(content);
                           }}
