@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import '@progress/kendo-theme-default/dist/all.css';
-import "../../../styles/analytics.css";
+import "../../../styles/analytics.scss";
 
 import {
   Chart,
