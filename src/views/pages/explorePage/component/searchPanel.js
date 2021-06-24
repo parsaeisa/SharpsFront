@@ -72,6 +72,7 @@ export default function SearchPanel (props)
 
             <FormControlLabel
               className  = "checkbox"
+              color = 'default'
               control={<Checkbox checked={tag} onChange={() => {
                 setTag(!tag);
                 if(url == true)

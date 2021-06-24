@@ -4,13 +4,12 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import SearchIcon from '@material-ui/icons/Search';
-import AdvancedSearch from './advanced_search';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import callapi_explore_search from '../callapi_explore/callapi_search' ;
 import '../../../styles/explorePage.scss';
 import Button from '@material-ui/core/Button';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import { connect } from 'react-redux' ;
 import SearchPanel from './searchPanel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Accordion from '@material-ui/core/Accordion';
@@ -22,14 +21,14 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2),
     },
     inputBase : {
-        width: '63vw' 
+        width: '63vw' ,    
     },
     inputBaseShift : {
         width: '53vw' 
     }
   }));
 
-export default function Search(props) {
+function Search(props) {
 
     const classes= useStyles ();
 
@@ -58,6 +57,9 @@ export default function Search(props) {
                     <InputBase    
                     className = {clsx(classes.inputBase, props.drawerOpen && classes.inputBaseShift)}        
                     // className = "inputBase"                                                           
+                    style={{
+                        color: props.darkmode == 'night' && 'white'
+                    }}
                         placeholder="Search Content"                              
                         onChange = {(e) => {
                         setSearched(e.target.value);
@@ -74,7 +76,7 @@ export default function Search(props) {
                         }));
                     }}  
                         >
-                        <SearchIcon />                        
+                        <SearchIcon className = "searchIcon" />                        
                     </IconButton>
                     {/* <Divider orientation="vertical" /> */}
                 </Paper> 
@@ -98,4 +100,11 @@ export default function Search(props) {
         </>        
     )
 
-}
+}const mapStateToProps = (state) => {
+    return {
+      ...state,      
+      darkmode: state.dark_mode.darkmode,
+    }
+  }
+  
+export default connect (mapStateToProps) (Search);   
