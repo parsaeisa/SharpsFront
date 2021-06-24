@@ -91,7 +91,7 @@
     .AvatarDialog {
         height: 100%;
         width: 100%;
-    }
+    }	
 
     
     .MuiDialogContent-root {
@@ -107,6 +107,9 @@
 	.MuiButton-containedPrimary {
 		background-color: #0f0b3e !important;
 	}
+	.MuiCircularProgress-colorPrimary{
+		color: #0f0b3e !important;
+	}
 	.MuiDialogActions-root {
 		border-top: 0.5px solid #bfbfbf;
 	}
@@ -116,6 +119,9 @@
 	.ant-collapse-item {
 		border: 1px solid #bfbfbf;
 		border-bottom: 0.5px solid #bfbfbf;
+	}
+	.MuiIconButton-colorPrimary{
+		color : #023047 ;
 	}
 	.closeIcon {
 		fill: #0f0b3e !important;

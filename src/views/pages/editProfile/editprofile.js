@@ -152,7 +152,8 @@ class Edit_profile extends React.Component {
                  
                  {this.props.avatar != "undefined" ? <> <Avatar /> </> : <CircularProgress
                   style={{marginBottom : "15px"}}
-                 color="#0f0b3e" /> }              
+                 color="primary"
+                  /> }              
                    <Accordion className = "Accordion">
                      <AccordionSummary 
                      expandIcon={<ExpandMoreIcon />}>
@@ -206,7 +207,8 @@ class Edit_profile extends React.Component {
                       onChange={handleChange('password')}
                       endAdornment={                      
                           <IconButton
-                            aria-label="toggle password visibility"
+                          color = "primary"
+                          aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
@@ -229,7 +231,8 @@ class Edit_profile extends React.Component {
                       onChange={handleChange('confirmPassword')}
                       endAdornment={                                              
                           <IconButton
-                            color = "#023047"
+                            // color = "#023047"
+                            color = "primary"
                             aria-label="toggle password visibility"
                             onClick={handleClickShowConfirmPassword}
                             onMouseDown={handleMouseDownPassword}
@@ -256,7 +259,7 @@ class Edit_profile extends React.Component {
                       this.setState({
                         deleteAccountModalOpen : true
                       })
-                    }} size="Medium" className="Button" variant="contained" color="secondary">                      
+                    }} size="medium" className="Button" variant="contained" color="secondary">                      
                       Delete Account                      
                     </Button>                  
                     <DeleteAccountModal 
