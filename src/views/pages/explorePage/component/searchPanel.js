@@ -62,7 +62,10 @@ export default function SearchPanel (props)
             className  = "checkbox"
               control={<Checkbox checked={url} onChange={() => {
                 setURL(!url);
-                props.handleChange("URL") ;
+                if(tag == true)
+                  props.handleChange("both");                
+                else 
+                  props.handleChange("URL") ;
               }} name="url" />}
               label="url"
             />  
@@ -71,7 +74,10 @@ export default function SearchPanel (props)
               className  = "checkbox"
               control={<Checkbox checked={tag} onChange={() => {
                 setTag(!tag);
-                props.handleChange("title");
+                if(url == true)
+                  props.handleChange("both");                
+                else
+                  props.handleChange("title");                
               }} name="tag" />}
               label="tag"
             />  

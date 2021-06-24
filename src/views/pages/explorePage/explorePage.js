@@ -11,29 +11,16 @@ import Like from "../likeContent/like";
 import Block from "../likeContent/block";
 
 import { Link, withRouter } from "react-router-dom";
-import Edit_profile from "../editProfile/editprofile";
 import SaveContent from "../saveContent/saveContent";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ShowMoreText from "react-show-more-text";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import '../../styles/explorePage.scss';
 import Search from './component/search' ;
 
 import Button from "@material-ui/core/Button";
-import FilterListIcon from "@material-ui/icons/FilterList";
 import AppBar from "@material-ui/core/AppBar";
-import Paper from "@material-ui/core/Paper";
-import InputBase from "@material-ui/core/InputBase";
-import Divider from "@material-ui/core/Divider";
 import "../../styles/explorePage.scss";
-import SearchIcon from "@material-ui/icons/Search";
-import DirectionsIcon from "@material-ui/icons/Directions";
-import callapi_explore_search from "./callapi_explore/callapi_search";
 import Toolbar from "@material-ui/core/Toolbar";
-import AdvancedSearch from "./component/advanced_search";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import Typography from "@material-ui/core/Typography";
 import LinearBuffer from "./component/progress_bar_search";
 import Badge from "react-bootstrap/Badge";
@@ -44,11 +31,6 @@ const drawerWidth = 160;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-  },
-
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
   },
 
   search: {

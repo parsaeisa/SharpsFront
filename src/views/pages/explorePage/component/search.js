@@ -46,16 +46,7 @@ export default function Search(props) {
     };
 
     return (
-        <>
-        <AdvancedSearch
-        open = {false}
-        handleChange = {(mode) => {
-          setSearchMode(mode)
-        }}
-        handleClose = {() => {
-          setOpenAdvancedSearch(false);
-        }}
-      />
+        <>        
       <div className = "accordeonRoot" >
         <Accordion
         className = "accordion"
@@ -97,7 +88,9 @@ export default function Search(props) {
                 </Button> }
             </AccordionSummary>
             <AccordionDetails>
-                <SearchPanel handleChange />                        
+                <SearchPanel handleChange = {(mode) => {
+                  setSearchMode(mode)
+                }} />                        
             </AccordionDetails>
         </Accordion>
     </div>
