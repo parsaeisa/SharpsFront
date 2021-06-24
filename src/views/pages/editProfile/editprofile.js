@@ -163,7 +163,7 @@ class Edit_profile extends React.Component {
                       <TextField className ="TextField" onChange={(e) => {this.props.SET_LASTNAME(e.target.value)}} value={this.props.lastname} id="outlined-basic" label="LastName" variant="outlined" role="LastnameTextField" />
                     </AccordionDetails>
                   </Accordion>
-                  <Accordion>
+                  <Accordion className ="Accordion" elevation={4}>
                      <AccordionSummary  expandIcon={<ExpandMoreIcon />}> 
                      Username :                
                   </AccordionSummary >
@@ -173,7 +173,7 @@ class Edit_profile extends React.Component {
                 {/* <Panel style={{textAlign: "left"}} header="Email : " key="3"> */}
                 </AccordionDetails>
                   </Accordion>
-                  <Accordion>
+                  <Accordion className ="Accordion" elevation={4}>
                      <AccordionSummary expandIcon={<ExpandMoreIcon />} > Email :  </AccordionSummary >
                      <AccordionDetails >
                        <Grid container>
@@ -191,7 +191,7 @@ class Edit_profile extends React.Component {
                   </ul> */}
                   </AccordionDetails>
                  </Accordion> 
-                 <Accordion>
+                 <Accordion className ="Accordion" elevation={4}>
                      <AccordionSummary expandIcon={<ExpandMoreIcon />} >Password :  </AccordionSummary >
                      <AccordionDetails >
                   
@@ -245,7 +245,7 @@ class Edit_profile extends React.Component {
                 </Grid>
                 </AccordionDetails>
                 </Accordion>
-                <Accordion>
+                <Accordion className ="Accordion" elevation={4}>
                      <AccordionSummary
                      expandIcon={<ExpandMoreIcon />}
                       > Deactivate </AccordionSummary >
@@ -312,6 +312,7 @@ class Edit_profile extends React.Component {
             style={{marginBottom : '30px'}}
             className="paper" elevation={5} >
               < BlockedTable 
+                darkmode = {this.props.darkmode}
                 date = {this.state.blocked_domains}
                   />
             </Paper>
