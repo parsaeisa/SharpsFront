@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import "../../../styles/analytics.css";
+import "../../../styles/analytics.scss";
 
 export default function  CountUp (props)
 {

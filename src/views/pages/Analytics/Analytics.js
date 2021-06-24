@@ -191,7 +191,7 @@ class Analytics extends React.Component {
               <Grid item xs={3} md={3} lg={3}>
                 <Paper elevation={4} className={fixedHeightNumberPaper}>
                   <CountUp 
-                        title = "Hours / day"
+                        title = "interaction (average)"
                         number = {2}
                     />  
                 </Paper>

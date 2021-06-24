@@ -13,23 +13,26 @@ import {
 
 import 'hammerjs';
 
-const series = [
-    {
-        name: "time checks",
-        data: [3.988, 3.733, 3.994 , 1]
-    },    
-]
-
-const categories = ['google', 'facebook', 'twitter', 'apple'];
 class BarChart extends React.Component {
 
     constructor(props)
     {
         super(props);
-    }
+    }    
 
     render () 
     {
+        const paletteSettings = {
+            palette: [
+                '#dc3545'
+            ]
+        };
+
+        const paletteSettingsNight = {
+            palette: [
+                
+            ]
+        };
 
         const categories = this.props.data ? Object.keys(this.props.data) : [];
         console.log(this.props.data);
@@ -51,7 +54,7 @@ class BarChart extends React.Component {
                             <ChartCategoryAxisTitle />
                         </ChartCategoryAxisItem>
                     </ChartCategoryAxis>
-                <ChartSeries>
+                <ChartSeries >
                 {series.map((item, idx) => (
                 <ChartSeriesItem stack={true}
                   key={idx}
