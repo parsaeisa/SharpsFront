@@ -15,6 +15,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux' ;
 import * as UserAction from "../../../core/edit_profile/action/UserAction" ;
 import Grid from '@material-ui/core/Grid';
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
+import callapi_analytics_get_blockedDomains from './callapi_editprofile.js/callapi_analytics_blockdomains';
 import store from "../../../core/store/index"
 import { makeStyles } from '@material-ui/core/styles';
 import callapi_editprofile_update from './callapi_editprofile.js/callapi_editprofile_udpate' ;
@@ -24,11 +27,12 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import BackgroundFromBGjar from './components/BackgroundFromBGjar';
+import ProfileBackground from '../../../assests/ProfileBackground.svg'
+import BlockedTable from './components/blocked_links_table';
+
 import '../../styles/edit_profile.scss' ;
-import ProfileBackground from '../../../assests/ProfileBackground.svg';
 import Avatar from './components/Avatar';
-import SuccessAlert from './components/Success_alert';
-import FailAlert from './components/fail_alert';
 
 class Edit_profile extends React.Component {        
                 
@@ -39,6 +43,7 @@ class Edit_profile extends React.Component {
       callapi_editprofile_get()    
 
       this.state = {
+        blocked_domains : [] ,
         visible : false ,
         showSuccessAlert : false ,
         SuccesAlertText : "Profile has been changed success fully " ,
@@ -59,8 +64,12 @@ class Edit_profile extends React.Component {
       }
     }
 
-    componentWillMount(){
-      
+    async componentWillMount(){
+      let blocked_domains = await  callapi_analytics_get_blockedDomains() ;   
+
+      this.setState({        
+        blocked_domains : blocked_domains
+      })
     }
 
     render()
@@ -101,7 +110,8 @@ class Edit_profile extends React.Component {
       this.setState({visible : false });
     };      
 
-    return (           
+    return (     
+      <>      
       <div className={this.props.darkmode}>         
             <Paper elevation={5} className="paper">
                 <Grid container>
@@ -112,15 +122,32 @@ class Edit_profile extends React.Component {
                   </Grid>                  
                 </Grid>
                                 
-            <Container maxWidth="lg"  className="container">
-              <SuccessAlert 
-                show={this.state.showSuccessAlert}
-                text= {this.state.SuccesAlertText}
-                />
-              <FailAlert 
-                show={this.state.showFailureAlert}
-                text = {this.state.FailAlertText}
-                />
+            <Container maxWidth="lg"  className="container">              
+
+              <Snackbar
+                open={this.state.showSuccessAlert}
+                onClose={() => {
+                  this.setState({
+                    ...this.state,
+                    showSuccessAlert: false,
+                  });
+                }}
+                TransitionComponent={Fade}
+                message={this.state.SuccesAlertText}                
+              />              
+              <Snackbar
+                open={this.state.showFailureAlert}
+                onClose={() => {
+                  this.setState({
+                    ...this.state,
+                    showFailureAlert: false,
+                  });
+                }}
+                TransitionComponent={Fade}
+                message={this.state.FailAlertText}
+                // key={state.Transition.name}
+              />
+                
               
                  
                  {this.props.avatar != "undefined" ? <> <Avatar /> </> : <CircularProgress
@@ -279,8 +306,17 @@ class Edit_profile extends React.Component {
                 </Button > 
             </div>  
           </Container >
-            </Paper>          
-      </div>
+            </Paper>        
+
+            <Paper
+            style={{marginBottom : '30px'}}
+            className="paper" elevation={5} >
+              < BlockedTable 
+                date = {this.state.blocked_domains}
+                  />
+            </Paper>
+        </div>
+      </>
     )  }  
 }
 
