@@ -180,22 +180,14 @@ function Dashboard({darkmode,setDarkMode}) {
                         <li>
                           {/* <Grid container direction="row" >                             */}
                           <ListItem button >
-                            <ListItemIcon>
-                            <div className="darkmode-icon" onClick={setDarkStatus}>
-            {darkmode == "day" && (
-                <img  className="darkmode" src="moon.svg"></img>
-              )}
-              {darkmode == "night" && (
-               <img  className="darkmode" src="sun.svg"></img>
-              )}
-                      </div>
+                            <ListItemIcon>                               
                               <Avatar
                                   src={avatar != null && avatar != "https://i.stack.imgur.com/l60Hf.png" && atob(avatar) }                             
-                                  className = "appBarOptions" />
-                            </ListItemIcon>                            
+                                  className = "appBarOptions" />                                                        
+                                  </ListItemIcon>    
                                 <Typography variant="button" style={{ marginLeft:'2px' , color: "red" }}>  
                                     {name}
-                                </Typography>                            
+                                </Typography>                                                          
                           </ListItem>
                         </li>
                         <Divider  variant="inset" component="li" className ="Divider" />
@@ -257,6 +249,21 @@ function Dashboard({darkmode,setDarkMode}) {
                           </Link>
                         </li>                        
                         <div className = "DrawerSpacer" />
+                        <li>
+                          {/* <Grid container direction="row" >                             */}
+                          <ListItem button >
+                            <ListItemIcon>
+                              {/* <div className="darkmode-icon" onClick={setDarkStatus}> */}
+                              {darkmode == "day" && (
+                                  <img  className="darkmode" src="moon.svg" onClick={setDarkStatus}></img>
+                                )}
+                                {darkmode == "night" && (
+                                <img  className="darkmode" src="sun.svg" onClick={setDarkStatus}></img>
+                                )}
+                              {/* </div>                                */}
+                            </ListItemIcon>                                  
+                          </ListItem>
+                        </li>
                         <ListItem button key="Logout" >
                             <ListItemIcon>
                             <ExitToAppIcon></ExitToAppIcon>
@@ -272,7 +279,7 @@ function Dashboard({darkmode,setDarkMode}) {
                             <Switch>
 
                                 <Route path="/explore">
-                                    <ExplorePage />
+                                    <ExplorePage drawerOpen = {open} />
                                 </Route>
 
                                 <Route path="/profile/edit">
