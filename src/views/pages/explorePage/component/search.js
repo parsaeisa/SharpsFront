@@ -76,7 +76,7 @@ function Search(props) {
                         }));
                     }}  
                         >
-                        <SearchIcon className = "searchIcon" />                        
+                        <SearchIcon />                        
                     </IconButton>
                     {/* <Divider orientation="vertical" /> */}
                 </Paper> 
