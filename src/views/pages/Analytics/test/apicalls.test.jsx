@@ -2,6 +2,11 @@ import React from 'react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
+import { render, waitForElement } from "@testing-library/react";
+// import "jest-dom/extend-expect";
+import axios from "axios";
+import Analytics from '../Analytics';
+
 const server = setupServer(
     // capture "GET /greeting" requests
     rest.get('/user/blockedDomains', (req, res, ctx) => {
@@ -26,3 +31,40 @@ test('handlers server error', async () => {
         return res(ctx.status(200))
       })
 )})
+
+afterEach(() => {
+  axios.get.mockClear();
+});
+
+function mockCall() {
+  axios.get.mockResolvedValueOnce({
+    "userHistory": [
+      {
+        "domain": "google.com",
+        "tags": [
+          "string"
+        ],
+        "url": "google.com/who_is_parsa",
+        "eventType": "CLICK",
+        "createdAt": "2021-06-24T15:25:37.424Z"
+      },
+      {
+        "domain": "example.com",
+        "tags": [
+          "string"
+        ],
+        "url": "example.com",
+        "eventType": "CLICK",
+        "createdAt": "2021-06-24T15:25:37.424Z"
+      }
+    ]
+  });
+}
+
+// test('render most popular sites' , () => {
+//   mockCall();
+
+//   const {getAllByTestId} = render(<Analytics /> );
+
+//   expect(screen.getByText('gooooogle.com')).toBeInTheDocument() ;
+// })

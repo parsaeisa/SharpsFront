@@ -37,13 +37,36 @@ test('display line chart' , () => {
 })
 
 test('display Donat chart', () => {
-    render(<DonatChart />)
+    render(<DonatChart data = {{
+        "animal" : 3 ,
+        "politics" : 5 ,
+        "sport" : 2
+    }} />)
+    
     expect(screen.getByText('favorite topics')).toBeInTheDocument() ;
+
+    expect(screen.getByText('animal')).toBeInTheDocument() ;
+    expect(screen.getByText('politics')).toBeInTheDocument() ;
+    expect(screen.getByText('sport')).toBeInTheDocument() ;
 })
 
 test('display bar chart' , () => {
-    render(<BarChart />) 
+    render(<BarChart data={{
+        'google.com' : 6 , 
+        'newyork-times.com' : 9
+    }} />) 
+    
     expect(screen.getByText('favorite Links')).toBeInTheDocument() ;
+
+    expect(screen.getByText('google.com')).toBeInTheDocument() ;
+    expect(screen.getByText('newyork-times.com')).toBeInTheDocument() ;
+
+})
+
+test('test map to props function to work good' , () => {
+
+    // const a = Analytics.
+
 })
 
 
