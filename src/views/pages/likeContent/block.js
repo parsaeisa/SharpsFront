@@ -148,11 +148,7 @@ class Block extends React.Component {
   aria-describedby="alert-dialog-description"
 >
   <DialogTitle id="alert-dialog-title">{"Are you sure you want to block this domain?"}</DialogTitle>
-  {/* <DialogContent>
-    <DialogContentText id="alert-dialog-description">
-     
-    </DialogContentText>
-  </DialogContent> */}
+ 
   <DialogActions>
     <Button onClick={() => this.setState({smShow:false})} color="primary">
       Disagree
