@@ -21,7 +21,7 @@ import callapi_analytics_get_blockedDomains from '../callapi_editprofile.js/call
 import Toolbar from '@material-ui/core/Toolbar';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
-
+import '../../../styles/edit_profile.scss';
 
 
 export default class BlockedTable extends React.Component {    
@@ -43,7 +43,15 @@ export default class BlockedTable extends React.Component {
         let blocked = await callapi_analytics_get_blockedDomains() ;
         this.setState({
             blocked_domains : blocked
+                              .map((value , index , self) => {
+                                return value.split("/")[0]
+                              })
+                              .filter((value ,index , self) => {
+                                return self.indexOf(value) === index
+                              })
         })        
+
+        console.log (this.state.blocked_domains);
     }
     
     render ()
@@ -256,10 +264,12 @@ export default class BlockedTable extends React.Component {
                                         inputProps={{ 'aria-labelledby': labelId }}
                                         />
                                 </TableCell>            
-                                <TableCell component="th" scope="row">
-                                    <a target="_blank" rel="noreferrer nofollow" href = {row.name}>                                    
-                                    {row.name}                                    
-                                    </a>
+                                <TableCell  component="th" scope="row">                                                                        
+                                    <Link className= "urlCell" to={"//" + row.name} target="_blank">
+                                      <Typography variant="subtitle1" gutterBottom>
+                                        {row.name}                          
+                                      </Typography>       
+                                    </Link>                                       
                                 </TableCell>                              
                             {/* <TableCell align="right">{row.fat}</TableCell> */}
                             </TableRow>

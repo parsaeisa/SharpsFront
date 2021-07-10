@@ -1,6 +1,9 @@
     /* .ant-image-preview-root {
     z-index: 1400;
 } */
+.urlCell{
+	text-decoration: none !important;
+}
 .TextField {
 	margin-left: 5px !important;
 }
@@ -104,6 +107,9 @@
 
 }
 .day{
+	.urlCell{
+		color: black;
+	}
 	.MuiButton-containedPrimary {
 		background-color: #0f0b3e !important;
 	}
@@ -138,6 +144,9 @@
 	
 }
 .night{
+	.urlCell{
+		color: white !important;
+	}
 	.blockedTable{
 		background-color : #424242 !important ;		
 	}
