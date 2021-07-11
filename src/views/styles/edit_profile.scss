@@ -144,6 +144,14 @@
 	
 }
 .night{
+	& .MuiOutlinedInput-root::after{		
+		// border-color: white !important;		
+		border-bottom-color: white !important;
+	}
+	.Mui-focused{		
+		border-color: white !important;		
+		// border-bottom-color: pink !important;
+	}
 	.urlCell{
 		color: white !important;
 	}
