@@ -1,25 +1,62 @@
 .toolbar{
 	align-items: left	;
+	position: static;
+	// margin : 0px !important ;
 }
 .accordeonRoot {
 	width: 99%;
 }
-.MuiAccordion-root{
-	margin-left : 57px !important ;
-	padding-left : 16px ;
+
+@media only screen and (max-width: 600px) {
+	.MuiAccordion-root{
+		margin-left : 0px !important ;
+		padding-left : 16px ;
+		
+	}
+
+	.MuiToolbar-root{
+		padding-left : 0px !important;
+	}
+
+	.TabsBox{
+		padding : 0px ;
+	}
+
+	.SearchBar{
+		position : relative !important ;
+	}
 }
+
+.MuiPaper-root{
+	padding-left: 0px !important;
+}
+
+
+// .Mui-expanded{
+// 	margin-left: 0px !important;
+// }
+
+.SearchBar{
+	position : absolute ;
+}
+// .MuiAccordion-root{
+// 	margin-left : 57px  ;
+// 	padding-left : 16px ;
+// }
 .searchIcon{
 	height : 2px !important;
 	width : 2px !important;
 }
 .MuiToolbar-root{
-	padding : 0px !important;
+	padding-left : 57px ;
+	padding-right : 0px !important ;
 }
 .searchFormPaper {
 	// padding-left: 30px;
 	// padding-right: 10px;	
 	width: 76%;
-	height: 44px !important;		
+	height: 44px !important;	
+	margin-left: 0px!important ;	
 	border-radius: 8px !important;
 	border: 1px solid;
 	box-shadow: none !important;

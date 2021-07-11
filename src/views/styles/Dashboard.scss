@@ -25,6 +25,10 @@
 	}
 }
 
+.MuiBox-root{
+	padding: 0px !important ;
+}
+
 .PhoneTabular{
 	display : none;
 }
@@ -46,7 +50,7 @@
 		margin-left: 240px;
 	}
 	.makeStyles-drawerPaper-9 {		
-		background: linear-gradient(180deg, #44469c, #ffffffcb 120%) !important;
+		background: linear-gradient(180deg, #44469c, #ffffff 120%) !important;
 		color: white !important;
 	}
 	.DrawerSpacer {

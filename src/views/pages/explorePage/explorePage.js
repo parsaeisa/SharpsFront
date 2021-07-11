@@ -24,7 +24,7 @@ import LinearBuffer from "./component/progress_bar_search";
 import Badge from "react-bootstrap/Badge";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
-const drawerWidth = 160;
+const drawerWidth = 185;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -160,8 +160,8 @@ function ExplorePage(props) {
     console.log(value + "valueeee");
   }
   return (
-    <div>      
-      <AppBar style={{ background: '#ffffff' }} position="absolute" className={clsx(classes.appBar, props.drawerOpen && classes.appBarShift)}>
+    <div>          
+      <AppBar style={{ background: '#ffffff'  }}  className={clsx( "SearchBar" , classes.appBar, props.drawerOpen && classes.appBarShift)}>
                         <Toolbar className="toolbar">                                                
 
                         <Search
@@ -182,7 +182,7 @@ function ExplorePage(props) {
                         <Typography style={{flexGrow : '1'}} component="h1" variant="h6" color="inherit" noWrap>                            
                         </Typography>       
                         </Toolbar>
-                    </AppBar>
+                    </AppBar>        
                     {searching && < LinearBuffer />}
       <div className={classes.root}>
         <CssBaseline />

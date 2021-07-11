@@ -49,23 +49,13 @@ function Search(props) {
       <div className = "accordeonRoot" >
         <Accordion
         className = "accordion"
-        style={{marginLeft : '30px'}} expanded={expanded === 'panel1'} onChange={handleChange('panel1')} elevation={4}>
+        // style={{marginLeft : '30px'}} 
+        expanded={expanded === 'panel1'} onChange={handleChange('panel1')} elevation={4}>
             <AccordionSummary            
             expandIcon={<ExpandMoreIcon />}            
             >
-                <Paper  component="form" className='searchFormPaper'  >                            
-                    <InputBase    
-                    className = {clsx(classes.inputBase, props.drawerOpen && classes.inputBaseShift)}        
-                    // className = "inputBase"                                                           
-                    style={{
-                        color: props.darkmode == 'night' && 'white'
-                    }}
-                        placeholder="Search Content"                              
-                        onChange = {(e) => {
-                        setSearched(e.target.value);
-                        }}
-                    />
-                    <IconButton onClick = {async () => {
+                {/* <Paper  component="form" className='searchFormPaper'  >                             */}
+                <IconButton onClick = {async () => {
                         props.setSearching(true);
                         const search_respoonse = await callapi_explore_search(searched  , searchMode);
                         props.setSearching(false);
@@ -78,8 +68,19 @@ function Search(props) {
                         >
                         <SearchIcon />                        
                     </IconButton>
+                    <InputBase    
+                    className = {clsx(classes.inputBase, props.drawerOpen && classes.inputBaseShift)}        
+                    // className = "inputBase"                                                           
+                    style={{
+                        color: props.darkmode == 'night' && 'white'
+                    }}
+                        placeholder="Search Content"                              
+                        onChange = {(e) => {
+                        setSearched(e.target.value);
+                        }}
+                    />                    
                     {/* <Divider orientation="vertical" /> */}
-                </Paper> 
+                {/* </Paper>  */}
 
                 {search &&
                 <Button className="Button" variant="contained" onClick={() => {
