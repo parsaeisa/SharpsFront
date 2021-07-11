@@ -23,6 +23,9 @@ import Typography from "@material-ui/core/Typography";
 import LinearBuffer from "./component/progress_bar_search";
 import Badge from "react-bootstrap/Badge";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import Image from 'react-bootstrap/Image';
+
+import { Row, Col ,Container} from "react-bootstrap";
 
 const drawerWidth = 185;
 
@@ -205,7 +208,15 @@ function ExplorePage(props) {
                       <div class="card mb-3">
                         <div class="row no-gutters">
                           <div class="col-md-4">
-                            <img
+                          <Container>
+  <Row>
+    <Col xs={6} md={4}>
+                            <Image
+                            style={{
+  width:"250px",
+  height:"250px"
+                            
+                               }}
                               variant="top"
                               src={
                                 item.image != null
@@ -215,7 +226,10 @@ function ExplorePage(props) {
                               rounded
                               class="card-img"
                               alt="..."
-                            ></img>
+                            ></Image>
+                            </Col>
+                            </Row>
+                            </Container>
                             <div
                               class="card-footer w-100 text-muted"
                               className=" horizontal-card-footer"
