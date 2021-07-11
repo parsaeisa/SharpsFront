@@ -157,9 +157,6 @@ function ViewSaveContent() {
     }
     const firstEvent = (e) => {
       let pg = nextPage + 1;
-      if(pg==content.length){
-        setHasMore(false)
-        }
       SetNextPage(pg);
       SetNext(serverURL() + "user/savedContents?skip="+pg+"&limit=10")
 			fetchData();
@@ -172,20 +169,8 @@ function ViewSaveContent() {
         <CssBaseline />
         
           <div className="explore">
-          <InfiniteScroll
-            dataLength={content.length}
-            next={firstEvent}
-            hasMore={hasMore}
-            loader={
-               <h4>Loading...</h4>
-              // <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
-              //   <div className="loading" />
-              // </div>
-            }
-            endMessage={ <p style={{ textAlign: 'center' }}>
-            <b> You have seen it all</b>
-          </p>}
-            >
+         
+          <div onScroll={firstEvent} className='ImageAPI'>
             {content.length === 0 ? <div></div> :
               content.map((item,index) => {
                 if (item) return (
@@ -241,7 +226,7 @@ function ViewSaveContent() {
                   </div>
                 )
               })}
- </InfiniteScroll>
+</div>
           </div>    
           </div>
           </div>
