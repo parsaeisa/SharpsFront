@@ -93,7 +93,6 @@ function ExplorePage(props) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
   const [nextPage, SetNextPage] = useState(0);
   const [next, SetNext] = useState(serverURL() + "user/suggestions?skip=0&limit=10&showAds=true");
   const [value, setValue] = useState(0);
@@ -116,7 +115,6 @@ function ExplorePage(props) {
   
   const fetchData = () => {
    
-    console.log(localStorage.getItem('token') + "hhhhhhhhhhhhhhh")
     fetch(next, {
       method: 'GET',
       headers: {
