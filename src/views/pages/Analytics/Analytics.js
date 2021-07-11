@@ -209,7 +209,7 @@ class Analytics extends React.Component {
               </Grid> 
 
               <Grid item xs={12} md={4} lg={5}>
-                <Paper clasaNam= "paper" style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
+                <Paper className= "paper" style={{paddingLeft : "20px", paddingRight : "10px"}} elevation={4} >
                   <BarChart
                     data = {mapToProp(this.state.user_history , "domain")}
                   />
