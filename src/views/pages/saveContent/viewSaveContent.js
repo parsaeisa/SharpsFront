@@ -29,6 +29,9 @@ import Like from "../likeContent/like";
 import Badge from 'react-bootstrap/Badge';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import Button from '@material-ui/core/Button';
+import Image from 'react-bootstrap/Image';
+
+import { Row, Col ,Container} from "react-bootstrap";
 
 
 
@@ -182,7 +185,28 @@ function ViewSaveContent() {
                     <div class="card mb-3 " >
                       <div class="row no-gutters">
                         <div class="col-md-4" >
-                          <img variant="top" src={item.image != null ? item.image : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"} rounded class="card-img" alt="..."></img>
+                        <Container>
+  <Row>
+    <Col xs={6} md={4}>
+                            <Image
+                            style={{
+  width:"250px",
+  height:"250px"
+                            
+                               }}
+                              variant="top"
+                              src={
+                                item.image != null
+                                  ? item.image
+                                  : "https://om.rosheta.com/upload/61e6aa724ce98c29726e423dd146e4bc9435f9ea5eca681a349a2e2ab0a23494.png"
+                              }
+                              rounded
+                              class="card-img"
+                              alt="..."
+                            ></Image>
+                            </Col>
+                            </Row>
+                            </Container>
                           <div class="card-footer w-100 text-muted" className=" horizontal-card-footer">
                           <div style={{ display: "flex", content: "center", paddingLeft: "20px", marginTop: "" }}  >
                           <SaveContent url={item.url} />
