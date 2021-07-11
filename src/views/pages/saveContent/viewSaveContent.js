@@ -106,10 +106,10 @@ function ViewSaveContent() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [content, setContent] = useState({ items: [], total: "" });
-  const [contentGet , setContentGet] = useState(false);
+  const [content, setContent] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const [nextPage, SetNextPage] = useState(serverURL() + "user/savedContents?skip=0&limit=10");
+  const [nextPage, SetNextPage] = useState(0);
+  const [next, SetNext] = useState(serverURL() + "user/savedContents?skip=0&limit=10");
   const [value, setValue] = useState(0);
 
   const handleDrawerOpen = () => {
@@ -121,20 +121,14 @@ function ViewSaveContent() {
   };
 
 
-  useEffect(async () => {
-    console.log("sanaooooo")
-    if(contentGet === false)
-    {
-      fetchData();
-      setContentGet(true);
-      console.log(contentGet+"")
-
-    }
-  },[]);
+  useEffect(()=>{
+		fetchData();
+	},[]);
+    
 
   const fetchData = () => {
 
-    fetch(nextPage, {
+    fetch(next, {
       method: 'GET',
       headers: {
         "Authorization": "Bearer " + localStorage.getItem('token')
@@ -151,40 +145,38 @@ function ViewSaveContent() {
       }
       )
       .then(function (response) {
-        setContent((prevState) => ({
-          ...prevState,
-          items: response.items,
-          total: response.total
-        }))
-        // console.log("data"+ response.items)
-        // console.log("data")
-        // setValue(value + 10)
-        // SetNextPage(serverURL() + "user/savedContents?skip=" + value + "&limit=10&showAds=true");
+        if(nextPage > 0){
+					let arr = [...content, ...response.items];
+					
+					setContent(arr);
+				}
+				else{
+					setContent(response.items);
+				}
       });
     }
-  
+    const firstEvent = (e) => {
+      var bottom = e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight < 50;
+      if(bottom){
+        let pg = nextPage + 1;
+      SetNextPage(pg);
+      SetNext(serverURL() + "user/savedContents?skip="+pg+"&limit=10")
+      fetchData();
+      }
+    }
+	
+	
+ 
   return (
     <div>
       <div className={classes.root}>
         <CssBaseline />
         
           <div className="explore">
-          <InfiniteScroll
-            scrollThreshold="90%"
-            dataLength={content.items.length}
-
-            next={fetchData()}
-            hasMore={hasMore}
-            loader={
-              //  <h4>Loading...</h4>
-              <div style={{ width: "100%", justifyContent: "center", display: "flex" }}>
-                <div className="loading" />
-              </div>
-            }
-            endMessage={null
-            }>
+         
+          <div onScroll={firstEvent} className='ImageAPI'>
             {content.length === 0 ? <div></div> :
-              content.items.map((item,index) => {
+              content.map((item,index) => {
                 if (item) return (
                   <div style={{ spacing: "50%" }}>
                     <div class="card mb-3 " >
@@ -238,7 +230,7 @@ function ViewSaveContent() {
                   </div>
                 )
               })}
- </InfiniteScroll>
+</div>
           </div>    
           </div>
           </div>

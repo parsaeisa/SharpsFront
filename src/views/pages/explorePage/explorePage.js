@@ -92,13 +92,10 @@ function ExplorePage(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [content, setContent] = useState({ items: [], total: "" });
-  const [hasMore, setHasMore] = useState(true);
-  const [nextPage, SetNextPage] = useState(
-    serverURL() + "user/suggestions?skip=0&limit=40&showAds=true"
-  );
+  const [content, setContent] = useState([]);
+  const [nextPage, SetNextPage] = useState(0);
+  const [next, SetNext] = useState(serverURL() + "user/suggestions?skip=0&limit=10&showAds=true");
   const [value, setValue] = useState(0);
-  const [contentGet, setContentGet] = useState(false);
 
   const [searching , setSearching] = useState(false);
   
@@ -111,54 +108,60 @@ function ExplorePage(props) {
     setOpen(false);
   };
 
-  useEffect(async () => {
-    if (contentGet == false) {
-      fetchData();
-      setContentGet(true);
-    }
-
-    // await timeout(20);
-  }, []);
-
+  useEffect(()=>{
+		fetchData();
+	},[]);
+    
+  
   const fetchData = () => {
-    console.log(localStorage.getItem("token") + "hhhhhhhhhhhhhhh");
-    fetch(nextPage, {
-      method: "GET",
+   
+    fetch(next, {
+      method: 'GET',
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
+        "Authorization": "Bearer " + localStorage.getItem('token')
+      }
     })
       .then((result) => {
-        console.log("sanaaaaaaaaaaa");
         if (result.status === 200) {
-          //   setValue(value+1)
-          // SetNextPage(serverURL()+"user/suggestions?skip="+value+"&limit=10&showAds=false");
-          return result.json();
+          return result.json()
         }
 
         if (result.status === 401) {
           // window.location.replace("/login")
         }
-      })
+      }
+      )
       .then(function (response) {
-        setContent((prevState) => ({
-          ...prevState,
-          items: response.items,
-          total: response.total,
-        }));
-        // console.log("data")
-        // setValue(value + 10)
-        // SetNextPage(serverURL() + "user/suggestions?skip=" + value + "&limit=10&showAds=true");
+  
+        if(nextPage > 0){
+					let arr = [...content, ...response.items];
+					
+					setContent(arr);
+				}
+				else{
+					setContent(response.items);
+				}
+				
       })
 
-      .then((response) => {});
-  };
-  {
-    console.log(content + "cont");
+      .then((response) => {
+      });
+
   }
-  {
-    console.log(value + "valueeee");
-  }
+  const firstEvent = (e) => {
+    
+    var bottom = e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight < 50;
+		if(bottom){
+			let pg = nextPage + 1;
+      SetNextPage(pg);
+      SetNext( serverURL() + "user/suggestions?skip="+pg+"&limit=10&showAds=false")
+			fetchData();
+	
+		}
+	}
+      
+	
+ 
   return (
     <div>          
       <AppBar style={{ background: '#ffffff'  }}  className={clsx( "SearchBar" , classes.appBar, props.drawerOpen && classes.appBarShift)}>
@@ -191,29 +194,11 @@ function ExplorePage(props) {
 
         <div className="appBarSpacer" />
         <div className="explore">
-          <InfiniteScroll
-            scrollThreshold="90%"
-            dataLength={content.items.length}
-            // next={ search == false ? fetchData() : null}
-            hasMore={hasMore}
-            loader={
-              //  <h4>Loading...</h4>
-              <div
-                style={{
-                  width: "100%",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                <div className="loading" />
-              </div>
-            }
-            endMessage={null}
-          >
+        <div onScroll={firstEvent} className='ImageAPI'>
             {content.length === 0 ? (
               <div></div>
             ) : (
-              content.items.map((item, index) => {
+              content.map((item, index) => {
                 if (item)
                   return (
                     <div style={{ spacing: "50%" }}>
@@ -336,7 +321,7 @@ function ExplorePage(props) {
                   );
               })
             )}
-          </InfiniteScroll>
+      </div>
         </div>
       </div>
     </div>
