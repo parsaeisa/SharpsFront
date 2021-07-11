@@ -292,7 +292,7 @@ export default class BlockedTable extends React.Component {
                 </>
             :
                     <div>
-                         <Typography variant="h6" style = {{color : "#757575"}} >
+                         <Typography variant="h5" style = {{color : "#757575" , margin : '20px'}} >
                             You haven't blocked any domain . 
                         </Typography>
                     </div>
