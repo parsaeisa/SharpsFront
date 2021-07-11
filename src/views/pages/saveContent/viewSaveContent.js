@@ -158,9 +158,8 @@ function ViewSaveContent() {
     const firstEvent = (e) => {
       let pg = nextPage + 1;
       if(pg==content.length){
-        console.log(content.length+"bbbbbbbbbbbbbbbbbbbbb")
-      setHasMore(false)
-      }
+        setHasMore(false)
+        }
       SetNextPage(pg);
       SetNext(serverURL() + "user/savedContents?skip="+pg+"&limit=10")
 			fetchData();
@@ -183,7 +182,9 @@ function ViewSaveContent() {
               //   <div className="loading" />
               // </div>
             }
-            endMessage={null}
+            endMessage={ <p style={{ textAlign: 'center' }}>
+            <b> You have seen it all</b>
+          </p>}
             >
             {content.length === 0 ? <div></div> :
               content.map((item,index) => {

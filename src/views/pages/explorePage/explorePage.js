@@ -154,8 +154,9 @@ function ExplorePage(props) {
     
 	
       let pg = nextPage + 1;
-      if(pg==content.length)
+      if(pg==content.length){
       setHasMore(false)
+      }
       SetNextPage(pg);
       SetNext( serverURL() + "user/suggestions?skip="+pg+"&limit=10&showAds=false")
 			fetchData();
@@ -204,7 +205,9 @@ function ExplorePage(props) {
               //   <div className="loading" />
               // </div>
             }
-            endMessage={null}
+            endMessage={<p style={{ textAlign: 'center' }}>
+            <b> You have seen it all</b>
+          </p>}
             >
             {content.length === 0 ? (
               <div></div>
