@@ -30,6 +30,9 @@
 }
 
 .day{
+	.MuiAppBar-colorPrimary{
+		background-color: #44469c !important ;
+	}
 	.appBarSpacer {
 		height: 60px;
 	}
@@ -60,7 +63,10 @@
 	
 }
 .night{
-	.Tabs{
+	.MuiSvgIcon-root{
+		color : white !important ;
+	}
+	.MuiAppBar-colorPrimary{
 		background-color: rgba(63,81,181,1) !important ;
 	}
 	.MuiBox-root {
