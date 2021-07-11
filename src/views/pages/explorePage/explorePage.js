@@ -151,8 +151,11 @@ function ExplorePage(props) {
 
   }
   const firstEvent = (e) => {
+    
 	
       let pg = nextPage + 1;
+      if(pg==content.length)
+      setHasMore(false)
       SetNextPage(pg);
       SetNext( serverURL() + "user/suggestions?skip="+pg+"&limit=10&showAds=false")
 			fetchData();
@@ -191,7 +194,9 @@ function ExplorePage(props) {
 
         <div className="appBarSpacer" />
         <div className="explore">
-        <InfiniteScroll 
+        <InfiniteScroll
+            dataLength={content.length}
+            next={firstEvent}
             hasMore={hasMore}
             loader={
                <h4>Loading...</h4>
