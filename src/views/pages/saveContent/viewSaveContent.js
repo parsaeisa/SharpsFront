@@ -156,12 +156,16 @@ function ViewSaveContent() {
       });
     }
     const firstEvent = (e) => {
-      let pg = nextPage + 1;
+      var bottom = e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight < 50;
+      if(bottom){
+        let pg = nextPage + 1;
       SetNextPage(pg);
       SetNext(serverURL() + "user/savedContents?skip="+pg+"&limit=10")
-			fetchData();
+      fetchData();
+      }
+    }
 	
-	}
+	
  
   return (
     <div>
