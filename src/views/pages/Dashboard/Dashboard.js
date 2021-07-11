@@ -35,6 +35,7 @@ import Analytics from '../Analytics/Analytics';
 import "../../styles/Dashboard.scss" ;
 import ViewSaveContent from '../saveContent/viewSaveContent';
 import * as darkmode_actions from "../../../core/dark_mode/action/darkModeActions";
+import PhoneTabular from './components/PhnoeTabular';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -153,8 +154,12 @@ function Dashboard({darkmode,setDarkMode}) {
           <div className={darkmode}>
           
                 <div className={classes.root}>
-                    <CssBaseline />                    
+                    <CssBaseline />  
+                    <div className = "PhoneTabular" >
+                      <PhoneTabular  />                  
+                    </div>
                     <Drawer 
+                        className = "Drawer"
                         variant="permanent"
                         classes={{
                         paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
