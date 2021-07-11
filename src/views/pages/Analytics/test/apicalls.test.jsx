@@ -32,9 +32,9 @@ test('handlers server error', async () => {
       })
 )})
 
-afterEach(() => {
-  axios.get.mockClear();
-});
+// afterEach(() => {
+//   axios.get.mockClear();
+// });
 
 function mockCall() {
   axios.get.mockResolvedValueOnce({
